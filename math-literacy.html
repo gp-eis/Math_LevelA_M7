@@ -582,8 +582,10 @@
   .conceptShell.is-watching #c_homeBtn{display:none;}
   .conceptShell.is-watching #c_backBtn{display:flex;}
   .conceptStage{position:relative;flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,36px);}
+  /* one pick per week now (both videos are joined into a single file), so it is
+     wider than the old side-by-side pair and its label gets room for two lines */
   .conceptPick{appearance:none;border:none;background:transparent;cursor:pointer;padding:0;
-    width:min(42%,420px);display:flex;flex-direction:column;align-items:center;gap:12px;
+    width:min(64%,620px);max-width:620px;display:flex;flex-direction:column;align-items:center;gap:12px;
     transition:transform .2s ease,opacity .35s ease,filter .35s ease;
     transform-origin:center center;z-index:1;}
   .conceptThumbWrap{position:relative;display:block;width:100%;line-height:0;}
@@ -1245,6 +1247,268 @@
 .g-think-big{position:absolute;inset:0;display:none;}
 .g-think-big.on{display:flex;align-items:center;justify-content:center;}
 
+
+/* ===== Week-2 Thinking Math (applications): Build the pattern + Say the sentence ===== */
+  .g-build,.g-sent{position:absolute;inset:0;display:none;}
+  .g-build.on,.g-sent.on{display:flex;align-items:center;justify-content:center;}
+  .g-build #bd_app,.g-sent #sn_app{position:relative;overflow:hidden;background:var(--cream);
+    width:min(100vw, calc(100vh * 3415 / 4770));
+    height:min(100vh, calc(100vw * 4770 / 3415));
+    container-type:size;container-name:game;padding:2.4%;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+                    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:3.6% 2.6%;}
+  @supports (height:100dvh){
+    .g-build #bd_app,.g-sent #sn_app{width:min(100vw, calc(100dvh * 3415 / 4770));
+      height:min(100dvh, calc(100vw * 4770 / 3415));}
+  }
+  /* orange chrome = Thinking Math */
+  .g-build .panel,.g-sent .panel{border-color:var(--orange);box-shadow:0 6px 0 rgba(212,132,42,.18);}
+  .g-build .title,.g-sent .title{-webkit-text-stroke:0.85cqh var(--orange);filter:drop-shadow(0 0.35cqh 0 rgba(212,132,42,.25));}
+  .g-build .ribbon,.g-sent .ribbon{background:var(--orange);box-shadow:0 2px 5px rgba(212,132,42,.25);}
+  .tmQ{width:min(94%,78cqh);text-align:center;font-family:'Baloo';color:var(--ink);line-height:1.22;}
+  .tmQ .pre{font-size:2.35cqh;} .tmQ .pre b{color:var(--orange);}
+  .tmQ .ask{margin-top:0.45cqh;font-size:2.1cqh;color:#6a7680;} .tmQ .ask b{color:var(--orange);}
+  .tmStars{display:flex;justify-content:center;gap:.55cqh;margin-top:1cqh;flex-shrink:0;position:relative;z-index:6;}
+  .tmStars .st{width:3.1cqh;height:3.1cqh;}
+  .tmStars .st path{fill:#efe6d5;stroke:#d8ccb4;stroke-width:1.1;transition:.2s;}
+  .tmStars .st.on path{fill:#ffc23e;stroke:#eaa41c;}
+  /* heroes: boy LEFT, girl RIGHT (Week-2 layout), idle still == frame 0 of the clip */
+  .g-build .hero,.g-sent .hero{position:absolute;bottom:2.2cqh;top:auto;width:auto;z-index:8;pointer-events:none;
+    filter:drop-shadow(0 8px 7px rgba(0,0,0,.16));transform:none;clip-path:none;max-height:none;transition:none;}
+  .g-build #bd_boyIdle,.g-build #bd_boyVid,.g-sent #sn_boyIdle,.g-sent #sn_boyVid{left:1.2cqh;right:auto;height:17cqh;}
+  .g-build #bd_girlIdle,.g-build #bd_girlVid,.g-sent #sn_girlIdle,.g-sent #sn_girlVid{right:1.2cqh;left:auto;height:17cqh;}
+  .g-build video.hero,.g-sent video.hero{opacity:0;}
+  .g-build .shadow,.g-sent .shadow{position:absolute;bottom:1.9cqh;height:1.8cqh;border-radius:50%;background:rgba(40,55,70,.15);filter:blur(4px);z-index:7;pointer-events:none;}
+  .g-build .shadow.boy,.g-sent .shadow.boy{left:4cqh;width:12cqh;}
+  .g-build .shadow.girl,.g-sent .shadow.girl{right:3cqh;width:9cqh;}
+  /* ---- Build the pattern ---- */
+  .bdBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqh;min-height:0;padding:0 0 21cqh;}
+  .bdRow{display:flex;align-items:center;justify-content:center;gap:0.9cqh;padding:1cqh 1.2cqh;border-radius:18px;
+    background:#fff;border:0.55cqh solid var(--orange);box-shadow:0 6px 14px rgba(212,132,42,.16);}
+  .bdSlot{width:8.4cqh;height:8.4cqh;border-radius:16px;background:#fff7ec;border:0.45cqh dashed #f3c88f;
+    display:flex;align-items:center;justify-content:center;flex:none;}
+  .bdSlot .qm{font-family:'Baloo';font-size:4.4cqh;color:#f3c88f;line-height:1;}
+  .bdSlot.next{border-color:var(--orange);background:#fff1dd;animation:bdNext 1.1s ease-in-out infinite;}
+  @keyframes bdNext{0%,100%{transform:scale(1);}50%{transform:scale(1.07);box-shadow:0 0 0 .5cqh rgba(240,160,64,.25);}}
+  .bdSlot.filled{background:transparent;border-color:transparent;animation:none;}
+  .bdSlot img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px rgba(0,0,0,.12));}
+  .bdSlot.filled.pop img{animation:pop .45s cubic-bezier(.2,1.6,.4,1);}
+  .bdSlot.given{background:transparent;border-color:transparent;}
+  .bdTrayLbl{font-family:'Baloo';font-size:2.1cqh;color:var(--orange);letter-spacing:.02em;}
+  .bdTray{display:flex;align-items:center;justify-content:center;gap:1.6cqh;flex-wrap:wrap;}
+  .bdItem{appearance:none;border:0.55cqh solid #d8e0ea;border-radius:18px;background:#fff;cursor:pointer;
+    width:12.5cqh;height:12.5cqh;display:flex;align-items:center;justify-content:center;padding:1cqh;
+    box-shadow:0 5px 12px rgba(50,70,90,.10);transition:transform .1s,border-color .15s,box-shadow .15s;}
+  .bdItem img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px rgba(0,0,0,.12));pointer-events:none;}
+  .bdItem:active{transform:translateY(2px);}
+  .bdItem.pulsing{animation:choicePulse 1.15s ease-in-out infinite;}
+  .bdItem.shake{animation:shake .4s;}
+  .bdItem.dim{opacity:.5;}
+  /* ---- Say the sentence ---- */
+  .snBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3cqh;min-height:0;padding:0 0 21cqh;}
+  .snLine{display:flex;align-items:center;justify-content:center;gap:1cqh;flex-wrap:nowrap;white-space:nowrap;
+    font-family:'Baloo';font-size:3.6cqh;color:var(--ink);padding:1.2cqh 1.8cqh;border-radius:20px;
+    background:#fff;border:0.55cqh solid var(--orange);box-shadow:0 6px 14px rgba(212,132,42,.16);}
+  .snBox{width:8cqh;height:8cqh;border-radius:16px;background:#fff7ec;border:0.45cqh dashed #f3c88f;flex:none;
+    display:flex;align-items:center;justify-content:center;font-family:'Baloo';font-size:5.2cqh;line-height:1;color:#f3c88f;}
+  .snBox.next{border-color:var(--orange);background:#fff1dd;animation:bdNext 1.1s ease-in-out infinite;}
+  .snBox.filled{background:#fff;border-style:solid;border-color:var(--orange);color:var(--orange);animation:pop .45s cubic-bezier(.2,1.6,.4,1);}
+  .snBalls{display:flex;align-items:center;justify-content:center;gap:3cqh;}
+  .snBall{position:relative;width:17cqh;height:17cqh;cursor:pointer;border:none;background:transparent;padding:0;
+    display:flex;align-items:center;justify-content:center;transition:transform .1s,opacity .2s;}
+  .snBall img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 3px rgba(0,0,0,.15));pointer-events:none;}
+  .snBall .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;
+    font-family:'Baloo';font-size:8cqh;line-height:1;color:#fff;-webkit-text-stroke:0.9cqh var(--orange-d);paint-order:stroke fill;
+    text-shadow:0 2px 0 rgba(0,0,0,.2);}
+  .snBall:active{transform:translateY(2px);}
+  .snBall.pulsing{animation:snPulse 1.15s ease-in-out infinite;}
+  @keyframes snPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+  .snBall.shake{animation:shake .4s;}
+  .snBall.used{opacity:.35;pointer-events:none;animation:none;}
+  /* shared: sentence bubble, buttons, end screen */
+  #bd_sentence,#sn_sentence{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%) scale(0);z-index:24;
+    width:min(96%,90cqh);font-family:'Baloo';color:var(--ink);background:#fff;
+    border:0.9cqh solid var(--orange);border-radius:3.2cqh;padding:2.2cqh 1.2cqh 2.6cqh;
+    text-align:center;line-height:1.08;white-space:nowrap;
+    box-shadow:0 1cqh 0 rgba(212,132,42,.3),0 0 0 .5cqh #fff,0 1.8cqh 3.5cqh rgba(51,64,74,.28),0 0 3cqh rgba(255,193,62,.55);}
+  #bd_sentence .cmp,#sn_sentence .cmp{display:block;color:var(--orange);font-size:4.2cqh;}
+  #bd_sentence .snt,#sn_sentence .snt{display:inline-block;font-size:4.2cqh;margin-top:0.9cqh;color:var(--ink);line-height:1.12;white-space:nowrap;}
+  #bd_sentence .snt b,#sn_sentence .snt b{color:var(--orange);}
+  #bd_sentence.on,#sn_sentence.on{animation:sIn .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+  #bd_homeBtn,#bd_backBtn,#sn_homeBtn,#sn_backBtn{position:absolute;top:0.55cqh;z-index:25;width:5cqh;height:5cqh;border:none;border-radius:14px;
+    background:#fff;box-shadow:0 3px 0 rgba(212,132,42,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #bd_homeBtn,#sn_homeBtn{left:0.55cqh;} #bd_backBtn,#sn_backBtn{left:6.5cqh;}
+  #bd_homeBtn svg,#bd_backBtn svg,#sn_homeBtn svg,#sn_backBtn svg{width:2.8cqh;height:2.8cqh;stroke:var(--orange);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  #bd_homeBtn:active,#bd_backBtn:active,#sn_homeBtn:active,#sn_backBtn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(212,132,42,.3);}
+  #bd_fw,#sn_fw{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;pointer-events:none;transition:opacity .5s;}
+  #bd_end,#sn_end{position:absolute;inset:0;z-index:35;background:rgba(249,242,228,.92);display:none;
+    flex-direction:column;align-items:center;justify-content:center;gap:2.8cqh;overflow:hidden;}
+  #bd_end > *:not(#bd_fw),#sn_end > *:not(#sn_fw){position:relative;z-index:1;}
+  #bd_end h1,#sn_end h1{font-family:'Baloo';font-size:6.5cqh;color:#fff;-webkit-text-stroke:0.9cqh var(--orange);paint-order:stroke fill;}
+  #bd_endStars,#sn_endStars{display:flex;gap:1cqh;} #bd_endStars svg,#sn_endStars svg{width:7.5cqh;height:7.5cqh;}
+  #bd_end .endBtns,#sn_end .endBtns{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.4cqh;}
+  #bd_end .endBtns .btn,#sn_end .endBtns .btn{width:min(46vw,32cqh);justify-content:center;box-sizing:border-box;
+    background:var(--orange);box-shadow:0 6px 0 var(--orange-d);}
+  #bd_end .btn:active,#sn_end .btn:active{box-shadow:0 2px 0 var(--orange-d);}
+  #bd_end .btn.home,#sn_end .btn.home{background:var(--blue);box-shadow:0 6px 0 var(--blue-d);}
+  #bd_end .btn.home:active,#sn_end .btn.home:active{box-shadow:0 2px 0 var(--blue-d);}
+
+/* ===== Week-3 Thinking Math (applications): Who's out of place? + Podium ===== */
+  .g-fix,.g-podium{position:absolute;inset:0;display:none;}
+  .g-fix.on,.g-podium.on{display:flex;align-items:center;justify-content:center;}
+  .g-fix #fx_app,.g-podium #pd_app{position:relative;overflow:hidden;background:var(--cream);
+    width:min(100vw, calc(100vh * 3415 / 4770));height:min(100vh, calc(100vw * 4770 / 3415));
+    container-type:size;container-name:game;padding:2.4%;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:3.6% 2.6%;}
+  @supports (height:100dvh){ .g-fix #fx_app,.g-podium #pd_app{width:min(100vw, calc(100dvh * 3415 / 4770));height:min(100dvh, calc(100vw * 4770 / 3415));} }
+  .g-fix .panel,.g-podium .panel{border-color:var(--orange);box-shadow:0 6px 0 rgba(212,132,42,.18);}
+  .g-fix .title,.g-podium .title{-webkit-text-stroke:0.85cqh var(--orange);filter:drop-shadow(0 0.35cqh 0 rgba(212,132,42,.25));}
+  .g-fix .ribbon,.g-podium .ribbon{background:var(--orange);box-shadow:0 2px 5px rgba(212,132,42,.25);}
+  .g-fix .hero,.g-podium .hero{position:absolute;bottom:2.2cqh;top:auto;width:auto;z-index:8;pointer-events:none;filter:drop-shadow(0 8px 7px rgba(0,0,0,.16));transform:none;clip-path:none;max-height:none;transition:none;}
+  /* canvas heights sized so BOTH bodies render ~19cqh tall (the boy's canvas also holds his
+     torch's flight, so his canvas is 1.84x his body height) */
+  .g-fix #fx_boyIdle,.g-fix #fx_boyVid,.g-podium #pd_boyIdle,.g-podium #pd_boyVid{left:0.4cqh;right:auto;height:35cqh;}
+  .g-fix #fx_girlIdle,.g-fix #fx_girlVid,.g-podium #pd_girlIdle,.g-podium #pd_girlVid{right:0.4cqh;left:auto;height:19.8cqh;}
+  .g-fix video.hero,.g-podium video.hero{opacity:0;}
+  .g-fix .shadow,.g-podium .shadow{position:absolute;bottom:1.9cqh;height:1.8cqh;border-radius:50%;background:rgba(40,55,70,.15);filter:blur(4px);z-index:7;pointer-events:none;}
+  .g-fix .shadow.boy,.g-podium .shadow.boy{left:4cqh;width:12cqh;} .g-fix .shadow.girl,.g-podium .shadow.girl{right:3cqh;width:9cqh;}
+  /* ---- Who's out of place? ---- */
+  .fxBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqh;min-height:0;padding:0 0 21cqh;}
+  .fxRow{display:flex;align-items:center;justify-content:center;gap:0.7cqh;padding:1cqh 1.1cqh;border-radius:18px;background:#fff;border:0.55cqh solid var(--orange);box-shadow:0 6px 14px rgba(212,132,42,.16);}
+  .fxCell{appearance:none;border:0.4cqh solid transparent;border-radius:14px;background:transparent;cursor:pointer;width:7.4cqh;height:7.4cqh;padding:.4cqh;display:flex;align-items:center;justify-content:center;transition:transform .1s,border-color .15s,background .15s;}
+  .fxCell img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px rgba(0,0,0,.12));pointer-events:none;}
+  .fxCell.pulsing{animation:choicePulse 1.15s ease-in-out infinite;}
+  .fxCell.shake{animation:shake .4s;}
+  .fxCell.wrongOut{animation:fxOut .45s ease-in forwards;}
+  @keyframes fxOut{0%{transform:translateY(0) scale(1);opacity:1;}100%{transform:translateY(-9cqh) rotate(20deg) scale(.6);opacity:0;}}
+  .fxCell.fixed{border-color:var(--green);background:#eefbf3;}
+  .fxCell.fixed img{animation:pop .45s cubic-bezier(.2,1.6,.4,1);}
+  .fxHint{font-family:'Baloo';font-size:2.1cqh;color:var(--orange);letter-spacing:.02em;}
+  /* ---- Podium ---- */
+  .pdBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.6cqh;min-height:0;padding:0 0 21cqh;}
+  .pdMedals{display:flex;align-items:center;justify-content:center;gap:2.4cqh;}
+  .pdMedal{position:relative;width:14cqh;height:14cqh;cursor:pointer;border:none;background:transparent;padding:0;display:flex;align-items:center;justify-content:center;transition:transform .1s,opacity .2s;}
+  .pdMedal img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 3px rgba(0,0,0,.15));pointer-events:none;}
+  .pdMedal .num{position:absolute;left:0;right:0;top:52%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;pointer-events:none;font-family:'Baloo';font-size:6cqh;line-height:1;color:#fff;-webkit-text-stroke:0.8cqh var(--orange-d);paint-order:stroke fill;text-shadow:0 2px 0 rgba(0,0,0,.2);}
+  .pdMedal.pulsing{animation:snPulse 1.15s ease-in-out infinite;}
+  .pdMedal.shake{animation:shake .4s;}
+  .pdMedal.used{opacity:.25;pointer-events:none;animation:none;}
+  .pdPodium{display:flex;align-items:flex-end;justify-content:center;gap:.8cqh;}
+  .pdStep{width:13cqh;border-radius:12px 12px 4px 4px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.4cqh;padding:.8cqh .4cqh;font-family:'Baloo';color:#fff;box-shadow:inset 0 -0.8cqh 0 rgba(0,0,0,.12);}
+  .pdStep .slot{width:9.5cqh;height:9.5cqh;border-radius:14px;background:rgba(255,255,255,.55);border:.4cqh dashed rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:5cqh;line-height:1;color:#fff;-webkit-text-stroke:0.6cqh var(--orange-d);paint-order:stroke fill;}
+  .pdStep .slot.next{animation:bdNext 1.1s ease-in-out infinite;background:rgba(255,255,255,.8);}
+  .pdStep .slot.filled{background:#fff;border-style:solid;border-color:#fff;animation:pop .45s cubic-bezier(.2,1.6,.4,1);}
+  .pdStep .rank{font-size:2.4cqh;text-shadow:0 1px 0 rgba(0,0,0,.2);}
+  .pdStep.gold{background:linear-gradient(180deg,#ffd86b,#e5a91c);height:18cqh;order:2;}
+  .pdStep.silver{background:linear-gradient(180deg,#dfe4ea,#a9b3bf);height:15cqh;order:1;}
+  .pdStep.bronze{background:linear-gradient(180deg,#e0a070,#b46a36);height:12.5cqh;order:3;}
+  /* shared bubble/buttons/end (same look as the W2 kit) */
+  #fx_sentence,#pd_sentence{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%) scale(0);z-index:24;width:min(96%,90cqh);font-family:'Baloo';color:var(--ink);background:#fff;border:0.9cqh solid var(--orange);border-radius:3.2cqh;padding:2.2cqh 1.2cqh 2.6cqh;text-align:center;line-height:1.08;white-space:nowrap;box-shadow:0 1cqh 0 rgba(212,132,42,.3),0 0 0 .5cqh #fff,0 1.8cqh 3.5cqh rgba(51,64,74,.28),0 0 3cqh rgba(255,193,62,.55);}
+  #fx_sentence .cmp,#pd_sentence .cmp{display:block;color:var(--orange);font-size:4.2cqh;}
+  #fx_sentence .snt,#pd_sentence .snt{display:inline-block;font-size:4.2cqh;margin-top:0.9cqh;color:var(--ink);line-height:1.12;white-space:nowrap;}
+  #fx_sentence .snt b,#pd_sentence .snt b{color:var(--orange);}
+  #fx_sentence.on,#pd_sentence.on{animation:sIn .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+  #fx_homeBtn,#fx_backBtn,#pd_homeBtn,#pd_backBtn{position:absolute;top:0.55cqh;z-index:25;width:5cqh;height:5cqh;border:none;border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(212,132,42,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #fx_homeBtn,#pd_homeBtn{left:0.55cqh;} #fx_backBtn,#pd_backBtn{left:6.5cqh;}
+  #fx_homeBtn svg,#fx_backBtn svg,#pd_homeBtn svg,#pd_backBtn svg{width:2.8cqh;height:2.8cqh;stroke:var(--orange);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  #fx_homeBtn:active,#fx_backBtn:active,#pd_homeBtn:active,#pd_backBtn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(212,132,42,.3);}
+  #fx_fw,#pd_fw{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;pointer-events:none;transition:opacity .5s;}
+  #fx_end,#pd_end{position:absolute;inset:0;z-index:35;background:rgba(249,242,228,.92);display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.8cqh;overflow:hidden;}
+  #fx_end > *:not(#fx_fw),#pd_end > *:not(#pd_fw){position:relative;z-index:1;}
+  #fx_end h1,#pd_end h1{font-family:'Baloo';font-size:6.5cqh;color:#fff;-webkit-text-stroke:0.9cqh var(--orange);paint-order:stroke fill;}
+  #fx_endStars,#pd_endStars{display:flex;gap:1cqh;} #fx_endStars svg,#pd_endStars svg{width:7.5cqh;height:7.5cqh;}
+  #fx_end .endBtns,#pd_end .endBtns{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.4cqh;}
+  #fx_end .endBtns .btn,#pd_end .endBtns .btn{width:min(46vw,32cqh);justify-content:center;box-sizing:border-box;background:var(--orange);box-shadow:0 6px 0 var(--orange-d);}
+  #fx_end .btn:active,#pd_end .btn:active{box-shadow:0 2px 0 var(--orange-d);}
+  #fx_end .btn.home,#pd_end .btn.home{background:var(--blue);box-shadow:0 6px 0 var(--blue-d);}
+  #fx_end .btn.home:active,#pd_end .btn.home:active{box-shadow:0 2px 0 var(--blue-d);}
+
+/* ===== Week-4 Thinking Math (applications): Which rule is it? + Which is smaller? ===== */
+  .g-order,.g-smaller{position:absolute;inset:0;display:none;}
+  .g-order.on,.g-smaller.on{display:flex;align-items:center;justify-content:center;}
+  .g-order #ol_app,.g-smaller #sl_app{position:relative;overflow:hidden;background:var(--cream);
+    width:min(100vw, calc(100vh * 3415 / 4770));height:min(100vh, calc(100vw * 4770 / 3415));
+    container-type:size;container-name:game;padding:2.4%;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:3.6% 2.6%;}
+  @supports (height:100dvh){ .g-order #ol_app,.g-smaller #sl_app{width:min(100vw, calc(100dvh * 3415 / 4770));height:min(100dvh, calc(100vw * 4770 / 3415));} }
+  .g-order .panel,.g-smaller .panel{border-color:var(--purple);box-shadow:0 6px 0 rgba(111,84,181,.18);}
+  .g-order .title,.g-smaller .title{-webkit-text-stroke:0.85cqh var(--purple);filter:drop-shadow(0 0.35cqh 0 rgba(111,84,181,.25));}
+  .g-order .ribbon,.g-smaller .ribbon{background:var(--purple);box-shadow:0 2px 5px rgba(111,84,181,.25);}
+  .g-order .tmQ .pre b,.g-smaller .tmQ .pre b,.g-order .tmQ .ask b,.g-smaller .tmQ .ask b{color:var(--purple);}
+  .g-order .hero,.g-smaller .hero{position:absolute;bottom:2.2cqh;top:auto;width:auto;z-index:8;pointer-events:none;filter:drop-shadow(0 8px 7px rgba(0,0,0,.16));transform:none;clip-path:none;max-height:none;transition:none;}
+  /* canvas heights sized so both Week-4 bodies render ~19cqh tall
+     (boy canvas 1460/1370 of his body, girl 944/859 of hers) */
+  .g-order #ol_boyIdle,.g-order #ol_boyVid,.g-smaller #sl_boyIdle,.g-smaller #sl_boyVid{left:0.4cqh;right:auto;height:20.2cqh;}
+  .g-order #ol_girlIdle,.g-order #ol_girlVid,.g-smaller #sl_girlIdle,.g-smaller #sl_girlVid{right:0.4cqh;left:auto;height:20.9cqh;}
+  .g-order video.hero,.g-smaller video.hero{opacity:0;}
+  .g-order .shadow,.g-smaller .shadow{position:absolute;bottom:1.9cqh;height:1.8cqh;border-radius:50%;background:rgba(40,55,70,.15);filter:blur(4px);z-index:7;pointer-events:none;}
+  .g-order .shadow.boy,.g-smaller .shadow.boy{left:4cqh;width:12cqh;} .g-order .shadow.girl,.g-smaller .shadow.girl{right:3cqh;width:9cqh;}
+  /* ---- Which rule is it? ---- */
+  .olBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqh;min-height:0;padding:0 0 21cqh;}
+  .olHint{display:flex;align-items:center;justify-content:center;gap:1.4cqh;font-family:'Baloo';font-size:2.3cqh;color:var(--purple);}
+  .olHint .arrow{flex:none;width:14cqh;height:0.7cqh;border-radius:999px;background:var(--purple);position:relative;opacity:.55;}
+  .olHint .arrow::after{content:"";position:absolute;right:-0.2cqh;top:50%;transform:translateY(-50%);
+    border-left:1.6cqh solid var(--purple);border-top:1.1cqh solid transparent;border-bottom:1.1cqh solid transparent;}
+  .olTrack{display:flex;align-items:flex-end;justify-content:center;gap:1.6cqh;}
+  .olSlot{width:19cqh;height:16cqh;border-radius:22px;background:#faf7ff;border:0.5cqh dashed #c3b1ee;
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .olSlot .rank{position:absolute;bottom:0.6cqh;font-family:'Baloo';font-size:1.9cqh;color:#a596d8;}
+  /* the slots grow left-to-right so the order reads without words */
+  .olTrack .olSlot:nth-child(1){width:16cqh;height:13.4cqh;}
+  .olTrack .olSlot:nth-child(3){width:22cqh;height:18.6cqh;}
+  .olSlot.next{border-color:var(--purple);background:#f2ecff;animation:bdNext 1.1s ease-in-out infinite;}
+  .olSlot.filled{border-style:solid;border-color:var(--purple);background:#fff;}
+  .olSlot img{position:absolute;width:80%;height:auto;object-fit:contain;}
+  .olSlot .num{position:relative;font-family:'Baloo';font-size:8cqh;line-height:1;color:#fff;
+    -webkit-text-stroke:0.85cqh var(--purple);paint-order:stroke fill;}
+  .olSlot.filled .num{animation:pop .45s cubic-bezier(.2,1.6,.4,1);}
+  .olCards{display:flex;align-items:center;justify-content:center;gap:2.2cqh;}
+  .olCard{position:relative;appearance:none;border:0.6cqh solid #d8e0ea;border-radius:22px;background:#fff;cursor:pointer;
+    width:19cqh;height:14cqh;display:flex;align-items:center;justify-content:center;overflow:hidden;
+    box-shadow:0 7px 14px rgba(50,70,90,.12);transition:transform .1s,border-color .15s,opacity .2s;}
+  .olCard img{position:absolute;width:84%;height:auto;object-fit:contain;}
+  .olCard .num{position:relative;font-family:'Baloo';font-size:7.4cqh;line-height:1;color:#fff;
+    -webkit-text-stroke:0.85cqh var(--purple);paint-order:stroke fill;}
+  .olCard.pulsing{animation:cardPulse 1.1s ease-in-out infinite;}
+  .olCard.shake{animation:shake .4s;}
+  .olCard:active{transform:translateY(2px);}
+  .olCard.used{opacity:.25;pointer-events:none;animation:none;}
+  /* ---- Which is smaller? ---- */
+  .slBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3cqh;min-height:0;padding:0 0 21cqh;}
+  .slLine{font-family:'Baloo';font-size:3.4cqh;color:var(--ink);}
+  .slLine b{color:var(--purple);}
+  .slCards{display:flex;align-items:center;justify-content:center;gap:3.2cqh;}
+  .slCard{position:relative;appearance:none;border:0.7cqh solid var(--purple);border-radius:26px;background:#fff;cursor:pointer;
+    width:26cqh;height:19cqh;display:flex;align-items:center;justify-content:center;overflow:hidden;
+    box-shadow:0 8px 16px rgba(111,84,181,.14);transition:transform .1s,border-color .15s;}
+  .slCard img{position:absolute;width:82%;height:auto;object-fit:contain;}
+  .slCard .num{position:relative;font-family:'Baloo';font-size:11cqh;line-height:1;color:#fff;
+    -webkit-text-stroke:1cqh var(--purple);paint-order:stroke fill;text-shadow:0 3px 0 rgba(0,0,0,.12);}
+  .slCard.pulsing{animation:cardPulse 1.1s ease-in-out infinite;}
+  .slCard.shake{animation:shake .4s;}
+  .slCard.correct{border-color:var(--green)!important;box-shadow:0 0 0 0.5cqh rgba(60,186,122,.3),0 8px 16px rgba(60,186,122,.22)!important;}
+  .slCard.dim{opacity:.45;}
+  /* shared bubble / buttons / end screen */
+  #ol_sentence,#sl_sentence{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%) scale(0);z-index:24;width:min(96%,90cqh);font-family:'Baloo';color:var(--ink);background:#fff;border:0.9cqh solid var(--purple);border-radius:3.2cqh;padding:2.2cqh 1.2cqh 2.6cqh;text-align:center;line-height:1.08;white-space:nowrap;box-shadow:0 1cqh 0 rgba(111,84,181,.3),0 0 0 .5cqh #fff,0 1.8cqh 3.5cqh rgba(51,64,74,.28),0 0 3cqh rgba(255,193,62,.55);}
+  #ol_sentence .cmp,#sl_sentence .cmp{display:block;color:var(--purple);font-size:4.2cqh;}
+  #ol_sentence .snt,#sl_sentence .snt{display:inline-block;font-size:4.2cqh;margin-top:0.9cqh;color:var(--ink);line-height:1.12;white-space:nowrap;}
+  #ol_sentence .snt b,#sl_sentence .snt b{color:var(--purple);}
+  #ol_sentence.on,#sl_sentence.on{animation:sIn .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+  #ol_homeBtn,#ol_backBtn,#sl_homeBtn,#sl_backBtn{position:absolute;top:0.55cqh;z-index:25;width:5cqh;height:5cqh;border:none;border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(111,84,181,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #ol_homeBtn,#sl_homeBtn{left:0.55cqh;} #ol_backBtn,#sl_backBtn{left:6.5cqh;}
+  #ol_homeBtn svg,#ol_backBtn svg,#sl_homeBtn svg,#sl_backBtn svg{width:2.8cqh;height:2.8cqh;stroke:var(--purple);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  #ol_homeBtn:active,#ol_backBtn:active,#sl_homeBtn:active,#sl_backBtn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(111,84,181,.3);}
+  #ol_fw,#sl_fw{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;pointer-events:none;transition:opacity .5s;}
+  #ol_end,#sl_end{position:absolute;inset:0;z-index:35;background:rgba(249,242,228,.92);display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.8cqh;overflow:hidden;}
+  #ol_end > *:not(#ol_fw),#sl_end > *:not(#sl_fw){position:relative;z-index:1;}
+  #ol_end h1,#sl_end h1{font-family:'Baloo';font-size:6.5cqh;color:#fff;-webkit-text-stroke:0.9cqh var(--purple);paint-order:stroke fill;}
+  #ol_endStars,#sl_endStars{display:flex;gap:1cqh;} #ol_endStars svg,#sl_endStars svg{width:7.5cqh;height:7.5cqh;}
+  #ol_end .endBtns,#sl_end .endBtns{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.4cqh;}
+  #ol_end .endBtns .btn,#sl_end .endBtns .btn{width:min(46vw,32cqh);justify-content:center;box-sizing:border-box;background:var(--purple);box-shadow:0 6px 0 var(--purple-d);}
+  #ol_end .btn:active,#sl_end .btn:active{box-shadow:0 2px 0 var(--purple-d);}
+  #ol_end .btn.home,#sl_end .btn.home{background:var(--blue);box-shadow:0 6px 0 var(--blue-d);}
+  #ol_end .btn.home:active,#sl_end .btn.home:active{box-shadow:0 2px 0 var(--blue-d);}
 </style>
 </head>
 <body>
@@ -1266,17 +1530,15 @@
       <span class="weekNum">2</span>
       <span class="weekLabel">Week 2</span>
     </button>
-    <button type="button" class="weekBtn" data-week="3" disabled aria-label="Week 3 coming soon">
+    <button type="button" class="weekBtn" data-week="3" aria-label="Open Week 3">
       <span class="weekArt"><img src="assets/week_3_thumb.png?v=1" alt=""></span>
       <span class="weekNum">3</span>
       <span class="weekLabel">Week 3</span>
-      <span class="weekHint">Coming soon</span>
     </button>
-    <button type="button" class="weekBtn" data-week="4" disabled aria-label="Week 4 coming soon">
+    <button type="button" class="weekBtn" data-week="4" aria-label="Open Week 4">
       <span class="weekArt"><img src="assets/week_4_thumb.png?v=1" alt=""></span>
       <span class="weekNum">4</span>
       <span class="weekLabel">Week 4</span>
-      <span class="weekHint">Coming soon</span>
     </button>
   </div>
 </div>
@@ -1332,7 +1594,7 @@
         <div class="hubCardTitle">Math Literature</div>
         <div class="hubCardArt">
           <button type="button" class="fairytaleThumb" data-launch="video" data-act="poem" aria-label="Watch Math Literature">
-            <img src="assets/videos/thumbs/math_fairytale.png?v=5" alt="Math Literature">
+            <img src="assets/videos/thumbs/w1_literature.png?v=7" alt="Math Literature">
           </button>
         </div>
         <div class="hubActions"></div>
@@ -1388,17 +1650,13 @@
     <button id="c_backBtn" title="Back"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
     <div class="conceptTitle">Math Literacy Videos</div>
     <div class="conceptStage" id="c_stage">
-      <button type="button" class="conceptPick" data-act="concept-patterns" aria-label="Pattern Rules 1">
+      <!-- one pick: both Pattern Rules videos are joined into a single file, so
+           the whole lesson plays from one click instead of two -->
+      <button type="button" class="conceptPick" data-act="concept-patterns" aria-label="Do You Play Sports? · It Is an AB Pattern">
         <span class="conceptThumbWrap">
-          <img src="assets/videos/thumbs/pattern_rules_1.png?v=6" alt="">
+          <img src="assets/videos/thumbs/w1_concept_1.png?v=7" alt="">
         </span>
-        <span>Pattern Rules 1</span>
-      </button>
-      <button type="button" class="conceptPick" data-act="concept-bigger" aria-label="Pattern Rules 2">
-        <span class="conceptThumbWrap">
-          <img src="assets/videos/thumbs/pattern_rules_2.png?v=5" alt="">
-        </span>
-        <span>Pattern Rules 2</span>
+        <span>Do You Play Sports? &middot; It Is an AB Pattern</span>
       </button>
       <video id="c_player" controls playsinline preload="metadata" style="background:#fff6f0"></video>
       <button type="button" id="c_startBtn" class="conceptStartBtn" aria-label="Play video" hidden>
@@ -1504,7 +1762,7 @@
     </div>
 
     <div id="b_intro" class="tp-intro">
-      <video id="b_introVid" class="tp-intro-vid" src="assets/w2_beaver_intro.webm" playsinline preload="none"></video>
+      <video id="b_introVid" class="tp-intro-vid" src="assets/w2_beaver_intro.webm?v=2" playsinline preload="none"></video>
       <button id="b_introSkip" class="tp-intro-skip" type="button">Skip ▶</button>
     </div>
 
@@ -1632,6 +1890,208 @@
   </div></div>
 
   </div></div>
+<div class="game g-build" id="screen-build"><div id="bd_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Thinking Math</div>
+    <div class="head">
+      <div class="ribbon">Patterns</div>
+      <div class="tmQ"><div class="pre" id="bd_qPre">Make the pattern.</div><div class="ask" id="bd_qAsk">Tap what comes <b>next</b>.</div></div>
+    </div>
+    <div class="tmStars" id="bd_stars"></div>
+    <div class="bdBoard">
+      <div class="bdRow" id="bd_row"></div>
+      <div class="bdTrayLbl">Tap the next one.</div>
+      <div class="bdTray" id="bd_tray"></div>
+    </div>
+    <div class="shadow girl"></div><div class="shadow boy"></div>
+    <img id="bd_boyIdle" class="hero" src="assets/w2_cleat_boy_idle.png" alt="">
+    <img id="bd_girlIdle" class="hero" src="assets/w2_cleat_girl_idle.png" alt="">
+    <video id="bd_boyVid" class="hero" src="assets/w2_boy_kick.webm?v=2" muted playsinline preload="none"></video>
+    <video id="bd_girlVid" class="hero" src="assets/w2_girl_cartwheel.webm?v=2" muted playsinline preload="none"></video>
+    <div id="bd_sentence"></div>
+    <button id="bd_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="bd_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="bd_end">
+      <video id="bd_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="bd_endStars"></div>
+      <div class="endBtns">
+        <button id="bd_againBtn" class="btn">Play again</button>
+        <button id="bd_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+<div class="game g-sent" id="screen-sent"><div id="sn_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Thinking Math</div>
+    <div class="head">
+      <div class="ribbon">Bigger Numbers</div>
+      <div class="tmQ"><div class="pre" id="sn_qPre">Say the sentence.</div><div class="ask" id="sn_qAsk">Tap the <b>bigger</b> number first.</div></div>
+    </div>
+    <div class="tmStars" id="sn_stars"></div>
+    <div class="snBoard">
+      <div class="snLine"><span class="snBox" id="sn_b1">?</span><span>is bigger than</span><span class="snBox" id="sn_b2">?</span><span>.</span></div>
+      <div class="snBalls">
+        <button type="button" class="snBall" id="sn_ballL" data-side="L"><img alt=""><span class="num"></span></button>
+        <button type="button" class="snBall" id="sn_ballR" data-side="R"><img alt=""><span class="num"></span></button>
+      </div>
+    </div>
+    <div class="shadow girl"></div><div class="shadow boy"></div>
+    <img id="sn_boyIdle" class="hero" src="assets/w2_cleat_boy_idle.png" alt="">
+    <img id="sn_girlIdle" class="hero" src="assets/w2_cleat_girl_idle.png" alt="">
+    <video id="sn_boyVid" class="hero" src="assets/w2_boy_kick.webm?v=2" muted playsinline preload="none"></video>
+    <video id="sn_girlVid" class="hero" src="assets/w2_girl_cartwheel.webm?v=2" muted playsinline preload="none"></video>
+    <div id="sn_sentence"></div>
+    <button id="sn_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="sn_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="sn_end">
+      <video id="sn_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="sn_endStars"></div>
+      <div class="endBtns">
+        <button id="sn_againBtn" class="btn">Play again</button>
+        <button id="sn_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+<div class="game g-fix" id="screen-fix"><div id="fx_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Thinking Math</div>
+    <div class="head">
+      <div class="ribbon">Patterns</div>
+      <div class="tmQ"><div class="pre" id="fx_qPre">Find the mistake.</div><div class="ask" id="fx_qAsk">Tap the one that is <b>out of place</b>.</div></div>
+    </div>
+    <div class="tmStars" id="fx_stars"></div>
+    <div class="fxBoard">
+      <div class="fxRow" id="fx_row"></div>
+      <div class="fxHint">One is out of place!</div>
+    </div>
+    <div class="shadow girl"></div><div class="shadow boy"></div>
+    <img id="fx_boyIdle" class="hero" src="assets/w3_boy_idle.png" alt="">
+    <img id="fx_girlIdle" class="hero" src="assets/w3_girl_idle.png" alt="">
+    <video id="fx_boyVid" class="hero" src="assets/w3_boy_cheer.webm" muted playsinline preload="none"></video>
+    <video id="fx_girlVid" class="hero" src="assets/w3_girl_cheer.webm" muted playsinline preload="none"></video>
+    <div id="fx_sentence"></div>
+    <button id="fx_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="fx_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="fx_end">
+      <video id="fx_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="fx_endStars"></div>
+      <div class="endBtns">
+        <button id="fx_againBtn" class="btn">Play again</button>
+        <button id="fx_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+<div class="game g-podium" id="screen-podium"><div id="pd_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Thinking Math</div>
+    <div class="head">
+      <div class="ribbon">Ordering Numbers</div>
+      <div class="tmQ"><div class="pre" id="pd_qPre">Put the numbers on the podium.</div><div class="ask" id="pd_qAsk">Tap the <b>biggest</b> number first.</div></div>
+    </div>
+    <div class="tmStars" id="pd_stars"></div>
+    <div class="pdBoard">
+      <div class="pdMedals" id="pd_medals"></div>
+      <div class="pdPodium">
+        <div class="pdStep gold"><div class="slot" id="pd_s1">?</div><div class="rank">1st</div></div>
+        <div class="pdStep silver"><div class="slot" id="pd_s2">?</div><div class="rank">2nd</div></div>
+        <div class="pdStep bronze"><div class="slot" id="pd_s3">?</div><div class="rank">3rd</div></div>
+      </div>
+    </div>
+    <div class="shadow girl"></div><div class="shadow boy"></div>
+    <img id="pd_boyIdle" class="hero" src="assets/w3_boy_idle.png" alt="">
+    <img id="pd_girlIdle" class="hero" src="assets/w3_girl_idle.png" alt="">
+    <video id="pd_boyVid" class="hero" src="assets/w3_boy_cheer.webm" muted playsinline preload="none"></video>
+    <video id="pd_girlVid" class="hero" src="assets/w3_girl_cheer.webm" muted playsinline preload="none"></video>
+    <div id="pd_sentence"></div>
+    <button id="pd_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="pd_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="pd_end">
+      <video id="pd_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="pd_endStars"></div>
+      <div class="endBtns">
+        <button id="pd_againBtn" class="btn">Play again</button>
+        <button id="pd_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+<div class="game g-order" id="screen-order"><div id="ol_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Thinking Math</div>
+    <div class="head">
+      <div class="ribbon">Ordering Numbers</div>
+      <div class="tmQ"><div class="pre" id="ol_qPre">Line up the countries.</div><div class="ask" id="ol_qAsk">Tap the <b>smallest</b> number first.</div></div>
+    </div>
+    <div class="tmStars" id="ol_stars"></div>
+    <div class="olBoard">
+      <div class="olTrack">
+        <div class="olSlot" id="ol_s1"></div>
+        <div class="olSlot" id="ol_s2"></div>
+        <div class="olSlot" id="ol_s3"></div>
+      </div>
+      <div class="olHint"><span>smallest</span><span class="arrow"></span><span>biggest</span></div>
+      <div class="olCards" id="ol_cards"></div>
+    </div>
+    <div class="shadow girl"></div><div class="shadow boy"></div>
+    <img id="ol_boyIdle" class="hero" src="assets/w4_boy_idle.png" alt="">
+    <img id="ol_girlIdle" class="hero" src="assets/w4_girl_idle.png" alt="">
+    <video id="ol_boyVid" class="hero" src="assets/w4_boy_cheer.webm" muted playsinline preload="none"></video>
+    <video id="ol_girlVid" class="hero" src="assets/w4_girl_cheer.webm" muted playsinline preload="none"></video>
+    <div id="ol_sentence"></div>
+    <button id="ol_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="ol_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="ol_end">
+      <video id="ol_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="ol_endStars"></div>
+      <div class="endBtns">
+        <button id="ol_againBtn" class="btn">Play again</button>
+        <button id="ol_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+<div class="game g-smaller" id="screen-smaller"><div id="sl_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Thinking Math</div>
+    <div class="head">
+      <div class="ribbon">Smaller Numbers</div>
+      <div class="tmQ"><div class="pre" id="sl_qPre">Find the smaller number.</div><div class="ask" id="sl_qAsk">Tap the <b>smaller</b> one.</div></div>
+    </div>
+    <div class="tmStars" id="sl_stars"></div>
+    <div class="slBoard">
+      <div class="slLine" id="sl_line">_____ is <b>smaller</b> than _____.</div>
+      <div class="slCards">
+        <button type="button" class="slCard" id="sl_cardL" data-side="L"><img alt=""><span class="num"></span></button>
+        <button type="button" class="slCard" id="sl_cardR" data-side="R"><img alt=""><span class="num"></span></button>
+      </div>
+    </div>
+    <div class="shadow girl"></div><div class="shadow boy"></div>
+    <img id="sl_boyIdle" class="hero" src="assets/w4_boy_idle.png" alt="">
+    <img id="sl_girlIdle" class="hero" src="assets/w4_girl_idle.png" alt="">
+    <video id="sl_boyVid" class="hero" src="assets/w4_boy_cheer.webm" muted playsinline preload="none"></video>
+    <video id="sl_girlVid" class="hero" src="assets/w4_girl_cheer.webm" muted playsinline preload="none"></video>
+    <div id="sl_sentence"></div>
+    <button id="sl_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="sl_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="sl_end">
+      <video id="sl_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="sl_endStars"></div>
+      <div class="endBtns">
+        <button id="sl_againBtn" class="btn">Play again</button>
+        <button id="sl_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
 <script>
 /* ---- index.html ---- */
 /* Buffer celebration hero videos and park them at frame 0 (standing pose) so the reveal
@@ -1722,16 +2182,8 @@ const ACTIVITIES={
     // Fenny explains basketball → golf → basketball (round 1, always)
     fennyVideo:'assets/fenny_basket_pattern.webm?v=15',
     fennyVoice:'fenny_basket' },
-  cone:{ id:'cone', A:'assets/cone.png', B:'assets/soccer.png',
-    nameS:'cone', nameB:'soccer ball',
-    voice:{ sb:'say_cone_sb', bs:'say_cone_bs' },
-    fennyVideo:'assets/fenny_look_pattern.webm?v=15',
-    fennyVoice:'fenny_soccer' },
-  cleat:{ id:'cleat', A:'assets/cleat.png', B:'assets/bottle.png',
-    nameS:'cleat', nameB:'water bottle',
-    voice:{ sb:'say_cleat_sb', bs:'say_cleat_bs' },
-    fennyVideo:'assets/fenny_look_pattern.webm?v=15',
-    fennyVoice:'fenny_soccer' },
+  // (Week-2 cone/cleat pages are served by the thinkPat engine with their own lion intro —
+  //  no Week-1 Fenny clips are used for Week 2.)
 };
 let CFG=ACTIVITIES.soccer;
 let IMG={s:CFG.A,b:CFG.B};
@@ -1743,6 +2195,7 @@ const ROUNDS=[
   {cells:['s','b','s'], ans:'b'},   // A B A → next B
 ];
 let roundIdx=0, score=0, locked=false, introActive=false, introSkipAt=0;
+let runSeq=0;   // bumped on stop/start; deferred callbacks bail if it changed (no VO after leaving)
 let celebGen=0, celebTimers=[];
 function clearCelebTimers(){ celebTimers.forEach(clearTimeout); celebTimers=[]; }
 function celebLater(fn, ms){ const id=setTimeout(fn, ms); celebTimers.push(id); return id; }
@@ -1917,7 +2370,8 @@ function correctFlow(which){
   reveal.classList.add('on');
   ac(); play('pop'); play('correct');
   score++; litStars(score);
-  setTimeout(celebrateGrand, 650);
+  const seq=runSeq;
+  setTimeout(()=>{ if(seq===runSeq) celebrateGrand(); }, 650);
 }
 
 function playBoyFlip(){
@@ -1956,7 +2410,9 @@ function celebrateGrand(){
   sayNode=play(line.voice);
   try{girlS.currentTime=0;}catch(e){} girlS.playbackRate=1.7;
   // Praise lands, then boy/girl celebrate under the comment
+  const seqC=runSeq;
   setTimeout(()=>{
+    if(seqC!==runSeq) return;
     playBoyFlip().then(()=>{ girlS.play().catch(()=>{}); });
   }, 550);
 
@@ -2139,7 +2595,7 @@ async function playFennyIntro(){
   // Fade only after the spoken line ends (never on hover / cursor move)
   let finished=false;
   const finish=()=>{
-    if(fenny._cancel || finished || !introActive) return;
+    if(fenny._cancel || fenny._syncGen!==gen || finished || !introActive) return;
     finished=true;
     introActive=false;
     fadeOutFenny(()=>{
@@ -2164,7 +2620,7 @@ async function playFennyIntro(){
   setTimeout(finish, durMs);
 }
 
-function stopCelebrationAudio(){ cheerNode=stopSound(cheerNode); fwSound=stopSound(fwSound);
+function stopCelebrationAudio(){ runSeq++; cheerNode=stopSound(cheerNode); fwSound=stopSound(fwSound);
   sayNode=stopSound(sayNode); stopFenny(); stopEndFireworks(); introActive=false;
   celebGen++; clearCelebTimers();
   try{speechSynthesis.cancel();}catch(e){} hideSentence(); banner.classList.remove('on'); }
@@ -2233,26 +2689,34 @@ function showIdle(on){
 }
 
 // ===== Week-2 polish: blue frame, beaver talk-first intro, real-motion celebration =====
-const BIG_BOY_RATIO=852/600, BIG_GIRL_RATIO=678/698;
-function isBigW2(){ return (window.Hub && Hub.week===2); }
+function bigWeek(){ return (window.Hub && Hub.week) || 1; }
+// "W2 treatment" = week-coloured frame + mascot talk-first intro + real-motion celebration (weeks 2 and 3)
+function isBigW2(){ return bigWeek()>=2; }
+function bigTheme(){ const w=bigWeek();
+  if(w===4) return {color:'var(--orange)', shadow:'rgba(212,132,42,.16)', glow:'rgba(212,132,42,.25)'};
+  return w===3
+  ? {color:'var(--green)', shadow:'rgba(60,186,122,.16)', glow:'rgba(60,186,122,.25)'}
+  : {color:'var(--blue)',  shadow:'rgba(47,147,207,.16)', glow:'rgba(47,147,207,.25)'}; }
 function bigHost(){ return flipS.offsetParent || flipS.parentElement; }
 function sizeBigHeroes(){
   const host=bigHost(); const hw=host?host.getBoundingClientRect().width:0; if(hw<=0) return;
-  const h=(hw*0.42)/BIG_BOY_RATIO;   // common height — girl matched to the boy
-  const boyBodyLeft=129*(h/600), girlBodyRight=253*(h/698);
+  const H=heroSpec(bigWeek());
+  const hs=heroHeights(H, hw, 0.30, 0.42);
+  const boyBodyLeft=H.boyBodyLeft*(hs.boy/H.boyH), girlBodyRight=H.girlBodyRight*(hs.girl/H.girlH);
   const boyLeft=Math.max(0, girlBodyRight-boyBodyLeft);
-  const set=(imgEl,vidEl,left,right)=>{ [imgEl,vidEl].forEach(el=>{ if(!el) return;
+  const set=(imgEl,vidEl,h,left,right)=>{ [imgEl,vidEl].forEach(el=>{ if(!el) return;
     el.style.height=h+'px'; el.style.left=left; el.style.right=right; el.style.bottom='2.5cqh'; el.style.top='auto'; }); };
-  set(boyIdle,flipS,boyLeft+'px','auto');   // boy left
-  set(girlIdle,girlS,'auto','0px');          // girl right, flush
+  set(boyIdle,flipS,hs.boy,boyLeft+'px','auto');   // boy left
+  set(girlIdle,girlS,hs.girl,'auto','0px');         // girl right, flush
 }
 function applyBigBlue(){
   const on=isBigW2();
   const instr=document.getElementById('b_instr'); if(instr) instr.style.display=on?'block':'none';   // "Circle the bigger number."
   const panel=document.querySelector('#b_app .panel'), title=document.querySelector('#b_app .title'), ribbon=document.querySelector('#b_app .ribbon');
-  if(panel){ panel.style.borderColor=on?'var(--blue)':''; panel.style.boxShadow=on?'0 6px 0 rgba(47,147,207,.16)':''; }
-  if(title){ title.style.webkitTextStroke=on?'0.85cqh var(--blue)':''; title.style.filter=on?'drop-shadow(0 0.35cqh 0 rgba(47,147,207,.25))':''; }
-  if(ribbon){ ribbon.style.background=on?'var(--blue)':''; ribbon.style.boxShadow=on?'0 2px 5px rgba(47,147,207,.25)':''; }
+  const T=bigTheme();
+  if(panel){ panel.style.borderColor=on?T.color:''; panel.style.boxShadow=on?('0 6px 0 '+T.shadow):''; }
+  if(title){ title.style.webkitTextStroke=on?('0.85cqh '+T.color):''; title.style.filter=on?('drop-shadow(0 0.35cqh 0 '+T.glow+')'):''; }
+  if(ribbon){ ribbon.style.background=on?T.color:''; ribbon.style.boxShadow=on?('0 2px 5px '+T.glow):''; }
 }
 function bigChrome(hide){ ['.title','.head','#b_stars','#b_instr'].forEach(sel=>{const el=document.querySelector('#b_app '+sel); if(el) el.style.visibility=hide?'hidden':'';}); }
 function positionBigIntro(){
@@ -2265,6 +2729,7 @@ function positionBigIntro(){
 function playBeaverIntro(onDone){
   const ov=document.getElementById('b_intro'), v=document.getElementById('b_introVid'), skip=document.getElementById('b_introSkip');
   if(!ov||!v){ onDone&&onDone(); return; }
+  const want=(CFG&&CFG.intro)||'assets/w2_beaver_intro.webm?v=2'; if(v.getAttribute('src')!==want){ v.src=want; try{v.load();}catch(e){} }   // week's mascot
   bigChrome(true); positionBigIntro();
   playBeaverIntro._cancel=false;
   let done=false;
@@ -2319,10 +2784,51 @@ const ACTIVITIES={
     ],
     says:['say_w2b_0','say_w2b_1','say_w2b_2'],
   },
+  // Week 3 (Olympics, skunk-explorer mascot). Book p18 = odd numbers, p19 = even numbers.
+  // Backdrops: the book's torch (3v1) and cap (6v4) are not extractable → skates / medal stand in.
+  w3set1:{
+    id:'w3set1', week:3, intro:'assets/w3_skunk_intro.webm', teach:'say_w3_odd', circle:'say_w3_circle',
+    rounds:[
+      {ball:'assets/skates.png',  L:3, R:1},
+      {ball:'assets/medal.png',   L:3, R:5},
+      {ball:'assets/runshoe.png', L:7, R:5},
+    ],
+    says:['say_w3a_0','say_w3a_1','say_w3a_2'],
+  },
+  w3set2:{
+    id:'w3set2', week:3, intro:'assets/w3_skunk_intro.webm', teach:'say_w3_even', circle:'say_w3_circle',
+    rounds:[
+      {ball:'assets/goggles.png', L:4, R:2},
+      {ball:'assets/medal.png',   L:6, R:4},
+      {ball:'assets/skates.png',  L:6, R:8},
+    ],
+    says:['say_w3b_0','say_w3b_1','say_w3b_2'],
+  },
+  // Week 4 (flags of the world, G-boy mascot). Book p24 and p25 — the numeral sits on the
+  // country's flag, so the "ball" behind each number is that page's pale flag.
+  w4set1:{
+    id:'w4set1', week:4, intro:'assets/w4_gboy_intro.webm', teach:'say_w4_bigger', circle:'say_w4_circle',
+    rounds:[
+      {ball:'assets/flag_kor_pale.png?v=2', L:3, R:1},
+      {ball:'assets/flag_usa_pale.png?v=2', L:5, R:10},
+      {ball:'assets/flag_uk_pale.png?v=2',  L:8, R:4},
+    ],
+    says:['say_w4a_0','say_w4a_1','say_w4a_2'],
+  },
+  w4set2:{
+    id:'w4set2', week:4, intro:'assets/w4_gboy_intro.webm', teach:'say_w4_bigger', circle:'say_w4_circle',
+    rounds:[
+      {ball:'assets/flag_aus_pale.png?v=2', L:7, R:10},
+      {ball:'assets/flag_ger_pale.png?v=2', L:2, R:1},
+      {ball:'assets/flag_fra_pale.png?v=2', L:5, R:8},
+    ],
+    says:['say_w4b_0','say_w4b_1','say_w4b_2'],
+  },
 };
 let CFG=ACTIVITIES.set1;
 let ROUNDS=CFG.rounds;
 let roundIdx=0, score=0, locked=false, introActive=false, introSkipAt=0;
+let runSeq=0;   // bumped on stop/start; deferred callbacks bail if it changed (no VO after leaving)
 
 // ---- audio (synth fallback) ----
 let AC; function ac(){AC=AC||new(window.AudioContext||window.webkitAudioContext)();return AC;}
@@ -2385,6 +2891,25 @@ reg('say_w2a_2','assets/voice/say_w2a_2.mp3',()=>speak('Amazing! 8 is bigger tha
 reg('say_w2b_0','assets/voice/say_w2b_0.mp3',()=>speak('Great job! 9 is bigger than 8.'),1.0);
 reg('say_w2b_1','assets/voice/say_w2b_1.mp3',()=>speak('Excellent! 10 is bigger than 9.'),1.0);
 reg('say_w2b_2','assets/voice/say_w2b_2.mp3',()=>speak('Amazing! 10 is bigger than 5.'),1.0);
+// Week 3 (skunk explorer) — odd/even read-aloud + celebration lines
+reg('say_w3_odd','assets/voice/say_w3_odd.mp3',()=>speak('These are odd numbers. Which number is bigger?'),1.0);
+reg('say_w3_even','assets/voice/say_w3_even.mp3',()=>speak('These are even numbers. Which number is bigger?'),1.0);
+reg('say_w3_circle','assets/voice/say_w3_circle.mp3',()=>speak('Circle the bigger number.'),1.0);
+reg('say_w3a_0','assets/voice/say_w3a_0.mp3',()=>speak('Great job! 3 is bigger than 1.'),1.0);
+reg('say_w3a_1','assets/voice/say_w3a_1.mp3',()=>speak('Excellent! 5 is bigger than 3.'),1.0);
+reg('say_w3a_2','assets/voice/say_w3a_2.mp3',()=>speak('Amazing! 7 is bigger than 5.'),1.0);
+reg('say_w3b_0','assets/voice/say_w3b_0.mp3',()=>speak('Great job! 4 is bigger than 2.'),1.0);
+reg('say_w3b_1','assets/voice/say_w3b_1.mp3',()=>speak('Excellent! 6 is bigger than 4.'),1.0);
+reg('say_w3b_2','assets/voice/say_w3b_2.mp3',()=>speak('Amazing! 8 is bigger than 6.'),1.0);
+// Week 4 (G-boy) — flags of the world
+reg('say_w4_bigger','assets/voice/say_w4_bigger.mp3',()=>speak('Which number is bigger?'),1.0);
+reg('say_w4_circle','assets/voice/say_w4_circle.mp3',()=>speak('Circle the bigger number.'),1.0);
+reg('say_w4a_0','assets/voice/say_w4a_0.mp3',()=>speak('Great job! 3 is bigger than 1.'),1.0);
+reg('say_w4a_1','assets/voice/say_w4a_1.mp3',()=>speak('Excellent! 10 is bigger than 5.'),1.0);
+reg('say_w4a_2','assets/voice/say_w4a_2.mp3',()=>speak('Amazing! 8 is bigger than 4.'),1.0);
+reg('say_w4b_0','assets/voice/say_w4b_0.mp3',()=>speak('Great job! 10 is bigger than 7.'),1.0);
+reg('say_w4b_1','assets/voice/say_w4b_1.mp3',()=>speak('Excellent! 2 is bigger than 1.'),1.0);
+reg('say_w4b_2','assets/voice/say_w4b_2.mp3',()=>speak('Amazing! 8 is bigger than 5.'),1.0);
 reg('say_w2a_0','assets/voice/say_w2a_0.mp3',()=>speak('Great job! 6 is bigger than 5.'),1.0);
 reg('say_w2a_1','assets/voice/say_w2a_1.mp3',()=>speak('Excellent! 7 is bigger than 6.'),1.0);
 reg('say_w2a_2','assets/voice/say_w2a_2.mp3',()=>speak('Amazing! 8 is bigger than 7.'),1.0);
@@ -2497,7 +3022,7 @@ function playBoyFlip(){
     const go=()=>{
       if(started) return; started=true;
       flipS.removeEventListener('seeked', onSeeked);
-      flipS.playbackRate=isBigW2()?1.575:3;   // cleat kick speed for the number game
+      flipS.playbackRate=isBigW2()?heroSpec(bigWeek()).boyRate:3;   // per-week clip speed
       showIdle(false);
       flipS.play().catch(()=>{});
       resolve();
@@ -2519,18 +3044,20 @@ function playBoyFlip(){
 
 // characters cheer + the COMPLIMENT goes together with the SAYING (no fireworks)
 function celebrate(big,small){
+  const seq=runSeq;
   showSentence(big,small);
   sayNode=stopSound(sayNode);
   sayNode=play(CFG.says[roundIdx]);
   if(!isBigW2() && window.WeekArt) WeekArt.play({boyIdle:'b_boyIdle', girlIdle:'b_girlIdle', flip:'b_flipS', girlS:'b_girlS'}, 'jump');
-  try{girlS.currentTime=0;}catch(e){} girlS.playbackRate=isBigW2()?1.66:1.7;   // cleat cartwheel speed
+  try{girlS.currentTime=0;}catch(e){} girlS.playbackRate=isBigW2()?heroSpec(bigWeek()).girlRate:1.7;
   // Let ring + praise land first, then start boy/girl together
   setTimeout(()=>{
+    if(seq!==runSeq) return;
     playBoyFlip().then(()=>{ girlS.play().catch(()=>{}); });
   }, 550);
   let flipDone=false, voDone=false, advanced=false;
   const advance=()=>{
-    if(advanced || !flipDone || !voDone) return;
+    if(advanced || !flipDone || !voDone || seq!==runSeq) return;
     advanced=true;
     banner.classList.remove('on'); hideSentence();
     sayNode=stopSound(sayNode);
@@ -2540,13 +3067,13 @@ function celebrate(big,small){
     roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else endGame();
   };
   const onFlipDone=()=>{
-    if(flipDone) return; flipDone=true;
+    if(flipDone || seq!==runSeq) return; flipDone=true;
     [flipS,girlS].forEach(v=>{ v.pause(); v.onended=null; });
     try{flipS.currentTime=0;}catch(e){}
     showIdle(true);
     advance();
   };
-  const onVoDone=()=>{ if(voDone) return; voDone=true; advance(); };
+  const onVoDone=()=>{ if(voDone || seq!==runSeq) return; voDone=true; advance(); };
   flipS.onended=onFlipDone;
   setTimeout(onFlipDone, 6000);   // ~(10s clip)/3 + buffer
   if(sayNode){
@@ -2590,6 +3117,7 @@ function endGame(){
   playEndFireworks();   // transparent fireworks video + sound on "You did it!"
 }
 function stopCelebrationAudio(){
+  runSeq++;
   clearFennyTimers();
   cheerNode=stopSound(cheerNode); fwSound=stopSound(fwSound); sayNode=stopSound(sayNode);
   stopFenny(); stopEndFireworks(); introActive=false;
@@ -2759,19 +3287,22 @@ window.BiggerGame={
     applyBigBlue();
     if(isBigW2()){
       // Blue frame + real-motion celebration + beaver talk-first intro (matches cleat/cone).
-      boyIdle.src='assets/w2_cleat_boy_idle.png'; girlIdle.src='assets/w2_cleat_girl_idle.png';
+      const H=heroSpec(bigWeek());
+      boyIdle.src=H.boyIdle; girlIdle.src=H.girlIdle;
       flipS.style.display=''; girlS.style.display='';
       const setSrc=(v,src)=>{ if(v && v.getAttribute('src')!==src){ v.src=src; try{v.load();}catch(e){} } };
-      setSrc(flipS,'assets/w2_boy_kick.webm'); setSrc(girlS,'assets/w2_girl_cartwheel.webm');
+      setSrc(flipS,H.boyVid); setSrc(girlS,H.girlVid);
       start({intro:true});   // renders numbers, defers the question VO
-      locked=true;           // lock the picks while the beaver talks
+      locked=true;           // lock the picks while the mascot talks
       playBeaverIntro(()=>{
         showIdle(true); locked=false;
         pickL.classList.add('pulsing'); pickR.classList.add('pulsing');
         sayNode=stopSound(sayNode);
-        const q=play('question');   // "Which number is bigger?" then "Circle the bigger number."
-        if(q){ sayNode=q; q.addEventListener('ended', ()=>{ sayNode=play('say_bigger_circle'); }, {once:true}); }
-        else sayNode=play('say_bigger_circle');
+        // W2: "Which number is bigger?" → "Circle the bigger number."  W3: "These are odd/even numbers…" → "Circle…"
+        const teachKey=CFG.teach||'question', circleKey=CFG.circle||'say_bigger_circle';
+        const q=play(teachKey);
+        if(q){ sayNode=q; q.addEventListener('ended', ()=>{ sayNode=play(circleKey); }, {once:true}); }
+        else sayNode=play(circleKey);
       });
     }else{
       start({intro:true});
@@ -2822,6 +3353,30 @@ const PAIR_SHORTS={
   nameA:'shorts', nameB:'soccer ball',
   voice:{ sb:'say_shorts_sb', bs:'say_shorts_bs' },
 };
+// Week 3 (Olympics) — AABB pages: medals/running shoes (p16), skates/goggles (p17)
+const PAIR_MEDAL={
+  id:'medal', A:'assets/medal.png', B:'assets/runshoe.png',
+  nameA:'medal', nameB:'running shoe', nameA2:'two medals', nameB2:'two running shoes',
+  voice:{ sb:'say_medal_sb', bs:'say_medal_bs' }, repeats:'The two medals and two running shoes pattern repeats.',
+  pageFoil:['b','a'], correctSlot:0,   // book: A=[medal,medal] correct, B=[shoe,medal]
+};
+const PAIR_SKATE={
+  id:'skate', A:'assets/skates.png', B:'assets/goggles.png',
+  nameA:'skates', nameB:'goggles', nameA2:'two skates', nameB2:'two goggles',
+  voice:{ sb:'say_skate_sb', bs:'say_skate_bs' }, repeats:'The two skates and two goggles pattern repeats.',
+  pageFoil:['b','b'], correctSlot:1,   // book: A=[goggles,goggles] foil, B=[skates,skates] correct
+};
+// Week 4 (flags of the world) — p22 AB pages, p23 AABB pages
+const PAIR_USKR={
+  id:'uskr', A:'assets/flag_usa.png', B:'assets/flag_kor.png',
+  nameA:'American flag', nameB:'Korean flag', nameA2:'two American flags', nameB2:'two Korean flags',
+  voice:{ sb:'say_uskr_sb', bs:'say_uskr_bs' },
+};
+const PAIR_UKGER={
+  id:'ukger', A:'assets/flag_uk.png', B:'assets/flag_ger.png',
+  nameA:'British flag', nameB:'German flag', nameA2:'two British flags', nameB2:'two German flags',
+  voice:{ sb:'say_ukger_sb', bs:'say_ukger_bs' },
+};
 let CFG=PAIR_SOCCER;
 const VO_BANK=[
   { pair:PAIR_SOCCER, order:'sb', shown:['a','b','a','b'], ans:['a','b'], wrong:[['a','a'],['b','a']] },
@@ -2839,23 +3394,54 @@ const VO_BANK_W2=[
   { pair:PAIR_SHORTS, order:'sb', shown:['a','b','a','b'], ans:['a','b'], wrong:[['a','a'],['b','a']] },
   { pair:PAIR_SHORTS, order:'bs', shown:['b','a','b','a'], ans:['b','a'], wrong:[['a','b'],['b','b']] },
 ];
+const VO_BANK_W3=[   // AABB: four shown, two blanks
+  { pair:PAIR_MEDAL, order:'sb', shown:['a','a','b','b'], ans:['a','a'], wrong:[['b','a'],['b','b']] },
+  { pair:PAIR_MEDAL, order:'bs', shown:['b','b','a','a'], ans:['b','b'], wrong:[['a','b'],['a','a']] },
+  { pair:PAIR_SKATE, order:'sb', shown:['a','a','b','b'], ans:['a','a'], wrong:[['b','a'],['b','b']] },
+  { pair:PAIR_SKATE, order:'bs', shown:['b','b','a','a'], ans:['b','b'], wrong:[['a','b'],['a','a']] },
+];
+// Week 4: p22 = AB (three shown, ONE blank, single-flag choices)
+//         p23 = AABB (four shown, two blanks, paired choices)
+// Both pages carry two DIFFERENT pairs, and which of A/B is correct is per row (as printed),
+// so the foil and the correct slot live on the round rather than on the pair.
+const VO_BANK_W4=[
+  { page:'w4ab', pair:PAIR_USKR, order:'sb', shown:['a','b','a'], ans:['b'],
+    pageFoil:['a'], correctSlot:0, voice:'say_w4ab_uskr', repeatsVoice:'say_w4_rep_uskr_ab',
+    repeats:'The American flag and Korean flag pattern repeats.' },
+  { page:'w4ab', pair:PAIR_UKGER, order:'sb', shown:['a','b','a'], ans:['b'],
+    pageFoil:['a'], correctSlot:1, voice:'say_w4ab_ukger', repeatsVoice:'say_w4_rep_ukger_ab',
+    repeats:'The British flag and German flag pattern repeats.' },
+  { page:'w4aabb', pair:PAIR_USKR, order:'sb', shown:['a','a','b','b'], ans:['a','a'],
+    pageFoil:['b','b'], correctSlot:1, voice:'say_w4aabb_uskr', repeatsVoice:'say_w4_rep_uskr_aabb',
+    repeats:'The two American flags and two Korean flags pattern repeats.' },
+  { page:'w4aabb', pair:PAIR_UKGER, order:'sb', shown:['a','a','b','b'], ans:['a','a'],
+    pageFoil:['b','b'], correctSlot:0, voice:'say_w4aabb_ukger', repeatsVoice:'say_w4_rep_ukger_aabb',
+    repeats:'The two British flags and two German flags pattern repeats.' },
+];
 let ROUNDS=[];
 let roundIdx=0, score=0, locked=false, choiceOrder=[], introActive=false;
+let runSeq=0;   // bumped on stop/start; deferred callbacks bail if it changed (no VO after leaving)
 let celebGen=0, celebTimers=[];
 function clearCelebTimers(){ celebTimers.forEach(clearTimeout); celebTimers=[]; }
 function celebLater(fn, ms){ const id=setTimeout(fn, ms); celebTimers.push(id); return id; }
 // 3 rounds: one round per ball pair; sb/bs order shuffled so celebration VOs match
 let pageAct=null;
-function weekBank(){ return (window.Hub && Hub.week===2) ? VO_BANK_W2 : VO_BANK; }
-function weekPairIds(){ return (window.Hub && Hub.week===2) ? ['cone','cleat','shorts'] : ['soccer','basket','tennis']; }
+const PAGE_ACTS={2:['cone','cleat'], 3:['medal','skate'], 4:['w4ab','w4aabb']};   // workbook "Extending Patterns" pages served by this engine
+function curWeek(){ return (window.Hub && Hub.week) || 1; }
+function weekBank(){ const w=curWeek(); return w===4 ? VO_BANK_W4 : w===3 ? VO_BANK_W3 : w===2 ? VO_BANK_W2 : VO_BANK; }
+function weekPairIds(){ const w=curWeek(); return w===4 ? ['uskr','ukger'] : w===3 ? ['medal','skate'] : w===2 ? ['cone','cleat','shorts'] : ['soccer','basket','tennis']; }
 function pageRounds(id){
-  const bank=weekBank().filter(r=>r.pair.id===id);
-  const sb=bank.find(r=>r.order==='sb') || bank[0];
-  const bs=bank.find(r=>r.order==='bs') || bank[0];
+  const bank=weekBank();
+  const byPage=bank.filter(r=>r.page===id);
+  if(byPage.length) return [byPage[0], byPage[1]||byPage[0], byPage[0]];   // one page, two pairs (Week 4)
+  const b=bank.filter(r=>r.pair.id===id);
+  const sb=b.find(r=>r.order==='sb') || b[0];
+  const bs=b.find(r=>r.order==='bs') || b[0];
   return [sb, bs, sb];
 }
+function isPageAct(){ return !!pageAct && (PAGE_ACTS[curWeek()]||[]).includes(pageAct); }
 function buildRounds(){
-  if(pageAct==='cone' || pageAct==='cleat') return pageRounds(pageAct);
+  if(isPageAct()) return pageRounds(pageAct);
   const bank=weekBank();
   const pick=id=>shuffle(bank.filter(r=>r.pair.id===id))[0];
   return shuffle(weekPairIds().map(pick));
@@ -2877,23 +3463,31 @@ function hideHeroes(){
 // Cleat activity (Week 2) uses real-motion video celebration (boy kicks, girl cartwheels).
 // The two Week-2 "Extending Patterns" worksheet pages (cleat & cone) share all the same
 // treatment: blue frame, Fenny intro, video celebration, read-aloud, answer-fills-blanks, etc.
-function isCleatVid(){ return (pageAct==='cleat'||pageAct==='cone') && ((window.Hub && Hub.week)||1)===2; }
+// "Page mode" = the workbook Extending-Patterns pages (W2 cone/cleat, W3 medal/skate): week-coloured
+// frame, mascot talk-first intro, read-aloud, answer-fills-blanks, real-motion celebration.
+function isCleatVid(){ return isPageAct(); }
+function pageTheme(){
+  const w=curWeek();
+  if(w===4) return {color:'var(--orange)', shadow:'rgba(212,132,42,.16)', glow:'rgba(212,132,42,.25)',
+    ribbon:(pageAct==='w4aabb'?'AABB Patterns':'AB Patterns'), intro:'assets/w4_eagle_intro.webm'};
+  return w===3
+  ? {color:'var(--green)', shadow:'rgba(60,186,122,.16)', glow:'rgba(60,186,122,.25)', ribbon:'AABB Patterns', intro:'assets/w3_koala_intro.webm'}
+  : {color:'var(--blue)',  shadow:'rgba(47,147,207,.16)', glow:'rgba(47,147,207,.25)', ribbon:'AB Patterns',   intro:'assets/w2_cleat_intro.webm'}; }
 function heroHost(){ return flipS.offsetParent || flipS.parentElement; }
 // Size the idle STILL and the video to the IDENTICAL box (same fixed clip ratio), so the
 // still→motion swap is seamless and the character never changes size. Boy LEFT, girl RIGHT.
-const CLEAT_BOY_RATIO=852/600, CLEAT_GIRL_RATIO=678/698;
 function sizeCleatHeroes(){
   const host=heroHost(); const hw=host?host.getBoundingClientRect().width:0; if(hw<=0) return;
-  const h=(hw*0.46)/CLEAT_BOY_RATIO;   // common height — girl is scaled to match the boy
+  const H=heroSpec(curWeek());
+  const hs=heroHeights(H, hw, 0.34, 0.46);   // canvas height per character
   // Position by each character's actual BODY edge (each clip has transparent margin from the
-  // union-crop) so boy-left-gap == girl-right-gap. Margins measured from the idle frames:
-  //   boy 852x600, body x[129..350] → left margin 129 ;  girl 678x698, body x[228..424] → right margin 253
-  const boyBodyLeft = 129*(h/600), girlBodyRight = 253*(h/698);
+  // union-crop) so boy-left-gap == girl-right-gap (margins measured per week in WeekHeroes).
+  const boyBodyLeft = H.boyBodyLeft*(hs.boy/H.boyH), girlBodyRight = H.girlBodyRight*(hs.girl/H.girlH);
   const boyLeft = Math.max(0, girlBodyRight - boyBodyLeft);   // match the girl's (larger) body gap; no clipping
-  const set=(imgEl,vidEl,left,right)=>{ [imgEl,vidEl].forEach(el=>{
+  const set=(imgEl,vidEl,h,left,right)=>{ [imgEl,vidEl].forEach(el=>{
     el.style.height=h+'px'; el.style.left=left; el.style.right=right; }); };
-  set(boyIdle,flipS,boyLeft+'px','auto');   // boy hugs the left, body gap matched to the girl's
-  set(girlIdle,girlS,'auto','0px');          // girl flush to her side (closest without clipping the cartwheel)
+  set(boyIdle,flipS,hs.boy,boyLeft+'px','auto');   // boy hugs the left, body gap matched to the girl's
+  set(girlIdle,girlS,hs.girl,'auto','0px');         // girl flush to her side
 }
 function layoutCelebrateHeroes(){
   // Bottom-corner layout is CSS-owned; clear any leftover inline overrides.
@@ -2929,13 +3523,14 @@ function applyCleatChrome(){
   const title=document.querySelector('#tp_app .title');
   const ribbon=document.querySelector('#tp_app .ribbon');
   const ask=document.getElementById('tp_qAsk');
+  const T=pageTheme();
   if(title) title.textContent = on ? 'Extending Patterns' : 'Thinking Math';
-  if(ribbon) ribbon.textContent = on ? 'AB Patterns' : 'Patterns';
-  if(ask) ask.innerHTML = on ? '' : 'What comes next in the <b>pattern</b>?';   // cleat: prompt lives in the board
+  if(ribbon) ribbon.textContent = on ? T.ribbon : 'Patterns';
+  if(ask) ask.innerHTML = on ? '' : 'What comes next in the <b>pattern</b>?';   // page mode: prompt lives in the board
   const bAsk=document.getElementById('tp_boardAsk'); if(bAsk) bAsk.textContent='Circle what comes next.';
-  if(panel){ panel.style.borderColor = on?'var(--blue)':''; panel.style.boxShadow = on?'0 6px 0 rgba(47,147,207,.16)':''; }
-  if(title){ title.style.webkitTextStroke = on?'0.85cqh var(--blue)':''; title.style.filter = on?'drop-shadow(0 0.35cqh 0 rgba(47,147,207,.25))':''; }
-  if(ribbon){ ribbon.style.background = on?'var(--blue)':''; ribbon.style.boxShadow = on?'0 2px 5px rgba(47,147,207,.25)':''; }
+  if(panel){ panel.style.borderColor = on?T.color:''; panel.style.boxShadow = on?('0 6px 0 '+T.shadow):''; }
+  if(title){ title.style.webkitTextStroke = on?('0.85cqh '+T.color):''; title.style.filter = on?('drop-shadow(0 0.35cqh 0 '+T.glow+')'):''; }
+  if(ribbon){ ribbon.style.background = on?T.color:''; ribbon.style.boxShadow = on?('0 2px 5px '+T.glow):''; }
 }
 // Center the celebration message vertically between "Circle what comes next." and the characters.
 function positionCleatMessage(){
@@ -2970,10 +3565,13 @@ function positionCleatIntro(){
 function playCleatIntro(onDone){
   const ov=document.getElementById('tp_intro'), v=document.getElementById('tp_introVid'), skip=document.getElementById('tp_introSkip');
   if(!ov||!v){ onDone&&onDone(); return; }
+  clearTimeout(playCleatIntro._t); playCleatIntro._cancel=false;
+  const want=pageTheme().intro; if(v.getAttribute('src')!==want){ v.src=want; try{v.load();}catch(e){} }   // week's mascot (lion / koala)
   cleatChrome(true); positionCleatIntro();
   let done=false;
   const finish=()=>{ if(done) return; done=true; clearTimeout(playCleatIntro._t);
-    try{ v.pause(); v.currentTime=0; }catch(e){} ov.classList.remove('on'); cleatChrome(false); onDone&&onDone(); };
+    try{ v.pause(); v.onended=null; v.currentTime=0; }catch(e){} ov.classList.remove('on'); cleatChrome(false);
+    if(!playCleatIntro._cancel) onDone&&onDone(); };   // skip the read-aloud if the game was left
   ov.classList.add('on');
   v.muted=false; try{ v.currentTime=0; }catch(e){}
   v.onended=finish;
@@ -2982,9 +3580,10 @@ function playCleatIntro(onDone){
   playCleatIntro._t=setTimeout(finish, 13000);   // safety if 'ended' never fires
 }
 function hideCleatIntro(){
+  playCleatIntro._cancel=true; clearTimeout(playCleatIntro._t);   // cancel the pending read-aloud (e.g. after leaving to the hub)
   const ov=document.getElementById('tp_intro'), v=document.getElementById('tp_introVid');
   if(ov) ov.classList.remove('on'); cleatChrome(false);
-  if(v){ try{ v.pause(); v.currentTime=0; }catch(e){} }
+  if(v){ try{ v.pause(); v.onended=null; v.currentTime=0; }catch(e){} }
 }
 
 let AC; function ac(){AC=AC||new(window.AudioContext||window.webkitAudioContext)();return AC;}
@@ -3036,6 +3635,34 @@ reg('say_cleat_circle','assets/voice/say_cleat_circle.mp3',null,1.0);
 reg('say_cone_find','assets/voice/say_cone_find.mp3',null,1.0);
 reg('say_cone_repeats','assets/voice/say_cone_repeats.mp3',null,1.0);
 reg('say_cone_circle','assets/voice/say_cone_circle.mp3',null,1.0);
+// Week 3 (koala) — read-aloud + celebration lines
+reg('say_medal_find','assets/voice/say_medal_find.mp3',()=>speak('Find the pattern.'),1.0);
+reg('say_medal_repeats','assets/voice/say_medal_repeats.mp3',()=>speak('The two medals and two running shoes pattern repeats.'),1.0);
+reg('say_medal_circle','assets/voice/say_medal_circle.mp3',()=>speak('Circle what comes next.'),1.0);
+reg('say_skate_find','assets/voice/say_skate_find.mp3',()=>speak('Find the pattern.'),1.0);
+reg('say_skate_repeats','assets/voice/say_skate_repeats.mp3',()=>speak('The two skates and two goggles pattern repeats.'),1.0);
+reg('say_skate_circle','assets/voice/say_skate_circle.mp3',()=>speak('Circle what comes next.'),1.0);
+reg('say_medal_sb','assets/voice/say_medal_sb.mp3',()=>speak("Great job! Two medals, two running shoes. It repeats! It's a pattern!"),1.0);
+reg('say_medal_bs','assets/voice/say_medal_bs.mp3',()=>speak("Excellent! Two running shoes, two medals. It repeats! It's a pattern!"),1.0);
+reg('say_skate_sb','assets/voice/say_skate_sb.mp3',()=>speak("Great job! Two skates, two goggles. It repeats! It's a pattern!"),1.0);
+// Week 4 (eagle) — read-aloud + celebration lines
+reg('say_w4ab_find','assets/voice/say_w4ab_find.mp3',()=>speak('Find the pattern.'),1.0);
+reg('say_w4_rep_uskr_ab','assets/voice/say_w4_rep_uskr_ab.mp3',null,1.0);
+reg('say_w4_rep_ukger_ab','assets/voice/say_w4_rep_ukger_ab.mp3',null,1.0);
+reg('say_w4_rep_uskr_aabb','assets/voice/say_w4_rep_uskr_aabb.mp3',null,1.0);
+reg('say_w4_rep_ukger_aabb','assets/voice/say_w4_rep_ukger_aabb.mp3',null,1.0);
+reg('say_w4ab_repeats','assets/voice/say_w4ab_repeats.mp3',()=>speak('The flags make a pattern that repeats.'),1.0);
+reg('say_w4ab_circle','assets/voice/say_w4ab_circle.mp3',()=>speak('Circle what comes next.'),1.0);
+reg('say_w4aabb_find','assets/voice/say_w4aabb_find.mp3',()=>speak('Find the pattern.'),1.0);
+reg('say_w4aabb_repeats','assets/voice/say_w4aabb_repeats.mp3',()=>speak('The flags make a pattern that repeats.'),1.0);
+reg('say_w4aabb_circle','assets/voice/say_w4aabb_circle.mp3',()=>speak('Circle what comes next.'),1.0);
+// Spoken text must match patternLine() word for word — every Week-4 row is order 'sb',
+// so the praise on screen is always "Great job!".
+reg('say_w4ab_uskr','assets/voice/say_w4ab_uskr.mp3',()=>speak("Great job! American flag, Korean flag. It repeats! It's a pattern."),1.0);
+reg('say_w4ab_ukger','assets/voice/say_w4ab_ukger.mp3',()=>speak("Great job! British flag, German flag. It repeats! It's a pattern."),1.0);
+reg('say_w4aabb_uskr','assets/voice/say_w4aabb_uskr.mp3',()=>speak("Great job! Two American flags, two Korean flags. It repeats! It's a pattern."),1.0);
+reg('say_w4aabb_ukger','assets/voice/say_w4aabb_ukger.mp3',()=>speak("Great job! Two British flags, two German flags. It repeats! It's a pattern."),1.0);
+reg('say_skate_bs','assets/voice/say_skate_bs.mp3',()=>speak("Excellent! Two goggles, two skates. It repeats! It's a pattern!"),1.0);
 reg('say_tennis_sb','assets/voice/say_tennis_sb.mp3',()=>speak("Great job! Tennis ball, soccer ball — it repeats! It's a pattern."),1.0);
 reg('say_tennis_bs','assets/voice/say_tennis_bs.mp3',()=>speak("Excellent! Soccer ball, tennis ball — it repeats! It's a pattern."),1.0);
 reg('say_shorts_sb','assets/voice/say_shorts_sb.mp3',()=>speak("Great job! Shorts, soccer ball — it repeats! It's a pattern."),1.0);
@@ -3070,21 +3697,27 @@ function shuffle(arr){
 function patternLine(r){
   const pair=r.pair||CFG;
   const order=r.order||((r.ans[0]==='a'?'s':'b')+(r.ans[1]==='a'?'s':'b'));
-  const n1=order==='sb'?pair.nameA:pair.nameB;
-  const n2=order==='sb'?pair.nameB:pair.nameA;
+  const aabb=!!(r.shown && r.shown.length>=2 && r.shown[0]===r.shown[1]);
+  const nA=(aabb&&pair.nameA2)||pair.nameA, nB=(aabb&&pair.nameB2)||pair.nameB;
+  const n1=order==='sb'?nA:nB;
+  const n2=order==='sb'?nB:nA;
   const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
   const praise=order==='sb'?'Great job!':'Excellent!';
   const say=cap(n1)+', '+n2+" — it repeats! It's a pattern.";
   return {
     praise, say, full:praise+' '+say,
     sayHtml:'<b>'+cap(n1)+'</b>, <b>'+n2+'</b> — it repeats! It\'s a pattern.',
-    voice:pair.voice[order],
+    voice:r.voice||pair.voice[order],
   };
 }
 // Preceding lines of the question (shown first; question line follows after teach VO)
 function mathTeachHtml(){
   if(pageAct==='cone') return '<span class="ml">Find the pattern.</span><span class="ml"><b>The cone and soccer ball pattern repeats.</b></span>';
   if(pageAct==='cleat') return '<span class="ml">Find the pattern.</span><span class="ml"><b>The soccer cleat and bottle pattern repeats.</b></span>';
+  if(pageAct==='medal') return '<span class="ml">Find the pattern.</span><span class="ml"><b>The two medals and two running shoes pattern repeats.</b></span>';
+  if(pageAct==='skate') return '<span class="ml">Find the pattern.</span><span class="ml"><b>The two skates and two goggles pattern repeats.</b></span>';
+  const rr=ROUNDS[roundIdx];
+  if(isPageAct() && rr && rr.repeats) return '<span class="ml">Find the pattern.</span><span class="ml"><b>'+rr.repeats+'</b></span>';
   return '<span class="ml">Look at the balls.</span>'
     +'<span class="ml">They make a <b>pattern</b>.</span>'
     +'<span class="ml">The pattern <b>repeats</b>.</span>';
@@ -3116,8 +3749,10 @@ function setChoicesReady(on){
 function afterTeach(){
   if(afterTeach._done) return;
   afterTeach._done=true;
+  const seq=runSeq;
   // short pause, then show question line + play question VO
   setTimeout(()=>{
+    if(seq!==runSeq) return; // Home/menu cancelled
     if(!introActive) return; // skipped by tapping a choice
     introActive=false;
     showQuestionAsk();
@@ -3159,20 +3794,28 @@ function sayFile(key, fallbackText, cb){
 // Cleat page: the generated voice reads the problem straight off the page — no character VO.
 function cleatTeach(){
   locked=true; afterTeach._done=true; sayNode=stopSound(sayNode);
-  const key=s=>'say_'+pageAct+'_'+s;   // say_cleat_* or say_cone_*
-  const repeatsTxt = pageAct==='cone' ? 'The cone and soccer ball pattern repeats.' : 'The soccer cleat and bottle pattern repeats.';
-  const reveal=(withVoice)=>{ if(!introActive) return; introActive=false; showQuestionAsk(); locked=false; setChoicesReady(true);
+  const seq=runSeq;   // every deferred step below bails once the game is stopped/restarted
+  const key=s=>'say_'+pageAct+'_'+s;   // say_cleat_* / say_cone_* / say_medal_* / say_skate_*
+  const repeatsTxt = pageAct==='cone' ? 'The cone and soccer ball pattern repeats.'
+                   : pageAct==='cleat' ? 'The soccer cleat and bottle pattern repeats.'
+                   : pageAct==='medal' ? PAIR_MEDAL.repeats
+                   : pageAct==='skate' ? PAIR_SKATE.repeats
+                   : ((ROUNDS[roundIdx]||{}).repeats || 'The pattern repeats.');
+  const reveal=(withVoice)=>{ if(!introActive || seq!==runSeq) return; introActive=false; showQuestionAsk(); locked=false; setChoicesReady(true);
     if(withVoice) sayNode=sayFile(key('circle'),'Circle what comes next.', null); };
   // The read-aloud that follows the character intro (or plays straight away on later rounds).
   const readAloud=()=>{
+    if(seq!==runSeq) return;
     showQuestionPre();   // "Find the pattern." / "…pattern repeats."
     setChoicesReady(true);   // clickable so kids can skip the read-aloud
     [...choicesEl.querySelectorAll('.choice')].forEach(c=>{ c.style.opacity='0.75'; c.classList.remove('pulsing'); });
     try{ speechSynthesis.cancel(); }catch(e){}
     sayNode=sayFile(key('find'),'Find the pattern.', ()=>{
-      sayNode=sayFile(key('repeats'), repeatsTxt, ()=>reveal(true));
+      if(seq!==runSeq) return;
+      const rv=(ROUNDS[roundIdx]||{}).repeatsVoice || key('repeats');   // Week 4: one recording per row
+      sayNode=sayFile(rv, repeatsTxt, ()=>reveal(true));
     });
-    setTimeout(()=>reveal(true), 12000);
+    setTimeout(()=>reveal(true), 12000);   // reveal() itself checks seq
   };
   if(roundIdx===0){
     introActive=true;
@@ -3199,11 +3842,12 @@ function teachThenAsk(){
       c.classList.remove('pulsing');
     });
     sayNode=playTeachVo();
+    const seq=runSeq, at=()=>{ if(seq===runSeq) afterTeach(); };
     if(sayNode){
-      sayNode.addEventListener('ended', afterTeach, {once:true});
-      setTimeout(afterTeach, 8500);   // ~6.75s revised teach + buffer
+      sayNode.addEventListener('ended', at, {once:true});
+      setTimeout(at, 8500);   // ~6.75s revised teach + buffer
     }else{
-      setTimeout(afterTeach, 2800);
+      setTimeout(at, 2800);
     }
   }else{
     showQuestionAsk();
@@ -3245,13 +3889,17 @@ function renderRound(){
   const r=ROUNDS[roundIdx];
   CFG=r.pair;
   sampleRow.innerHTML=ballsHtml(r.shown)
-    +'<div class="blank" aria-label="blank"><span class="qm">?</span></div>'
-    +'<div class="blank" aria-label="blank"><span class="qm">?</span></div>';
-  if(pageAct==='cone' || pageAct==='cleat'){
-    // Match the workbook: two pair choices, A/B only
+    +(r.ans||[]).map(()=>'<div class="blank" aria-label="blank"><span class="qm">?</span></div>').join('');
+  if(isPageAct()){
+    // Match the workbook: two pair choices, A/B only (foil + correct slot come from the pair for W3)
     const correct={cells:r.ans.slice(), ok:true};
-    const foil={cells:(r.ans[0]==='a'?['b','a']:['a','b']), ok:false};
-    choiceOrder = pageAct==='cone' ? [foil, correct] : [correct, foil];
+    let foilCells = r.ans[0]==='a'?['b','a']:['a','b'];
+    const pf = r.pageFoil || r.pair.pageFoil;
+    if(pf){ foilCells = r.order==='sb' ? pf.slice() : pf.map(t=>t==='a'?'b':'a'); }
+    const foil={cells:foilCells, ok:false};
+    const cs = r.correctSlot!=null ? r.correctSlot : r.pair.correctSlot;
+    const correctFirst = cs!=null ? cs===0 : pageAct!=='cone';
+    choiceOrder = correctFirst ? [correct, foil] : [foil, correct];
   }else{
     choiceOrder=shuffle([
       {cells:r.ans.slice(), ok:true},
@@ -3275,7 +3923,7 @@ function renderRound(){
   if(window.WeekArt){
     WeekArt.motion = pageAct==='cleat' ? 'run' : 'jump';
     WeekArt.apply({boyIdle:'tp_boyIdle', girlIdle:'tp_girlIdle', flip:'tp_flipS', girlS:'tp_girlS'});
-    if((window.Hub && Hub.week)===2){ boyIdle.style.opacity='1'; girlIdle.style.opacity='1'; }
+    if(curWeek()>=2){ boyIdle.style.opacity='1'; girlIdle.style.opacity='1'; }
   }
   preloadHeroes(document.getElementById('tp_flipS'), document.getElementById('tp_girlS'));
   // Shadows are pinned boy-right / girl-left in CSS; the cleat clips swap sides & move, so drop them.
@@ -3286,11 +3934,12 @@ function renderRound(){
   if(isCleatVid()){
     // Match idle characters to the celebration clips (red/blue boy + pink girl), load the
     // real-motion clips, and size the still exactly like the clip so it "comes to life".
-    boyIdle.src='assets/w2_cleat_boy_idle.png';
-    girlIdle.src='assets/w2_cleat_girl_idle.png';
+    const H=heroSpec(curWeek());
+    boyIdle.src=H.boyIdle;
+    girlIdle.src=H.girlIdle;
     boyIdle.style.opacity='1'; girlIdle.style.opacity='1';
     const setSrc=(v,src)=>{ if(v && v.getAttribute('src')!==src){ v.src=src; try{v.load();}catch(e){} } };
-    setSrc(flipS,'assets/w2_boy_kick.webm'); setSrc(girlS,'assets/w2_girl_cartwheel.webm');
+    setSrc(flipS,H.boyVid); setSrc(girlS,H.girlVid);
     sizeCleatHeroes();
   }
   teachThenAsk();
@@ -3308,7 +3957,8 @@ function pickChoice(el){
     play('pop'); play('correct');
     score++; litStars(score);
     if(isCleatVid()) revealCleatAnswer();   // drop the correct pair into the pattern's ? cells
-    setTimeout(celebrate, 550);
+    const seq=runSeq;
+    setTimeout(()=>{ if(seq===runSeq) celebrate(); }, 550);
   }else{
     play('wrong');
     el.classList.add('shake');
@@ -3322,7 +3972,7 @@ function playBoyFlip(){
     const go=()=>{
       if(started) return; started=true;
       flipS.removeEventListener('seeked', onSeeked);
-      flipS.playbackRate=isCleatVid()?1.575:3;   // cleat kick: 30% slower than before
+      flipS.playbackRate=isCleatVid()?heroSpec(curWeek()).boyRate:3;   // page mode: per-week clip speed
       showCelebrateHeroes();
       flipS.play().catch(()=>{});
       resolve();
@@ -3349,9 +3999,11 @@ function celebrate(){
   const ids={boyIdle:'tp_boyIdle', girlIdle:'tp_girlIdle', flip:'tp_flipS', girlS:'tp_girlS'};
   if(useVid){ flipS.style.display=''; girlS.style.display=''; flipS.style.opacity='0'; girlS.style.opacity='0'; }
   const w2=(!useVid) && window.WeekArt && WeekArt.play(ids, pageAct==='cleat'?'run':'jump');
-  if(!w2){ try{girlS.currentTime=0;}catch(e){} girlS.playbackRate=useVid?1.66:1.7; }   // cleat cartwheel: 1.3× faster
+  if(!w2){ try{girlS.currentTime=0;}catch(e){} girlS.playbackRate=useVid?heroSpec(curWeek()).girlRate:1.7; }
   // Praise lands, then boy/girl celebrate under the comment
+  const seqC=runSeq;
   setTimeout(()=>{
+    if(seqC!==runSeq) return;
     if(!w2) playBoyFlip().then(()=>{ girlS.play().catch(()=>{}); });
   }, 550);
 
@@ -3412,6 +4064,7 @@ function endGame(){
   playEndFireworks();
 }
 function stopCelebrationAudio(){
+  runSeq++;
   cheerNode=stopSound(cheerNode); fwSound=stopSound(fwSound); sayNode=stopSound(sayNode);
   introActive=false; afterTeach._done=true;
   celebGen++; clearCelebTimers();
@@ -3441,7 +4094,9 @@ window.ThinkPatGame={
   start(act){
     const c=ac(); c.resume&&c.resume();
     stopCelebrationAudio();
-    pageAct=(act==='cone'||act==='cleat')?act:null;
+    // workbook page acts, from PAGE_ACTS (W2 cone/cleat, W3 medal/skate, W4 w4ab/w4aabb)
+    const known=[].concat.apply([], Object.keys(PAGE_ACTS).map(k=>PAGE_ACTS[k]));
+    pageAct=known.includes(act)?act:null;
     if(window.WeekArt) WeekArt.motion = pageAct==='cleat' ? 'run' : 'jump';
     start();   // renders the question; the character intro plays inside cleatTeach (round 1)
   },
@@ -3486,6 +4141,7 @@ const VO_BANK_W2=[
 ];
 let ROUNDS=[];
 let roundIdx=0, score=0, locked=false, introActive=false;
+let runSeq=0;   // bumped on stop/start; deferred callbacks bail if it changed (no VO after leaving)
 
 const starsEl=document.getElementById('tb_stars');
 const sideL=document.getElementById('tb_sideL'), sideR=document.getElementById('tb_sideR');
@@ -3737,7 +4393,8 @@ function pick(side){
     el.style.opacity='1';
     play('pop'); play('correct');
     score++; litStars(score);
-    setTimeout(celebrate, 550);
+    const seq=runSeq;
+    setTimeout(()=>{ if(seq===runSeq) celebrate(); }, 550);
   }else{
     play('wrong');
     el.classList.add('shake');
@@ -3771,6 +4428,7 @@ function playBoyFlip(){
 }
 
 function celebrate(){
+  const seq=runSeq;
   const r=ROUNDS[roundIdx];
   showSentence(r.praise, r.big, r.small);
   sayNode=stopSound(sayNode);
@@ -3779,11 +4437,12 @@ function celebrate(){
   try{girlS.currentTime=0;}catch(e){} girlS.playbackRate=1.7;
   // Let ring + praise land first, then start boy/girl together
   setTimeout(()=>{
+    if(seq!==runSeq) return;
     playBoyFlip().then(()=>{ girlS.play().catch(()=>{}); });
   }, 550);
   let flipDone=false, voDone=false, advanced=false;
   const advance=()=>{
-    if(advanced || !flipDone || !voDone) return;
+    if(advanced || !flipDone || !voDone || seq!==runSeq) return;
     advanced=true;
     hideSentence(); sayNode=stopSound(sayNode); try{speechSynthesis.cancel();}catch(e){}
     [flipS,girlS].forEach(v=>{ v.pause(); v.onended=null; });
@@ -3792,12 +4451,12 @@ function celebrate(){
     roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else endGame();
   };
   const onFlipDone=()=>{
-    if(flipDone) return; flipDone=true;
+    if(flipDone || seq!==runSeq) return; flipDone=true;
     [flipS,girlS].forEach(v=>{ v.pause(); v.onended=null; });
     try{flipS.currentTime=0;}catch(e){}
     showIdle(true); advance();
   };
-  const onVoDone=()=>{ if(voDone) return; voDone=true; advance(); };
+  const onVoDone=()=>{ if(voDone || seq!==runSeq) return; voDone=true; advance(); };
   flipS.onended=onFlipDone;
   setTimeout(onFlipDone, 6000);
   if(sayNode){
@@ -3835,6 +4494,7 @@ function endGame(){
   playEndFireworks();
 }
 function stopCelebrationAudio(){
+  runSeq++;
   teachSession++;
   clearTeachTimers();
   afterTeach._done=true;   // block pending afterTeach → question VO
@@ -3882,6 +4542,443 @@ window.ThinkBigGame={
 };
 
 })();
+
+/* ---- Per-week hero (3D boy/girl) idle stills + celebration clips. Boy LEFT, girl RIGHT.
+   ratio = clip w/h; body* = body-edge margins in clip pixels (for equal side gaps). ---- */
+window.WeekHeroes={
+  2:{ boyIdle:'assets/w2_cleat_boy_idle.png', girlIdle:'assets/w2_cleat_girl_idle.png',
+      boyVid:'assets/w2_boy_kick.webm?v=2', girlVid:'assets/w2_girl_cartwheel.webm?v=2',
+      boyRatio:852/600, girlRatio:678/698, boyBodyLeft:129, boyH:600, girlBodyRight:253, girlH:698, boyRate:1.575, girlRate:1.66 },
+  3:{ boyIdle:'assets/w3_boy_idle.png?v=3', girlIdle:'assets/w3_girl_idle.png?v=4',
+      boyVid:'assets/w3_boy_cheer.webm?v=3', girlVid:'assets/w3_girl_cheer.webm?v=4',
+      boyRatio:392/1128, girlRatio:426/528, boyBodyLeft:96, boyH:1128, girlBodyRight:119, girlH:528,
+      // the boy's torch flies high above him, so his canvas is far taller than his body:
+      // weeks that declare boyBodyH/girlBodyH are sized by BODY height, not canvas height
+      boyBodyH:613, girlBodyH:507, boyRate:1.0, girlRate:1.0 },
+  4:{ boyIdle:'assets/w4_boy_idle.png?v=2', girlIdle:'assets/w4_girl_idle.png?v=2',
+      boyVid:'assets/w4_boy_cheer.webm?v=2', girlVid:'assets/w4_girl_cheer.webm?v=2',
+      boyRatio:560/1460, girlRatio:560/944, boyBodyLeft:106, boyH:1460,
+      girlBodyRight:82, girlH:944, boyBodyH:1370, girlBodyH:859, boyRate:1.0, girlRate:1.0 }
+};
+window.heroSpec=function(week){ return window.WeekHeroes[week] || window.WeekHeroes[2]; };
+// Canvas height for each hero. Default: one shared height derived from the boy's canvas ratio
+// (widthFrac of the host width). When the spec declares body heights, size by the BODY instead —
+// a clip whose prop flies far above the character has a canvas much taller than the character.
+window.heroHeights=function(H, hostW, bodyFrac, widthFrac){
+  if(H.boyBodyH && H.girlBodyH){
+    const target=hostW*bodyFrac;   // both bodies render at the same height
+    return { boy:target*H.boyH/H.boyBodyH, girl:target*H.girlH/H.girlBodyH };
+  }
+  const h=(hostW*widthFrac)/H.boyRatio;
+  return { boy:h, girl:h };
+};
+
+/* ---- Week-2 Thinking Math: shared mini-kit (audio, stars, W2 celebration, end screen) ---- */
+function makeTMKit(pfx){
+  const $=id=>document.getElementById(pfx+'_'+id);
+  const STAR='M12 2l3 6.3 6.9.9-5 4.8 1.2 6.9L12 18.6 5.9 21l1.2-6.9-5-4.8 6.9-.9z';
+  const K={ $, STAR, runSeq:0, SFX:{}, sayNode:null, cheerNode:null, fwSound:null, timers:[] };
+  K.reg=function(name,src,fallbackText,vol){ let ok=false; const a=new Audio(src); a.preload='auto'; a.volume=(vol==null?1:vol);
+    a.addEventListener('canplaythrough',()=>{ok=true;},{once:true}); a.addEventListener('error',()=>{ok=false;});
+    K.SFX[name]={a,ok:()=>ok,fallbackText}; };
+  K.stopSound=function(n){ if(n){ try{n.pause(); n.currentTime=0;}catch(e){} } return null; };
+  // play a clip; returns the node, or null (after speaking the fallback text via TTS if given)
+  K.play=function(name){ const s=K.SFX[name]; if(!s) return null;
+    if(s.ok()){ try{ const n=s.a.cloneNode(true); n.volume=s.a.volume; n.play().catch(()=>{}); return n; }catch(e){} }
+    if(s.fallbackText) K.speak(s.fallbackText); return null; };
+  K.speak=function(text){ if(!('speechSynthesis' in window)||!text) return; try{ const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=.88; u.pitch=1.1;
+    const vs=speechSynthesis.getVoices(); const v=vs.find(x=>/en[-_]?US/i.test(x.lang)&&/female|zira|samantha|aria|jenny|google/i.test(x.name))||vs.find(x=>/^en/i.test(x.lang)); if(v) u.voice=v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){} };
+  K.later=function(fn,ms){ const id=setTimeout(fn,ms); K.timers.push(id); return id; };
+  K.clearTimers=function(){ K.timers.forEach(clearTimeout); K.timers=[]; };
+  K.buildStars=function(n){ $('stars').innerHTML=Array.from({length:n},()=>'<svg class="st" viewBox="0 0 24 24"><path d="'+STAR+'"/></svg>').join(''); };
+  K.litStars=function(n){ [...$('stars').children].forEach((s,i)=>s.classList.toggle('on',i<n)); };
+  // heroes
+  const boyIdle=$('boyIdle'), girlIdle=$('girlIdle'), boyVid=$('boyVid'), girlVid=$('girlVid');
+  K.resetHeroes=function(){ [boyVid,girlVid].forEach(v=>{ try{v.pause(); v.onended=null; v.currentTime=0;}catch(e){} v.style.opacity='0'; });
+    boyIdle.style.opacity='1'; girlIdle.style.opacity='1'; };
+  K.preloadHeroes=function(){ [boyVid,girlVid].forEach(v=>{ try{ v.preload='auto'; v.load(); v.pause(); }catch(e){} }); };
+  K.playHeroes=function(){ const H=window.heroSpec?heroSpec((window.Hub&&Hub.week)||2):{boyRate:1.575,girlRate:1.66}; boyVid.playbackRate=H.boyRate; girlVid.playbackRate=H.girlRate;
+    [boyVid,girlVid].forEach(v=>{ try{v.currentTime=0;}catch(e){} v.onended=()=>{ try{v.pause();}catch(e){} }; });
+    boyIdle.style.opacity='0'; girlIdle.style.opacity='0'; boyVid.style.opacity='1'; girlVid.style.opacity='1';
+    boyVid.play().catch(()=>{}); girlVid.play().catch(()=>{}); };
+  // sentence bubble
+  const el_sentence=$('sentence');
+  K.showSentence=function(praise,html){ el_sentence.innerHTML='<span class="cmp">'+praise+'</span><span class="snt">'+html+'</span>';
+    el_sentence.classList.remove('on'); void el_sentence.offsetWidth; K.fitSentence(); el_sentence.classList.add('on'); };
+  K.fitSentence=function(){ const snt=el_sentence.querySelector('.snt'); if(!snt) return; const cs=getComputedStyle(el_sentence);
+    const avail=el_sentence.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight)-8; if(avail<=0) return;
+    let lo=12,hi=Math.min(90,avail*0.28),best=lo; for(let i=0;i<22;i++){ const mid=(lo+hi)/2; snt.style.fontSize=mid+'px'; if(snt.scrollWidth<=avail){best=mid;lo=mid;} else hi=mid; } snt.style.fontSize=best+'px'; };
+  K.hideSentence=function(){ el_sentence.classList.remove('on'); };
+  // fireworks + end
+  const fw=$('fw');
+  K.playEndFireworks=function(){ fw.loop=true; fw.muted=true; fw.style.opacity='0.95'; try{fw.currentTime=0;}catch(e){} fw.play().catch(()=>{});
+    K.fwSound=K.stopSound(K.fwSound); const s=K.SFX.fireworks; if(s){ try{ const n=s.a.cloneNode(true); n.loop=true; n.volume=0; n.play().catch(()=>{});
+      const target=s.a.volume,t0=performance.now(); (function ramp(){const k=Math.min(1,(performance.now()-t0)/400); n.volume=target*k; if(k<1) requestAnimationFrame(ramp);})(); K.fwSound=n; }catch(e){} } };
+  K.stopEndFireworks=function(){ fw.style.opacity='0'; try{fw.pause(); fw.currentTime=0;}catch(e){} K.fwSound=K.stopSound(K.fwSound); };
+  K.endGame=function(rounds,score){ $('endStars').innerHTML=Array.from({length:rounds},(_,i)=>
+      '<svg viewBox="0 0 24 24"><path d="'+STAR+'" fill="'+(i<score?'#ffc23e':'#efe6d5')+'" stroke="'+(i<score?'#eaa41c':'#d8ccb4')+'" stroke-width="1.1"/></svg>').join('');
+    $('end').style.display='flex';
+    const s=K.SFX.cheer; if(s&&s.ok()){ try{ const n=s.a.cloneNode(true); n.volume=0; n.play().catch(()=>{}); const t0=performance.now(),target=s.a.volume;
+      (function ramp(){const k=Math.min(1,(performance.now()-t0)/1400); n.volume=target*k; if(k<1) requestAnimationFrame(ramp);})(); K.cheerNode=n; }catch(e){} }
+    K.playEndFireworks(); };
+  // everything that must die when the game is left or restarted
+  K.stopAll=function(){ K.runSeq++; K.clearTimers(); K.sayNode=K.stopSound(K.sayNode); K.cheerNode=K.stopSound(K.cheerNode);
+    K.stopEndFireworks(); try{speechSynthesis.cancel();}catch(e){} K.hideSentence(); K.resetHeroes(); $('end').style.display='none'; };
+  // praise + heroes, then onDone (next round / end) — fully guarded by runSeq
+  K.celebrate=function(voiceKey,praise,html,onDone){ const seq=K.runSeq;
+    K.showSentence(praise,html); K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play(voiceKey);
+    K.later(()=>{ if(seq===K.runSeq) K.playHeroes(); },550);
+    let advanced=false; const finish=()=>{ if(advanced||seq!==K.runSeq) return; advanced=true; K.clearTimers();
+      K.hideSentence(); K.sayNode=K.stopSound(K.sayNode); try{speechSynthesis.cancel();}catch(e){} K.resetHeroes(); onDone&&onDone(); };
+    const hold=1400;
+    if(K.sayNode){ K.sayNode.addEventListener('ended',()=>{ if(seq===K.runSeq) K.later(finish,hold); },{once:true});
+      const d=K.sayNode.duration; K.later(finish,(typeof d==='number'&&isFinite(d)&&d>1)?(d*1000+hold+500):9000); }
+    else K.later(finish,6500); };
+  // common SFX/voice registrations
+  K.reg('correct','assets/sfx/correct.mp3'); K.reg('wrong','assets/sfx/wrong.mp3'); K.reg('pop','assets/sfx/pop.mp3',null,0.8);
+  K.reg('tap','assets/sfx/mouse_click.mp3',null,0.85); K.reg('cheer','assets/sfx/cheer.mp3',null,1.0); K.reg('fireworks','assets/sfx/fireworks_sound.mp3',null,0.95);
+  return K;
+}
+
+/* ---- Week-2 Thinking Math 1: BUILD the pattern (application of Extending Patterns) ---- */
+(function(){
+const K=makeTMKit('bd'), $=K.$;
+const ITEMS={
+  cone:{src:'assets/cone.png',name:'cone'}, soccer:{src:'assets/soccer.png',name:'soccer ball'},
+  bottle:{src:'assets/bottle.png',name:'water bottle'}, cleat:{src:'assets/cleat.png',name:'cleat'},
+  shorts:{src:'assets/shorts.png',name:'shorts'},
+};
+// each round: first two given, child builds the next four; tray = A, B + two distractors (Week-2 kit only)
+const ROUNDS=[
+  {a:'cone',   b:'soccer', distract:['bottle','shorts'], voice:'tm1_cone_soccer',  praise:'Great job!', text:'<b>Cone</b>, <b>soccer ball</b> — it repeats! It\'s a pattern!'},
+  {a:'bottle', b:'cleat',  distract:['cone','shorts'],   voice:'tm1_bottle_cleat', praise:'Excellent!', text:'<b>Water bottle</b>, <b>cleat</b> — it repeats! It\'s a pattern!'},
+  {a:'soccer', b:'shorts', distract:['cleat','cone'],    voice:'tm1_soccer_shorts',praise:'Amazing!',   text:'<b>Soccer ball</b>, <b>shorts</b> — it repeats! It\'s a pattern!'},
+];
+K.reg('tm1_make','assets/voice/tm1_make.mp3','Make the pattern. Tap what comes next.');
+K.reg('tm1_cone_soccer','assets/voice/tm1_cone_soccer.mp3','Great job! Cone, soccer ball. It repeats! It\'s a pattern!');
+K.reg('tm1_bottle_cleat','assets/voice/tm1_bottle_cleat.mp3','Excellent! Water bottle, cleat. It repeats! It\'s a pattern!');
+K.reg('tm1_soccer_shorts','assets/voice/tm1_soccer_shorts.mp3','Amazing! Soccer ball, shorts. It repeats! It\'s a pattern!');
+const SLOTS=6, GIVEN=2;
+let roundIdx=0, score=0, locked=false, fillIdx=GIVEN, target=[];
+const row=$('row'), tray=$('tray');
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function renderRound(){
+  locked=false; fillIdx=GIVEN;
+  const r=ROUNDS[roundIdx];
+  target=Array.from({length:SLOTS},(_,i)=> i%2===0 ? r.a : r.b);
+  row.innerHTML=target.map((k,i)=> i<GIVEN
+    ? '<div class="bdSlot given filled"><img src="'+ITEMS[k].src+'" alt=""></div>'
+    : '<div class="bdSlot" data-i="'+i+'"><span class="qm">?</span></div>').join('');
+  markNext();
+  const keys=shuffle([r.a,r.b].concat(r.distract));
+  tray.innerHTML=keys.map(k=>'<button type="button" class="bdItem pulsing" data-k="'+k+'" aria-label="'+ITEMS[k].name+'"><img src="'+ITEMS[k].src+'" alt=""></button>').join('');
+  [...tray.children].forEach(b=>b.addEventListener('click',()=>tapItem(b)));
+  K.resetHeroes();
+  if(roundIdx===0){ const seq=K.runSeq; K.later(()=>{ if(seq===K.runSeq){ K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play('tm1_make'); } },400); }
+}
+function markNext(){ [...row.children].forEach((s,i)=>s.classList.toggle('next', i===fillIdx)); }
+function tapItem(btn){
+  if(locked) return;
+  K.play('tap');
+  const k=btn.dataset.k;
+  if(k===target[fillIdx]){
+    K.play('pop');
+    const slot=row.children[fillIdx];
+    slot.classList.remove('next'); slot.classList.add('filled','pop'); slot.innerHTML='<img src="'+ITEMS[k].src+'" alt="">';
+    fillIdx++;
+    if(fillIdx>=SLOTS){ locked=true; K.play('correct'); score++; K.litStars(score);
+      [...tray.children].forEach(b=>{ b.classList.remove('pulsing'); b.classList.add('dim'); });
+      const r=ROUNDS[roundIdx], seq=K.runSeq;
+      K.later(()=>{ if(seq!==K.runSeq) return; K.celebrate(r.voice, r.praise, r.text, ()=>{ roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); }); },550);
+    } else markNext();
+  }else{
+    K.play('wrong'); btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake'); setTimeout(()=>btn.classList.remove('shake'),450);
+  }
+}
+function start(){ K.stopAll(); roundIdx=0; score=0; K.buildStars(ROUNDS.length); K.litStars(0); K.preloadHeroes(); renderRound(); }
+$('againBtn').addEventListener('click',e=>pressThen(e.currentTarget,start));
+$('endHomeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ BuildGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('homeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ BuildGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ BuildGame.stop(); if(window.Hub) Hub.backToActPick(); }));
+window.BuildGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+})();
+
+/* ---- Week-2 Thinking Math 2: SAY the sentence "__ is bigger than __." (application of Bigger Numbers) ---- */
+(function(){
+const K=makeTMKit('sn'), $=K.$;
+// same Week-2 number facts + recorded VO as Activity 2 (say_w2a/b), applied as sentence building
+const BANK=[
+  {big:6, small:5, voice:'say_w2a_0', praise:'Great job!'},
+  {big:7, small:6, voice:'say_w2a_1', praise:'Excellent!'},
+  {big:8, small:7, voice:'say_w2a_2', praise:'Amazing!'},
+  {big:9, small:8, voice:'say_w2b_0', praise:'Great job!'},
+  {big:10,small:9, voice:'say_w2b_1', praise:'Excellent!'},
+  {big:10,small:5, voice:'say_w2b_2', praise:'Amazing!'},
+];
+const BALLS=['assets/soccer.png','assets/cone.png','assets/bottle.png','assets/cleat.png','assets/shorts.png'];
+K.reg('say_w2a_0','assets/voice/say_w2a_0.mp3','Great job! 6 is bigger than 5.');
+K.reg('say_w2a_1','assets/voice/say_w2a_1.mp3','Excellent! 7 is bigger than 6.');
+K.reg('say_w2a_2','assets/voice/say_w2a_2.mp3','Amazing! 8 is bigger than 7.');
+K.reg('say_w2b_0','assets/voice/say_w2b_0.mp3','Great job! 9 is bigger than 8.');
+K.reg('say_w2b_1','assets/voice/say_w2b_1.mp3','Excellent! 10 is bigger than 9.');
+K.reg('say_w2b_2','assets/voice/say_w2b_2.mp3','Amazing! 10 is bigger than 5.');
+K.reg('tm2_say','assets/voice/tm2_say.mp3','Say the sentence. Tap the bigger number first.');
+let ROUNDS=[], roundIdx=0, score=0, locked=false, step=0;
+const b1=$('b1'), b2=$('b2'), ballL=$('ballL'), ballR=$('ballR');
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function buildRounds(){ const picks=shuffle(BANK.slice()).slice(0,3); const balls=shuffle(BALLS.slice());
+  return picks.map((p,i)=>({ big:p.big, small:p.small, voice:p.voice, praise:p.praise, ball:balls[i], bigSide:Math.random()<0.5?'L':'R' })); }
+function setBall(btn,src,n){ btn.querySelector('img').src=src; btn.querySelector('.num').textContent=n; btn.classList.remove('used','shake'); btn.classList.add('pulsing'); btn.dataset.n=n; }
+function renderRound(){
+  locked=false; step=0;
+  const r=ROUNDS[roundIdx];
+  b1.textContent='?'; b2.textContent='?'; [b1,b2].forEach(b=>b.classList.remove('filled','next')); b1.classList.add('next');
+  setBall(ballL, r.ball, r.bigSide==='L'?r.big:r.small);
+  setBall(ballR, r.ball, r.bigSide==='R'?r.big:r.small);
+  K.resetHeroes();
+  if(roundIdx===0){ const seq=K.runSeq; K.later(()=>{ if(seq===K.runSeq){ K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play('tm2_say'); } },400); }
+}
+function tapBall(btn){
+  if(locked || btn.classList.contains('used')) return;
+  K.play('tap');
+  const r=ROUNDS[roundIdx]; const n=Number(btn.dataset.n);
+  if(step===0){
+    if(n!==r.big){ K.play('wrong'); btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake'); setTimeout(()=>btn.classList.remove('shake'),450); return; }
+    K.play('pop'); b1.textContent=n; b1.classList.remove('next'); b1.classList.add('filled'); b2.classList.add('next');
+    btn.classList.add('used'); step=1; return;
+  }
+  // step 1: the remaining (smaller) number completes the sentence
+  K.play('pop'); b2.textContent=n; b2.classList.remove('next'); b2.classList.add('filled'); btn.classList.add('used');
+  locked=true; K.play('correct'); score++; K.litStars(score);
+  const seq=K.runSeq;
+  K.later(()=>{ if(seq!==K.runSeq) return;
+    K.celebrate(r.voice, r.praise, '<b>'+r.big+'</b> is bigger than <b>'+r.small+'</b>.', ()=>{ roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); });
+  },550);
+}
+ballL.addEventListener('click',()=>tapBall(ballL)); ballR.addEventListener('click',()=>tapBall(ballR));
+function start(){ K.stopAll(); ROUNDS=buildRounds(); roundIdx=0; score=0; K.buildStars(ROUNDS.length); K.litStars(0); K.preloadHeroes(); renderRound(); }
+$('againBtn').addEventListener('click',e=>pressThen(e.currentTarget,start));
+$('endHomeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ SentenceGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('homeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ SentenceGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ SentenceGame.stop(); if(window.Hub) Hub.backToActPick(); }));
+window.SentenceGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+})();
+
+
+/* ---- Week-3 Thinking Math 1: WHO'S OUT OF PLACE? (application of AABB patterns) ---- */
+(function(){
+const K=makeTMKit('fx'), $=K.$;
+const ITEMS={ medal:{src:'assets/medal.png',name:'medal',two:'two medals'}, runshoe:{src:'assets/runshoe.png',name:'running shoe',two:'two running shoes'},
+  skates:{src:'assets/skates.png',name:'skates',two:'two skates'}, goggles:{src:'assets/goggles.png',name:'goggles',two:'two goggles'} };
+// a row of 8 in AABB; one cell is swapped for the wrong item; child taps it and the right one drops in
+const ROUNDS=[
+  {a:'medal',   b:'runshoe', wrongAt:5, voice:'tm3_fix_0', praise:'Great job!', text:'<b>Two medals</b>, <b>two running shoes</b> — it repeats! It\'s a pattern!'},
+  {a:'skates',  b:'goggles', wrongAt:2, voice:'tm3_fix_1', praise:'Excellent!', text:'<b>Two skates</b>, <b>two goggles</b> — it repeats! It\'s a pattern!'},
+  {a:'goggles', b:'medal',   wrongAt:6, voice:'tm3_fix_2', praise:'Amazing!',   text:'<b>Two goggles</b>, <b>two medals</b> — it repeats! It\'s a pattern!'},
+];
+K.reg('tm3_fix','assets/voice/tm3_fix.mp3','Find the mistake. One is out of place. Tap it.');
+K.reg('tm3_fix_0','assets/voice/tm3_fix_0.mp3','Great job! Two medals, two running shoes. It repeats! It\'s a pattern!');
+K.reg('tm3_fix_1','assets/voice/tm3_fix_1.mp3','Excellent! Two skates, two goggles. It repeats! It\'s a pattern!');
+K.reg('tm3_fix_2','assets/voice/tm3_fix_2.mp3','Amazing! Two goggles, two medals. It repeats! It\'s a pattern!');
+let roundIdx=0, score=0, locked=false;
+const row=$('row');
+function renderRound(){
+  locked=false;
+  const r=ROUNDS[roundIdx];
+  const seqs=Array.from({length:8},(_,i)=> (Math.floor(i/2)%2===0)? r.a : r.b);   // A A B B A A B B
+  const cells=seqs.map((k,i)=>{ const shown = i===r.wrongAt ? (k===r.a?r.b:r.a) : k;
+    return '<button type="button" class="fxCell pulsing" data-i="'+i+'" data-wrong="'+(i===r.wrongAt?1:0)+'" data-fix="'+k+'" aria-label="'+ITEMS[shown].name+'"><img src="'+ITEMS[shown].src+'" alt=""></button>'; });
+  row.innerHTML=cells.join('');
+  [...row.children].forEach(b=>b.addEventListener('click',()=>tapCell(b)));
+  K.resetHeroes();
+  if(roundIdx===0){ const seq=K.runSeq; K.later(()=>{ if(seq===K.runSeq){ K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play('tm3_fix'); } },400); }
+}
+function tapCell(btn){
+  if(locked) return; K.play('tap');
+  if(btn.dataset.wrong==='1'){
+    locked=true; K.play('pop');
+    [...row.children].forEach(b=>b.classList.remove('pulsing'));
+    btn.classList.add('wrongOut');
+    const seq=K.runSeq, r=ROUNDS[roundIdx];
+    K.later(()=>{ if(seq!==K.runSeq) return;
+      btn.classList.remove('wrongOut'); btn.classList.add('fixed'); btn.innerHTML='<img src="'+ITEMS[btn.dataset.fix].src+'" alt="">';
+      K.play('correct'); score++; K.litStars(score);
+      K.later(()=>{ if(seq!==K.runSeq) return; K.celebrate(r.voice, r.praise, r.text, ()=>{ roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); }); },550);
+    },480);
+  }else{
+    K.play('wrong'); btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake'); setTimeout(()=>btn.classList.remove('shake'),450);
+  }
+}
+function start(){ K.stopAll(); roundIdx=0; score=0; K.buildStars(ROUNDS.length); K.litStars(0); K.preloadHeroes(); renderRound(); }
+$('againBtn').addEventListener('click',e=>pressThen(e.currentTarget,start));
+$('endHomeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ FixGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('homeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ FixGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ FixGame.stop(); if(window.Hub) Hub.backToActPick(); }));
+window.FixGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+})();
+
+/* ---- Week-3 Thinking Math 2: PODIUM — order three numbers, biggest first (application of Bigger Numbers) ---- */
+(function(){
+const K=makeTMKit('pd'), $=K.$;
+// W3 number facts (odd p18 / even p19) re-used as ordering problems
+const ROUNDS=[
+  {nums:[3,1,5], voice:'tm3_podium_0', praise:'Great job!'},
+  {nums:[4,2,6], voice:'tm3_podium_1', praise:'Excellent!'},
+  {nums:[7,5,8], voice:'tm3_podium_2', praise:'Amazing!'},
+];
+K.reg('tm3_podium','assets/voice/tm3_podium.mp3','Put the numbers on the podium. Tap the biggest number first.');
+K.reg('tm3_podium_0','assets/voice/tm3_podium_0.mp3','Great job! 5 is the biggest. 5, 3, 1.');
+K.reg('tm3_podium_1','assets/voice/tm3_podium_1.mp3','Excellent! 6 is the biggest. 6, 4, 2.');
+K.reg('tm3_podium_2','assets/voice/tm3_podium_2.mp3','Amazing! 8 is the biggest. 8, 7, 5.');
+let roundIdx=0, score=0, locked=false, step=0, order=[];
+const medals=$('medals'), slots=[$('s1'),$('s2'),$('s3')];
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function renderRound(){
+  locked=false; step=0;
+  const r=ROUNDS[roundIdx]; order=r.nums.slice().sort((x,y)=>y-x);   // biggest → smallest
+  medals.innerHTML=shuffle(r.nums.slice()).map(n=>'<button type="button" class="pdMedal pulsing" data-n="'+n+'" aria-label="'+n+'"><img src="assets/medal.png" alt=""><span class="num">'+n+'</span></button>').join('');
+  [...medals.children].forEach(b=>b.addEventListener('click',()=>tapMedal(b)));
+  slots.forEach((sl,i)=>{ sl.textContent='?'; sl.classList.remove('filled','next'); if(i===0) sl.classList.add('next'); });
+  K.resetHeroes();
+  if(roundIdx===0){ const seq=K.runSeq; K.later(()=>{ if(seq===K.runSeq){ K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play('tm3_podium'); } },400); }
+}
+function tapMedal(btn){
+  if(locked || btn.classList.contains('used')) return; K.play('tap');
+  const n=Number(btn.dataset.n);
+  if(n!==order[step]){ K.play('wrong'); btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake'); setTimeout(()=>btn.classList.remove('shake'),450); return; }
+  K.play('pop'); const sl=slots[step]; sl.textContent=n; sl.classList.remove('next'); sl.classList.add('filled'); btn.classList.add('used');
+  step++; if(step<3){ slots[step].classList.add('next'); return; }
+  locked=true; K.play('correct'); score++; K.litStars(score);
+  const r=ROUNDS[roundIdx], seq=K.runSeq;
+  K.later(()=>{ if(seq!==K.runSeq) return;
+    K.celebrate(r.voice, r.praise, '<b>'+order[0]+'</b> is the biggest. '+order.join(', ')+'.', ()=>{ roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); });
+  },550);
+}
+function start(){ K.stopAll(); roundIdx=0; score=0; K.buildStars(ROUNDS.length); K.litStars(0); K.preloadHeroes(); renderRound(); }
+$('againBtn').addEventListener('click',e=>pressThen(e.currentTarget,start));
+$('endHomeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ PodiumGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('homeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ PodiumGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ PodiumGame.stop(); if(window.Hub) Hub.backToActPick(); }));
+window.PodiumGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+})();
+
+
+/* ---- Week-4 Thinking Math 1: LINE UP THE COUNTRIES (comparing, extended to three) ---- */
+(function(){
+const K=makeTMKit('ol'), $=K.$;
+// three countries at a time, ordered smallest -> biggest; every number is one the week teaches
+const ROUNDS=[
+  {cards:[{f:'assets/flag_usa_pale.png?v=2',n:5},{f:'assets/flag_kor_pale.png?v=2',n:3},{f:'assets/flag_uk_pale.png?v=2',n:8}],
+   voice:'tm4_order_0', praise:'Great job!'},
+  {cards:[{f:'assets/flag_aus_pale.png?v=2',n:7},{f:'assets/flag_ger_pale.png?v=2',n:2},{f:'assets/flag_fra_pale.png?v=2',n:5}],
+   voice:'tm4_order_1', praise:'Excellent!'},
+  {cards:[{f:'assets/flag_usa_pale.png?v=2',n:10},{f:'assets/flag_kor_pale.png?v=2',n:1},{f:'assets/flag_uk_pale.png?v=2',n:4}],
+   voice:'tm4_order_2', praise:'Amazing!'},
+];
+K.reg('tm4_order','assets/voice/tm4_order.mp3','Line up the countries. Tap the smallest number first.');
+K.reg('tm4_order_0','assets/voice/tm4_order_0.mp3','Great job! 3, 5, 8. Smallest to biggest!');
+K.reg('tm4_order_1','assets/voice/tm4_order_1.mp3','Excellent! 2, 5, 7. Smallest to biggest!');
+K.reg('tm4_order_2','assets/voice/tm4_order_2.mp3','Amazing! 1, 4, 10. Smallest to biggest!');
+let roundIdx=0, score=0, locked=false, step=0, order=[];
+const cardsEl=$('cards'), slots=[$('s1'),$('s2'),$('s3')];
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function markNext(){ slots.forEach((sl,i)=>sl.classList.toggle('next', i===step)); }
+function renderRound(){
+  locked=false; step=0;
+  const r=ROUNDS[roundIdx];
+  order=r.cards.map(c=>c.n).sort((x,y)=>x-y);
+  // the slots grow left-to-right, so their size shows the order — no unreadable labels
+  slots.forEach(sl=>{ sl.classList.remove('filled','next'); sl.innerHTML=''; });
+  markNext();
+  cardsEl.innerHTML=shuffle(r.cards.slice()).map(c=>
+    '<button type="button" class="olCard pulsing" data-n="'+c.n+'" data-f="'+c.f+'" aria-label="'+c.n+'">'
+    +'<img src="'+c.f+'" alt=""><span class="num">'+c.n+'</span></button>').join('');
+  [...cardsEl.children].forEach(b=>b.addEventListener('click',()=>tapCard(b)));
+  K.resetHeroes();
+  if(roundIdx===0){ const seq=K.runSeq; K.later(()=>{ if(seq===K.runSeq){ K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play('tm4_order'); } },400); }
+}
+function tapCard(btn){
+  if(locked || btn.classList.contains('used')) return;
+  K.play('tap');
+  const n=Number(btn.dataset.n);
+  if(n!==order[step]){
+    K.play('wrong'); btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake');
+    setTimeout(()=>btn.classList.remove('shake'),450); return;
+  }
+  K.play('pop');
+  const sl=slots[step];
+  sl.classList.remove('next'); sl.classList.add('filled');
+  sl.innerHTML='<img src="'+btn.dataset.f+'" alt=""><span class="num">'+n+'</span>';
+  btn.classList.add('used'); btn.classList.remove('pulsing');
+  step++;
+  if(step<3){ markNext(); return; }
+  locked=true; K.play('correct'); score++; K.litStars(score);
+  const r=ROUNDS[roundIdx], seq=K.runSeq;
+  K.later(()=>{ if(seq!==K.runSeq) return;
+    K.celebrate(r.voice, r.praise, '<b>'+order.join('</b>, <b>')+'</b> — smallest to biggest!',
+      ()=>{ roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); });
+  },550);
+}
+function start(){ K.stopAll(); roundIdx=0; score=0; K.buildStars(ROUNDS.length); K.litStars(0); K.preloadHeroes(); renderRound(); }
+$('againBtn').addEventListener('click',e=>pressThen(e.currentTarget,start));
+$('endHomeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ OrderGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('homeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ OrderGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ OrderGame.stop(); if(window.Hub) Hub.backToActPick(); }));
+window.OrderGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+})();
+
+/* ---- Week-4 Thinking Math 2: WHICH IS SMALLER? (the comparison, turned around) ---- */
+(function(){
+const K=makeTMKit('sl'), $=K.$;
+// same flags and number pairs the week teaches, but the question is inverted
+const ROUNDS=[
+  {flag:'assets/flag_kor_pale.png?v=2', L:3,  R:1,  voice:'tm4_small_0', praise:'Great job!'},
+  {flag:'assets/flag_aus_pale.png?v=2', L:7,  R:10, voice:'tm4_small_1', praise:'Excellent!'},
+  {flag:'assets/flag_fra_pale.png?v=2', L:5,  R:8,  voice:'tm4_small_2', praise:'Amazing!'},
+];
+K.reg('tm4_small','assets/voice/tm4_small.mp3','Find the smaller number. Tap the smaller one.');
+K.reg('tm4_small_0','assets/voice/tm4_small_0.mp3','Great job! 1 is smaller than 3.');
+K.reg('tm4_small_1','assets/voice/tm4_small_1.mp3','Excellent! 7 is smaller than 10.');
+K.reg('tm4_small_2','assets/voice/tm4_small_2.mp3','Amazing! 5 is smaller than 8.');
+let roundIdx=0, score=0, locked=false;
+const cardL=$('cardL'), cardR=$('cardR');
+function setCard(btn,flag,n){ btn.querySelector('img').src=flag; btn.querySelector('.num').textContent=n;
+  btn.dataset.n=n; btn.classList.remove('correct','shake','dim'); btn.classList.add('pulsing'); }
+function renderRound(){
+  locked=false;
+  const r=ROUNDS[roundIdx];
+  setCard(cardL,r.flag,r.L); setCard(cardR,r.flag,r.R);
+  $('line').innerHTML='_____ is <b>smaller</b> than _____.';
+  K.resetHeroes();
+  if(roundIdx===0){ const seq=K.runSeq; K.later(()=>{ if(seq===K.runSeq){ K.sayNode=K.stopSound(K.sayNode); K.sayNode=K.play('tm4_small'); } },400); }
+}
+function tapCard(btn){
+  if(locked) return; K.play('tap');
+  const r=ROUNDS[roundIdx];
+  const small=Math.min(r.L,r.R), big=Math.max(r.L,r.R);
+  if(Number(btn.dataset.n)!==small){
+    K.play('wrong'); btn.classList.remove('shake'); void btn.offsetWidth; btn.classList.add('shake');
+    setTimeout(()=>btn.classList.remove('shake'),450); return;
+  }
+  locked=true; [cardL,cardR].forEach(c=>c.classList.remove('pulsing'));
+  btn.classList.add('correct'); (btn===cardL?cardR:cardL).classList.add('dim');
+  K.play('pop'); K.play('correct'); score++; K.litStars(score);
+  $('line').innerHTML='<b>'+small+'</b> is <b>smaller</b> than <b>'+big+'</b>.';
+  const seq=K.runSeq;
+  K.later(()=>{ if(seq!==K.runSeq) return;
+    K.celebrate(r.voice, r.praise, '<b>'+small+'</b> is smaller than <b>'+big+'</b>.', ()=>{ roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); });
+  },550);
+}
+cardL.addEventListener('click',()=>tapCard(cardL)); cardR.addEventListener('click',()=>tapCard(cardR));
+function start(){ K.stopAll(); roundIdx=0; score=0; K.buildStars(ROUNDS.length); K.litStars(0); K.preloadHeroes(); renderRound(); }
+$('againBtn').addEventListener('click',e=>pressThen(e.currentTarget,start));
+$('endHomeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ SmallerGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('homeBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ SmallerGame.stop(); if(window.Hub) Hub.showMenu(); }));
+$('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ SmallerGame.stop(); if(window.Hub) Hub.backToActPick(); }));
+window.SmallerGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+})();
+
 
 window.WeekArt = {
   motion:'jump',
@@ -3943,10 +5040,58 @@ window.WeekArt = {
 };
 window.Hub = {
   current: null,
-  videos:{
-    'concept-patterns':{title:'Pattern Rules 1', src:'assets/videos/concept_vid1.mp4?v=1'},
-    'concept-bigger':{title:'Pattern Rules 2', src:'assets/videos/concept_vid2.mp4?v=1'},
-    'poem':{title:'Math Literature', src:'assets/videos/math_poem_final.mp4'}
+  // Every week has its OWN videos, thumbnails and titles — nothing is shared across weeks.
+  videosByWeek:{
+    1:{
+      'concept-patterns':{title:'Do You Play Sports? · It Is an AB Pattern', src:'assets/videos/w1_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
+      'poem':            {title:'Math Literature',      src:'assets/videos/w1_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+    },
+    2:{
+      'concept-patterns':{title:'Where Are We? · It Is an AB Pattern', src:'assets/videos/w2_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
+      'poem':            {title:'Math Literature',      src:'assets/videos/w2_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+    },
+    3:{
+      'concept-patterns':{title:'Where Are We? · It Is an AABB Pattern', src:'assets/videos/w3_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
+      'poem':            {title:'Math Literature',        src:'assets/videos/w3_literature.mp4?v=5', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+    },
+    4:{
+      'concept-patterns':{title:'When Are the Olympic Games? · It Is an AB or AABB Pattern', src:'assets/videos/w4_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
+      'poem':            {title:'Math Literature',      src:'assets/videos/w4_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+    }
+  },
+  get videos(){ return this.videosByWeek[this.week] || this.videosByWeek[1]; },
+  // Per-week hub chrome: header lines + card images (thumbnails are currently shared across weeks by request).
+  weekArt:{
+    1:{ title:'Week 1 — Athletes!', sub:'What sports do you play?',
+        videos:'assets/hub_math_literacy_videos.png?v=4', act1:'assets/hub_math_activities_1.png', act2:'assets/hub_math_activities_2.png', act3:'assets/hub_thinking_math.png?v=5' },
+    2:{ title:'Week 2 — Practice!', sub:'What do you practice?',
+        videos:'assets/hub_math_literacy_videos.png?v=4', act1:'assets/hub_math_activities_1.png', act2:'assets/hub_math_activities_2.png', act3:'assets/hub_thinking_math.png?v=5' },
+    3:{ title:'Week 3 — Olympics!', sub:'What event is it?',
+        videos:'assets/hub_math_literacy_videos.png?v=4', act1:'assets/hub_math_activities_1.png', act2:'assets/hub_math_activities_2.png', act3:'assets/hub_thinking_math.png?v=5' },
+    4:{ title:'Week 4 — Around the World!', sub:'Where do the athletes come from?',
+        videos:'assets/hub_math_literacy_videos.png?v=4', act1:'assets/hub_math_activities_1.png', act2:'assets/hub_math_activities_2.png', act3:'assets/hub_thinking_math.png?v=5' }
+  },
+  applyWeekArt(week){
+    const art=this.weekArt[week]||this.weekArt[1];
+    const vids=this.videosByWeek[week]||this.videosByWeek[1];
+    const title=document.getElementById('hubWeekTitle');
+    const sub=document.getElementById('hubWeekSub');
+    if(title) title.textContent=art.title;
+    if(sub) sub.textContent=art.sub;
+    const setImg=(sel,src)=>{ const img=document.querySelector(sel); if(img && src && img.getAttribute('src')!==src) img.src=src; };
+    setImg('#hub .hubCard[data-idx="0"] .videoPlay img', art.videos);
+    setImg('#hub .hubCard[data-idx="1"] .hubCardArt img', art.act1);
+    setImg('#hub .hubCard[data-idx="2"] .hubCardArt img', art.act2);
+    setImg('#hub .hubCard[data-idx="3"] .hubCardArt img', art.act3);
+    setImg('#hub .hubCard[data-idx="4"] .fairytaleThumb img', vids.poem && vids.poem.thumb);
+    // concept picker: this week's video (thumb + label) -- both Pattern Rules
+    // parts are joined into one file, so there is a single pick
+    document.querySelectorAll('#c_stage .conceptPick').forEach(btn=>{
+      const meta=vids[btn.dataset.act]; if(!meta) return;
+      const img=btn.querySelector('.conceptThumbWrap img'); if(img && meta.thumb && img.getAttribute('src')!==meta.thumb) img.src=meta.thumb;
+      const lab=btn.querySelector('span:not(.conceptThumbWrap)'); if(lab) lab.textContent=meta.title;
+      btn.setAttribute('aria-label', meta.title);
+    });
   },
   actMenus:{
     act1:{
@@ -3989,13 +5134,60 @@ window.Hub = {
     act3:{
       title:'Thinking Math',
       options:[
-        {launch:'thinkPat', label:'Activity 1', orange:true},
-        {launch:'thinkBig', label:'Activity 2', orange:true}
+        {launch:'build', label:'Activity 1', orange:true},   // Week 2: build the AB pattern yourself
+        {launch:'sent',  label:'Activity 2', orange:true}    // Week 2: say "__ is bigger than __."
+      ]
+    }
+  },
+  actMenusW3:{
+    act1:{
+      title:'Math Activities 1',
+      options:[
+        {launch:'thinkPat', act:'medal', label:'Activity 1'},   // p16 medals / running shoes (AABB)
+        {launch:'thinkPat', act:'skate', label:'Activity 2'}    // p17 skates / goggles (AABB)
+      ]
+    },
+    act2:{
+      title:'Math Activities 2',
+      options:[
+        {launch:'bigger', act:'w3set1', label:'Activity 1', blue:true},   // p18 odd numbers
+        {launch:'bigger', act:'w3set2', label:'Activity 2', blue:true}    // p19 even numbers
+      ]
+    },
+    act3:{
+      title:'Thinking Math',
+      options:[
+        {launch:'fix',    label:'Activity 1', orange:true},   // Who's out of place? (AABB)
+        {launch:'podium', label:'Activity 2', orange:true}    // Podium: order the numbers
+      ]
+    }
+  },
+  actMenusW4:{
+    act1:{
+      title:'Math Activities 1',
+      options:[
+        {launch:'thinkPat', act:'w4ab',   label:'Activity 1'},   // p22 AB flag patterns
+        {launch:'thinkPat', act:'w4aabb', label:'Activity 2'}    // p23 AABB flag patterns
+      ]
+    },
+    act2:{
+      title:'Math Activities 2',
+      options:[
+        {launch:'bigger', act:'w4set1', label:'Activity 1', blue:true},   // p24
+        {launch:'bigger', act:'w4set2', label:'Activity 2', blue:true}    // p25
+      ]
+    },
+    act3:{
+      title:'Thinking Math',
+      options:[
+        {launch:'order',   label:'Activity 1', orange:true},   // Line up the countries (smallest to biggest)
+        {launch:'smaller', label:'Activity 2', orange:true}    // Which is smaller?
       ]
     }
   },
   menusFor(week){
-    return (Number(week)===2) ? this.actMenusW2 : this.actMenus;
+    week=Number(week);
+    return week===4 ? this.actMenusW4 : week===3 ? this.actMenusW3 : week===2 ? this.actMenusW2 : this.actMenus;
   },
   _conceptTimer:null,
   silence(){
@@ -4226,7 +5418,7 @@ window.Hub = {
     this.silence();
     this.stopVideo();
     this.stopConceptVideo();
-    ['pattern','bigger','thinkPat','thinkBig','video','concept','actPick'].forEach(k=>{
+    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','video','concept','actPick'].forEach(k=>{
       const el=document.getElementById('screen-'+k);
       if(el) el.classList.remove('on');
     });
@@ -4234,13 +5426,19 @@ window.Hub = {
     if(window.BiggerGame) BiggerGame.stop();
     if(window.ThinkPatGame) ThinkPatGame.stop();
     if(window.ThinkBigGame) ThinkBigGame.stop();
+    if(window.BuildGame) BuildGame.stop();
+    if(window.SentenceGame) SentenceGame.stop();
+    if(window.FixGame) FixGame.stop();
+    if(window.PodiumGame) PodiumGame.stop();
+    if(window.OrderGame) OrderGame.stop();
+    if(window.SmallerGame) SmallerGame.stop();
     this.silence();
     document.getElementById('hub').classList.add('hide');
     document.getElementById('weeks').classList.remove('hide');
     this.current=null;
   },
   setHubReady(week){
-    const live=Number(week)===1 || Number(week)===2;
+    const live=[1,2,3,4].includes(Number(week));
     const hub=document.getElementById('hub');
     if(hub) hub.classList.toggle('is-locked', !live);
     document.querySelectorAll('#hub [data-launch]').forEach(el=>{
@@ -4251,10 +5449,7 @@ window.Hub = {
   openWeek(week){
     week=Number(week)||1;
     this.week=week;
-    const title=document.getElementById('hubWeekTitle');
-    const sub=document.getElementById('hubWeekSub');
-    if(title) title.textContent='Week '+week+' — Athletes!';
-    if(sub) sub.textContent='What sports do you play?';
+    this.applyWeekArt(week);
     this.setHubReady(week);
     document.getElementById('weeks').classList.add('hide');
     document.getElementById('hub').classList.remove('hide');
@@ -4264,7 +5459,7 @@ window.Hub = {
     this.silence();
     this.stopVideo();
     this.stopConceptVideo();
-    ['pattern','bigger','thinkPat','thinkBig','video','concept','actPick'].forEach(k=>{
+    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','video','concept','actPick'].forEach(k=>{
       const el=document.getElementById('screen-'+k);
       if(el) el.classList.remove('on');
     });
@@ -4272,13 +5467,19 @@ window.Hub = {
     if(window.BiggerGame) BiggerGame.stop();
     if(window.ThinkPatGame) ThinkPatGame.stop();
     if(window.ThinkBigGame) ThinkBigGame.stop();
+    if(window.BuildGame) BuildGame.stop();
+    if(window.SentenceGame) SentenceGame.stop();
+    if(window.FixGame) FixGame.stop();
+    if(window.PodiumGame) PodiumGame.stop();
+    if(window.OrderGame) OrderGame.stop();
+    if(window.SmallerGame) SmallerGame.stop();
     this.silence();
     document.getElementById('weeks').classList.add('hide');
     document.getElementById('hub').classList.remove('hide');
     this.current=null;
   },
   launch(kind, act){
-    if(this.week!==1 && this.week!==2) return;
+    if(![1,2,3,4].includes(this.week)) return;
     this.silence();
     this.stopVideo();
     this.stopConceptVideo();
@@ -4286,10 +5487,16 @@ window.Hub = {
     if(window.BiggerGame) BiggerGame.stop();
     if(window.ThinkPatGame) ThinkPatGame.stop();
     if(window.ThinkBigGame) ThinkBigGame.stop();
+    if(window.BuildGame) BuildGame.stop();
+    if(window.SentenceGame) SentenceGame.stop();
+    if(window.FixGame) FixGame.stop();
+    if(window.PodiumGame) PodiumGame.stop();
+    if(window.OrderGame) OrderGame.stop();
+    if(window.SmallerGame) SmallerGame.stop();
     this.silence();
     document.getElementById('weeks').classList.add('hide');
     document.getElementById('hub').classList.add('hide');
-    ['pattern','bigger','thinkPat','thinkBig','video','concept','actPick'].forEach(k=>{
+    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','video','concept','actPick'].forEach(k=>{
       const el=document.getElementById('screen-'+k);
       if(el) el.classList.toggle('on', k===kind);
     });
@@ -4300,6 +5507,12 @@ window.Hub = {
       else if(kind==='bigger') BiggerGame.start(act);
       else if(kind==='thinkPat') ThinkPatGame.start(act);
       else if(kind==='thinkBig') ThinkBigGame.start();
+      else if(kind==='build') BuildGame.start();
+      else if(kind==='sent') SentenceGame.start();
+      else if(kind==='fix') FixGame.start();
+      else if(kind==='podium') PodiumGame.start();
+      else if(kind==='order') OrderGame.start();
+      else if(kind==='smaller') SmallerGame.start();
       else if(kind==='video') this.playVideo(act);
       else if(kind==='concept') this.showConceptPick();
       else if(kind==='actPick') this.showActPick(act||this.actMenuKey||'act1');
@@ -4329,7 +5542,7 @@ window.pressThen=function(el, action){
 };
 document.querySelectorAll('#hub [data-launch]').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    if(!window.Hub || (Hub.week!==1 && Hub.week!==2) || btn.disabled) return;
+    if(!window.Hub || ![1,2,3,4].includes(Hub.week) || btn.disabled) return;
     pressThen(btn, ()=>Hub.launch(btn.dataset.launch, btn.dataset.act||null));
   });
 });
@@ -4339,7 +5552,7 @@ document.querySelectorAll('#weeks .weekBtn').forEach(btn=>{
     pressThen(btn, ()=>{
       if(!window.Hub) return;
       const week=Number(btn.dataset.week)||1;
-      if(week===1 || week===2) Hub.openWeek(week);
+      if([1,2,3,4].includes(week)) Hub.openWeek(week);
     });
   });
 });

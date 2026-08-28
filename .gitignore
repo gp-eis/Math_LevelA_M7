@@ -1,3 +1,9 @@
-# Local source/backup assets that are not used by the website.
+# Local working and reference files (not part of the live website)
+_h.html
+refs.txt
+math-literacy.pre_*.html
+assets/Claude
+assets/_cheer_check.png
+assets/_style.png
 assets/old_pre_cleatbottle/
 assets/voice/old_pre_biggervoice/
