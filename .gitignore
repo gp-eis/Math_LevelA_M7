@@ -1,4 +1,3 @@
-# Local working and reference files (not part of the live website)
 _h.html
 refs.txt
 math-literacy.pre_*.html
@@ -6,4 +5,6 @@ assets/Claude
 assets/_cheer_check.png
 assets/_style.png
 assets/old_pre_cleatbottle/
+assets/videos/_orig1080/
 assets/voice/old_pre_biggervoice/
+assets/voice/*_old.mp3

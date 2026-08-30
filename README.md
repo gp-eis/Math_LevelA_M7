@@ -1,3 +1,3 @@
-# Math Literacy — Level A, Module 7
+# Math Literacy Level A — Module 7
 
-Interactive weekly math-literacy activities published with GitHub Pages.
+Interactive Math Literacy lessons for Weeks 1–4.

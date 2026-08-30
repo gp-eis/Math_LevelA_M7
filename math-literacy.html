@@ -63,6 +63,13 @@
       linear-gradient(165deg,#ffe8ef 0%,#fff1e0 45%,#ffe9d4 100%);}
   @supports (height:100dvh){#weeks{min-height:100dvh;}}
   #weeks.hide{display:none;}
+  /* "Go to GP English" button: centered under the logo, links to this level's weekly page. */
+  .siteHomeBtn{appearance:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.45em;
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(14px,2.1vh,19px);color:#fff;letter-spacing:.01em;
+    padding:.62em 1.5em;border-radius:999px;background:linear-gradient(155deg,#8be0a0 0%,#3cba7a 55%,#278754 100%);
+    box-shadow:0 3px 0 #1f6e44,0 5px 14px rgba(0,0,0,.2);transition:transform .08s;}
+  .siteHomeBtn:hover{filter:brightness(1.05);}
+  .siteHomeBtn:active{transform:translateY(2px);box-shadow:0 1px 0 #1f6e44,0 2px 6px rgba(0,0,0,.2);}
   .weeksHeader{display:flex;flex-direction:column;align-items:center;gap:12px;flex:none;}
   .weeksLogo{width:clamp(78px,11vh,120px);height:auto;object-fit:contain;display:block;margin-bottom:2px;}
   .weeksLevel{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(16px,2.4vh,22px);
@@ -1519,6 +1526,7 @@
     <div class="weeksLevel">Level A</div>
     <div class="weeksTitle">Choose a Week</div>
   </header>
+  <button type="button" class="siteHomeBtn" onclick="location.href='https://www.gpeisenglish.com/copy-of-level-a-weekly-04'">Go to GP English</button>
   <div class="weeksRow" role="navigation" aria-label="Level A weeks">
     <button type="button" class="weekBtn" data-week="1" aria-label="Open Week 1">
       <span class="weekArt"><img src="assets/week_1_thumb.png?v=1" alt=""></span>
@@ -5043,20 +5051,20 @@ window.Hub = {
   // Every week has its OWN videos, thumbnails and titles — nothing is shared across weeks.
   videosByWeek:{
     1:{
-      'concept-patterns':{title:'Do You Play Sports? · It Is an AB Pattern', src:'assets/videos/w1_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
-      'poem':            {title:'Math Literature',      src:'assets/videos/w1_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+      'concept-patterns':{title:'A-7 · Week 1 · Concept — Do You Play Sports? · It Is an AB Pattern', src:'assets/videos/w1_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept.png?v=8'},
+      'poem':            {title:'A-7 · Week 1 · Math Literature',      src:'assets/videos/w1_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=8'}
     },
     2:{
-      'concept-patterns':{title:'Where Are We? · It Is an AB Pattern', src:'assets/videos/w2_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
-      'poem':            {title:'Math Literature',      src:'assets/videos/w2_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+      'concept-patterns':{title:'A-7 · Week 2 · Concept — Where Are We? · It Is an AB Pattern', src:'assets/videos/w2_concept.mp4?v=1', thumb:'assets/videos/thumbs/w2_concept.png?v=8'},
+      'poem':            {title:'A-7 · Week 2 · Math Literature',      src:'assets/videos/w2_literature.mp4?v=2', thumb:'assets/videos/thumbs/w2_literature.png?v=8'}
     },
     3:{
-      'concept-patterns':{title:'Where Are We? · It Is an AABB Pattern', src:'assets/videos/w3_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
-      'poem':            {title:'Math Literature',        src:'assets/videos/w3_literature.mp4?v=5', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+      'concept-patterns':{title:'A-7 · Week 3 · Concept — Where Are We? · It Is an AABB Pattern', src:'assets/videos/w3_concept.mp4?v=1', thumb:'assets/videos/thumbs/w3_concept.png?v=8'},
+      'poem':            {title:'A-7 · Week 3 · Math Literature',        src:'assets/videos/w3_literature.mp4?v=5', thumb:'assets/videos/thumbs/w3_literature.png?v=8'}
     },
     4:{
-      'concept-patterns':{title:'When Are the Olympic Games? · It Is an AB or AABB Pattern', src:'assets/videos/w4_concept.mp4?v=1', thumb:'assets/videos/thumbs/w1_concept_1.png?v=7'},
-      'poem':            {title:'Math Literature',      src:'assets/videos/w4_literature.mp4?v=2', thumb:'assets/videos/thumbs/w1_literature.png?v=7'}
+      'concept-patterns':{title:'A-7 · Week 4 · Concept — When Are the Olympic Games? · It Is an AB or AABB Pattern', src:'assets/videos/w4_concept.mp4?v=1', thumb:'assets/videos/thumbs/w4_concept.png?v=8'},
+      'poem':            {title:'A-7 · Week 4 · Math Literature',      src:'assets/videos/w4_literature.mp4?v=2', thumb:'assets/videos/thumbs/w4_literature.png?v=8'}
     }
   },
   get videos(){ return this.videosByWeek[this.week] || this.videosByWeek[1]; },
