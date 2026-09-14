@@ -659,7 +659,7 @@
   
   
   /* cream graph-paper frame */
-  .g-pattern #p_app{position:relative;height:100vh;aspect-ratio:3415/4770;background:var(--cream);
+  .g-pattern #p_app{position:relative;background:var(--cream);width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     padding:2.4vh;overflow:hidden;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),
                     linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -845,16 +845,15 @@
   
   /* Fit portrait frame inside both width & height (phone + desktop) */
   .g-bigger #b_app{position:relative;overflow:hidden;background:var(--cream);
-    width:min(100vw, calc(100vh * 3415 / 4770));
-    height:min(100vh, calc(100vw * 4770 / 3415));
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     container-type:size;container-name:game;
     padding:2.4%;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),
                     linear-gradient(90deg,var(--grid) 1px,transparent 1px);
     background-size:3.6% 2.6%;}
   @supports (height:100dvh){
-    .g-bigger #b_app{width:min(100vw, calc(100dvh * 3415 / 4770));
-      height:min(100dvh, calc(100vw * 4770 / 3415));}
+    .g-bigger #b_app{width:min(100vw, calc(100dvh * 21 / 9));
+      height:min(100dvh, calc(100vw * 9 / 16));}
   }
   .panel{position:relative;height:100%;background:#fff;border:0.85cqh solid var(--red);
     border-radius:22px;overflow:hidden;
@@ -994,15 +993,14 @@
   
   
   .g-think-pat #tp_app{position:relative;overflow:hidden;background:var(--cream);
-    width:min(100vw, calc(100vh * 3415 / 4770));
-    height:min(100vh, calc(100vw * 4770 / 3415));
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     container-type:size;container-name:game;padding:2.4%;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),
                     linear-gradient(90deg,var(--grid) 1px,transparent 1px);
     background-size:3.6% 2.6%;}
   @supports (height:100dvh){
-    .g-think-pat #tp_app{width:min(100vw, calc(100dvh * 3415 / 4770));
-      height:min(100dvh, calc(100vw * 4770 / 3415));}
+    .g-think-pat #tp_app{width:min(100vw, calc(100dvh * 21 / 9));
+      height:min(100dvh, calc(100vw * 9 / 16));}
   }
   .panel{position:relative;height:100%;background:#fff;border:0.85cqh solid var(--red);
     border-radius:22px;overflow:hidden;
@@ -1163,15 +1161,14 @@
   
   
   .g-think-big #tb_app{position:relative;overflow:hidden;background:var(--cream);
-    width:min(100vw, calc(100vh * 3415 / 4770));
-    height:min(100vh, calc(100vw * 4770 / 3415));
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     container-type:size;container-name:game;padding:2.4%;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),
                     linear-gradient(90deg,var(--grid) 1px,transparent 1px);
     background-size:3.6% 2.6%;}
   @supports (height:100dvh){
-    .g-think-big #tb_app{width:min(100vw, calc(100dvh * 3415 / 4770));
-      height:min(100dvh, calc(100vw * 4770 / 3415));}
+    .g-think-big #tb_app{width:min(100vw, calc(100dvh * 21 / 9));
+      height:min(100dvh, calc(100vw * 9 / 16));}
   }
   .panel{position:relative;height:100%;background:#fff;border:0.85cqh solid var(--red);
     border-radius:22px;overflow:hidden;
@@ -1297,15 +1294,14 @@
   .g-build,.g-sent{position:absolute;inset:0;display:none;}
   .g-build.on,.g-sent.on{display:flex;align-items:center;justify-content:center;}
   .g-build #bd_app,.g-sent #sn_app{position:relative;overflow:hidden;background:var(--cream);
-    width:min(100vw, calc(100vh * 3415 / 4770));
-    height:min(100vh, calc(100vw * 4770 / 3415));
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     container-type:size;container-name:game;padding:2.4%;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),
                     linear-gradient(90deg,var(--grid) 1px,transparent 1px);
     background-size:3.6% 2.6%;}
   @supports (height:100dvh){
-    .g-build #bd_app,.g-sent #sn_app{width:min(100vw, calc(100dvh * 3415 / 4770));
-      height:min(100dvh, calc(100vw * 4770 / 3415));}
+    .g-build #bd_app,.g-sent #sn_app{width:min(100vw, calc(100dvh * 21 / 9));
+      height:min(100dvh, calc(100vw * 9 / 16));}
   }
   /* orange chrome = Thinking Math */
   .g-build .panel,.g-sent .panel{border-color:var(--orange);box-shadow:0 6px 0 rgba(212,132,42,.18);}
@@ -1403,10 +1399,10 @@
   .g-fix,.g-podium{position:absolute;inset:0;display:none;}
   .g-fix.on,.g-podium.on{display:flex;align-items:center;justify-content:center;}
   .g-fix #fx_app,.g-podium #pd_app{position:relative;overflow:hidden;background:var(--cream);
-    width:min(100vw, calc(100vh * 3415 / 4770));height:min(100vh, calc(100vw * 4770 / 3415));
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     container-type:size;container-name:game;padding:2.4%;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:3.6% 2.6%;}
-  @supports (height:100dvh){ .g-fix #fx_app,.g-podium #pd_app{width:min(100vw, calc(100dvh * 3415 / 4770));height:min(100dvh, calc(100vw * 4770 / 3415));} }
+  @supports (height:100dvh){ .g-fix #fx_app,.g-podium #pd_app{width:min(100vw, calc(100dvh * 21 / 9));height:min(100dvh, calc(100vw * 9 / 16));} }
   .g-fix .panel,.g-podium .panel{border-color:var(--orange);box-shadow:0 6px 0 rgba(212,132,42,.18);}
   .g-fix .title,.g-podium .title{-webkit-text-stroke:0.85cqh var(--orange);filter:drop-shadow(0 0.35cqh 0 rgba(212,132,42,.25));}
   .g-fix .ribbon,.g-podium .ribbon{background:var(--orange);box-shadow:0 2px 5px rgba(212,132,42,.25);}
@@ -1473,10 +1469,10 @@
   .g-order,.g-smaller{position:absolute;inset:0;display:none;}
   .g-order.on,.g-smaller.on{display:flex;align-items:center;justify-content:center;}
   .g-order #ol_app,.g-smaller #sl_app{position:relative;overflow:hidden;background:var(--cream);
-    width:min(100vw, calc(100vh * 3415 / 4770));height:min(100vh, calc(100vw * 4770 / 3415));
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
     container-type:size;container-name:game;padding:2.4%;
     background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:3.6% 2.6%;}
-  @supports (height:100dvh){ .g-order #ol_app,.g-smaller #sl_app{width:min(100vw, calc(100dvh * 3415 / 4770));height:min(100dvh, calc(100vw * 4770 / 3415));} }
+  @supports (height:100dvh){ .g-order #ol_app,.g-smaller #sl_app{width:min(100vw, calc(100dvh * 21 / 9));height:min(100dvh, calc(100vw * 9 / 16));} }
   .g-order .panel,.g-smaller .panel{border-color:var(--purple);box-shadow:0 6px 0 rgba(111,84,181,.18);}
   .g-order .title,.g-smaller .title{-webkit-text-stroke:0.85cqh var(--purple);filter:drop-shadow(0 0.35cqh 0 rgba(111,84,181,.25));}
   .g-order .ribbon,.g-smaller .ribbon{background:var(--purple);box-shadow:0 2px 5px rgba(111,84,181,.25);}
@@ -1554,6 +1550,7 @@
   #ol_end .btn:active,#sl_end .btn:active{box-shadow:0 2px 0 var(--purple-d);}
   #ol_end .btn.home,#sl_end .btn.home{background:var(--blue);box-shadow:0 6px 0 var(--blue-d);}
   #ol_end .btn.home:active,#sl_end .btn.home:active{box-shadow:0 2px 0 var(--blue-d);}
+
 </style>
 <style id="gpTouchTarget">
 /* Touch-target floor, 2026-09-02 (math-site lane, director-authorised 17:16).
@@ -1569,6 +1566,357 @@
 #b_backBtn{left:max(7cqh,54px);}
 #tp_backBtn,#tb_backBtn,#bd_backBtn,#sn_backBtn,#fx_backBtn,#pd_backBtn,#ol_backBtn,#sl_backBtn{left:max(6.5cqh,54px);}
 /* #c_homeBtn / #c_backBtn share left:0 by design (only one is shown) - not moved. */
+
+  /* --- bd : caps x1.45 --- */
+  .bdRow{gap:1.3cqh;padding:1.45cqh 1.74cqh;}
+  .bdSlot{width:12.18cqh;height:12.18cqh;}
+  .bdSlot .qm{font-size:6.38cqh;}
+  .bdTrayLbl{font-size:3.04cqh;}
+  .bdTray{gap:2.32cqh;}
+  .bdItem{width:18.12cqh;height:18.12cqh;padding:1.45cqh;}
+
+  /* --- fx : caps x1.45 --- */
+  .fxRow{gap:1.01cqh;padding:1.45cqh 1.59cqh;}
+  .fxCell{width:10.73cqh;height:10.73cqh;padding:0.58cqh;}
+  .fxHint{font-size:3.04cqh;}
+
+  /* --- m : caps x1.45 --- */
+  .mTitle{font-size:7.83cqh;}
+  .mSub{font-size:3.48cqh;}
+  .mTitle{font-size:6.96cqh;}
+  .mSub{font-size:3.19cqh;}
+  .mTitle{font-size:6.96cqh;}
+  .mSub{font-size:3.19cqh;}
+
+  /* --- ol : caps x1.45 --- */
+  .olHint{gap:2.03cqh;font-size:3.33cqh;}
+  .olHint .arrow{width:20.3cqh;height:1.01cqh;}
+  .olHint .arrow::after{right:-0.29cqh;}
+  .olTrack{gap:2.32cqh;}
+  .olSlot{width:27.55cqh;height:23.2cqh;}
+  .olSlot .rank{bottom:0.87cqh;font-size:2.75cqh;}
+  .olTrack .olSlot:nth-child(3){width:31.9cqh;height:26.97cqh;}
+  .olSlot .num{font-size:11.6cqh;}
+  .olCards{gap:3.19cqh;}
+  .olCard{width:27.55cqh;height:20.3cqh;}
+  .olCard .num{font-size:10.73cqh;}
+
+  /* --- pd : caps x1.45 --- */
+  .pdMedals{gap:3.48cqh;}
+  .pdMedal{width:20.3cqh;height:20.3cqh;}
+  .pdMedal .num{font-size:8.7cqh;}
+  .pdPodium{gap:.11.6cqh;}
+  .pdStep{width:18.85cqh;gap:.5.8cqh;padding:.11.6cqh .5.8cqh;}
+  .pdStep .slot{width:13.78cqh;height:13.78cqh;font-size:7.25cqh;}
+  .pdStep .rank{font-size:3.48cqh;}
+  .pdStep.gold{height:26.1cqh;}
+  .pdStep.silver{height:21.75cqh;}
+  .pdStep.bronze{height:18.12cqh;}
+
+  /* --- sl : caps x1.45 --- */
+  .slLine{font-size:4.93cqh;}
+  .slCards{gap:4.64cqh;}
+  .slCard{width:37.7cqh;height:27.55cqh;}
+  .slCard .num{font-size:15.95cqh;}
+
+  /* --- sn : caps x1.45 --- */
+  .snLine{gap:1.45cqh;font-size:5.22cqh;padding:1.74cqh 2.61cqh;}
+  .snBox{width:11.6cqh;height:11.6cqh;font-size:7.54cqh;}
+  .snBalls{gap:4.35cqh;}
+  .snBall{width:24.65cqh;height:24.65cqh;}
+  .snBall .num{font-size:11.6cqh;}
+
+  /* --- tm : caps x1.45 --- */
+  .tmQ{width:min(94%,113.1cqh);}
+  .tmQ .pre{font-size:3.41cqh;}
+  .tmQ .ask{font-size:3.04cqh;}
+  .tmStars{gap:.79.75cqh;}
+  .tmStars .st{width:4.5cqh;height:4.5cqh;}
+  /* phone held UPRIGHT: ask for a turn rather than squeezing the activity into a sliver */
+  #ls_rotate{display:none;}
+  @media (orientation:portrait) and (max-width:900px){
+    #ls_rotate{display:flex;position:fixed;inset:0;z-index:250;flex-direction:column;
+      align-items:center;justify-content:center;gap:3vh;background:#f9f2e4;
+      font-family:'Baloo',sans-serif;color:#33404a;text-align:center;padding:8vw;}
+    #ls_rotate .ph{width:22vw;height:38vw;max-width:130px;max-height:220px;
+      border:0.9vw solid #ec5866;border-radius:4vw;animation:lsTurn 1.8s ease-in-out infinite;}
+    #ls_rotate .msg{font-size:6vw;line-height:1.3;}}
+  @keyframes lsTurn{0%,40%{transform:rotate(0)}70%,100%{transform:rotate(-90deg)}}
+
+/* ================= end LANDSCAPE-BATCH ================= */
+
+
+
+/* ==== PROPORTION-PASS A7 (2026-09-14): THE CHARACTER STANDARD (flanks L 40cqh / R 35cqh,
+   matching B7) + items to the tap band - consolidated, LAST in the LAST sheet ==== */
+  #bd_app{--ls-heroL:40cqh;--ls-heroR:35cqh;}
+  .g-build #bd_boyIdle,.g-build #bd_boyVid{left:2cqh;height:calc(var(--ls-heroL) / 0.770);}
+  .g-build #bd_girlIdle,.g-build #bd_girlVid{right:2cqh;height:calc(var(--ls-heroR) / 0.890);}
+  .g-build .shadow.boy{left:5cqh;width:calc(var(--ls-heroL) * 0.6);}
+  .g-build .shadow.girl{right:4cqh;width:calc(var(--ls-heroR) * 0.55);}
+  .g-bigger #b_girlIdle,.g-bigger #b_girlS{height:40cqh;left:0.5cqh;}
+  .g-bigger #b_boyIdle,.g-bigger #b_flipS{height:35cqh;right:0.5cqh;}
+  .g-think-big #tb_girlIdle,.g-think-big #tb_girlS{height:40cqh;left:0.5cqh;}
+  .g-think-big #tb_boyIdle,.g-think-big #tb_flipS{height:35cqh;right:0.5cqh;}
+  .g-sent #sn_boyIdle,.g-sent #sn_boyVid{height:calc(40cqh / 0.770);left:2cqh;}
+  .g-sent #sn_girlIdle,.g-sent #sn_girlVid{height:calc(35cqh / 0.890);right:2cqh;}
+  /* w3 torch-boy: canvas 1128 but body 613 (the torch flies above him) - size the canvas
+     so his BODY stands at the 40cqh standard (William: "this one on the left is still small") */
+  .g-fix #fx_boyIdle,.g-fix #fx_boyVid,.g-podium #pd_boyIdle,.g-podium #pd_boyVid{height:calc(40cqh * 1128 / 613);left:1cqh;}
+  .g-fix #fx_girlIdle,.g-fix #fx_girlVid,.g-podium #pd_girlIdle,.g-podium #pd_girlVid{height:35cqh;right:1cqh;}
+  .g-order #ol_boyIdle,.g-order #ol_boyVid,.g-smaller #sl_boyIdle,.g-smaller #sl_boyVid{height:40cqh;left:1cqh;}
+  .g-order #ol_girlIdle,.g-order #ol_girlVid,.g-smaller #sl_girlIdle,.g-smaller #sl_girlVid{height:35cqh;right:1cqh;}
+  #bd_app .bdSlot{width:15cqh;height:15cqh;}
+  #bd_app .bdSlot .qm{font-size:7.5cqh;}
+  #bd_app .bdRow{gap:1.6cqh;padding:1.8cqh 2.2cqh;}
+  #bd_app .bdItem{width:21cqh;height:21cqh;padding:1.7cqh;}
+  #bd_app .bdTray{gap:3cqh;}
+  #bd_app .bdTrayLbl{font-size:3.6cqh;}
+  .card{width:19cqh;height:19cqh;}
+  .card.slot .qm{font-size:9cqh;}
+  .pcard{width:17cqh;height:17cqh;}
+  .pick{width:17cqh;}
+  .fxCell{width:14cqh;height:14cqh;flex:none;}
+  .fxRow{gap:1.4cqh;padding:1.7cqh 2cqh;}
+  .snBox{width:13.5cqh;height:13.5cqh;font-size:8.5cqh;flex:none;}
+  .snLine{font-size:4.2cqh;}
+  /* presenter body parity: fenny_bigger's clip is only 78% body vs fenny_look's 82% */
+  #b_fenny{height:38.8cqh;}
+  /* thinkPat (WILLIAM'S 3RD CATCH - the 8 screens the launch list never opened):
+     option bars hugged their content at 34cqw min-width with 6.6cqh items = 15-32% ink.
+     Items to band, bars hug content; W1 flank heroes were still 19/22cqh (this game
+     missed the character batch for the same reason - never opened). */
+  .g-think-pat .prow .ball,.g-think-pat .prow .blank{width:12cqh;height:12cqh;}
+  .g-think-pat .prow{gap:1.4cqh;padding:1.5cqh 2cqh;}
+  .g-think-pat .prow .blank .qm{font-size:6.5cqh;}
+  .g-think-pat .choice{min-width:0;width:max-content;padding:1.4cqh 3.4cqh 1.4cqh 1.8cqh;gap:2cqh;}
+  .g-think-pat .choice .balls{gap:1.8cqh;}
+  .g-think-pat .choice .balls img{width:14cqh;height:14cqh;}
+  .g-think-pat .choice .tag{width:6.5cqh;height:6.5cqh;font-size:3.6cqh;}
+  .g-think-pat .choice .check{width:5cqh;height:5cqh;}
+  .g-think-pat #tp_girlIdle,.g-think-pat #tp_girlS{height:40cqh;left:0.5cqh;}
+  .g-think-pat #tp_boyIdle,.g-think-pat #tp_flipS{height:35cqh;right:0.5cqh;}
+
+  /* ==== W4 교구 'Copy the Pattern' (approved 2026-09-14): flag cards on a table.
+     Stage per the house landscape recipe; heroes at the body-fraction standard. ==== */
+  .g-ky{position:absolute;inset:0;display:none;}
+  .g-ky.on{display:flex;align-items:center;justify-content:center;}
+  .g-ky #ky_app{position:relative;overflow:hidden;background:var(--cream);
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
+    container-type:size;container-name:game;padding:2.4%;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+                    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:3.6% 2.6%;}
+  @supports (height:100dvh){
+    .g-ky #ky_app{width:min(100vw, calc(100dvh * 21 / 9));height:min(100dvh, calc(100vw * 9 / 16));}}
+  .g-ky .panel{border-color:var(--orange);box-shadow:0 6px 0 rgba(212,132,42,.18);}
+  .g-ky .title{-webkit-text-stroke:0.85cqh var(--orange);filter:drop-shadow(0 0.35cqh 0 rgba(212,132,42,.25));}
+  .g-ky .ribbon{background:var(--orange);box-shadow:0 2px 5px rgba(212,132,42,.25);}
+  .kyBoard{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;}
+  .kyTable{position:relative;width:min(96%,168cqh);margin:0 auto;border-radius:3.4cqh;
+    padding:1.6cqh 2.4cqh 2.2cqh;background:linear-gradient(160deg,#c89b66,#b07f46 60%,#9a6c38);
+    box-shadow:inset 0 0 7cqh rgba(60,30,0,.25), 0 1.4cqh 3cqh rgba(0,0,0,.18);}
+  .kyLbl{font-family:'Baloo';font-size:2.6cqh;color:#fff8ea;text-shadow:0 2px 3px rgba(60,30,0,.4);
+    margin:0.6cqh 0 0.5cqh;}
+  .kyRow{display:flex;gap:1.4cqh;justify-content:center;align-items:center;min-height:14cqh;}
+  .kyCard{width:17.5cqh;height:16cqh;background:#fff;border:0.7cqh solid var(--orange);border-radius:1.4cqh;
+    display:flex;align-items:center;justify-content:center;flex:none;
+    box-shadow:0 1cqh 1.6cqh rgba(30,10,0,.35);}
+  .kyCard img{max-width:13.6cqh;max-height:11.6cqh;object-fit:contain;}
+  .kyCard .kyNum{font-family:'Baloo';font-size:7.6cqh;font-weight:800;color:var(--orange);
+    -webkit-text-stroke:0.28cqh #fff;line-height:1;}
+  .kySlot{width:17.5cqh;height:16cqh;border:0.5cqh dashed rgba(255,255,255,.78);border-radius:1.4cqh;
+    background:rgba(255,255,255,.14);flex:none;display:flex;align-items:center;justify-content:center;}
+  .kyPool{flex-wrap:wrap;max-width:78%;margin:0 auto;row-gap:1.2cqh;}
+  /* display rows (model + build slots) compact; the POOL is the tap surface at band */
+  #ky_app .kyRow:not(.kyPool) .kyCard,#ky_app .kySlot{width:13.5cqh;height:12.5cqh;}
+  #ky_app .kyRow:not(.kyPool) .kyCard img{max-width:10.4cqh;max-height:9cqh;}
+  #ky_app .kyRow{min-height:0;}
+  .kyPool .kyCard{cursor:pointer;transition:transform .12s;}
+  .kyPool .kyCard:nth-child(odd){transform:rotate(-2deg);}
+  .kyPool .kyCard:nth-child(even){transform:rotate(2deg);}
+  .kyPool .kyCard:hover{transform:scale(1.06);}
+  .kyPool .kyCard.used{opacity:.22;pointer-events:none;}
+  .kyCard.shake{animation:shake .4s;}
+  .g-ky .hero{position:absolute;bottom:2.2cqh;top:auto;width:auto;z-index:8;pointer-events:none;
+    filter:drop-shadow(0 8px 7px rgba(0,0,0,.16));transform:none;clip-path:none;max-height:none;transition:none;}
+  .g-ky #ky_boyIdle,.g-ky #ky_boyVid{left:1cqh;right:auto;height:calc(40cqh / 0.939);}
+  .g-ky #ky_girlIdle,.g-ky #ky_girlVid{right:1cqh;left:auto;height:calc(35cqh / 0.911);}
+  .g-ky video.hero{opacity:0;}
+  .g-ky .shadow{position:absolute;bottom:1.9cqh;height:1.8cqh;border-radius:50%;background:rgba(40,55,70,.15);filter:blur(4px);z-index:7;pointer-events:none;}
+  .g-ky .shadow.boy{left:3cqh;width:14cqh;}
+  .g-ky .shadow.girl{right:3cqh;width:12cqh;}
+  #ky_sentence{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%) scale(0);z-index:24;width:min(96%,120cqh);font-family:'Baloo';color:var(--ink);background:#fff;border:0.9cqh solid var(--orange);border-radius:3.2cqh;padding:2.2cqh 1.2cqh 2.6cqh;text-align:center;line-height:1.08;white-space:nowrap;box-shadow:0 1cqh 0 rgba(212,132,42,.3),0 0 0 .5cqh #fff,0 1.8cqh 3.5cqh rgba(51,64,74,.28),0 0 3cqh rgba(255,193,62,.55);}
+  #ky_sentence .cmp{display:block;color:var(--orange);font-size:4.2cqh;}
+  #ky_sentence .snt{display:inline-block;font-size:4.2cqh;margin-top:0.9cqh;color:var(--ink);line-height:1.12;white-space:nowrap;}
+  #ky_sentence .snt b{color:var(--orange);}
+  #ky_sentence .snt img{display:inline-block;width:5cqh;height:4.4cqh;object-fit:contain;vertical-align:-1cqh;margin:0 .2cqh;}
+  #ky_sentence.on{animation:sIn .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+  #ky_homeBtn,#ky_backBtn{position:absolute;top:0.55cqh;z-index:25;width:5cqh;height:5cqh;border:none;border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(212,132,42,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #ky_homeBtn{left:0.55cqh;} #ky_backBtn{left:6.5cqh;}
+  #ky_homeBtn svg,#ky_backBtn svg{width:3cqh;height:3cqh;stroke:var(--orange);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  #ky_end{position:absolute;inset:0;z-index:40;display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqh;background:rgba(255,253,248,.96);}
+  #ky_end.on{display:flex;}
+  #ky_end h1{font-family:'Baloo';font-size:9cqh;color:var(--orange);-webkit-text-stroke:0.3cqh #fff;}
+  #ky_end #ky_fw{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;}
+  #ky_endStars{display:flex;gap:1.6cqh;}
+  #ky_endStars .st{width:9cqh;height:9cqh;}
+  #ky_endStars .st path{fill:#efe6d5;stroke:#d8ccb4;}
+  #ky_endStars .st.on path{fill:#ffc23e;stroke:#eaa41c;}
+
+  /* Amendment 2: bright, fun surface - cards remain the highest-contrast objects */
+    .g-ky .kyTable{background:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,.55) 0 1.1cqh, transparent 1.2cqh),
+      radial-gradient(circle at 88% 14%, rgba(255,255,255,.55) 0 1.0cqh, transparent 1.1cqh),
+      radial-gradient(circle at 8% 82%, rgba(255,255,255,.5) 0 0.9cqh, transparent 1.0cqh),
+      radial-gradient(circle at 93% 86%, rgba(255,255,255,.5) 0 1.0cqh, transparent 1.1cqh),
+      radial-gradient(rgba(255,255,255,.38) 0.55cqh, transparent 0.6cqh),
+      linear-gradient(160deg, #ffdfe5, #ffc9d4);
+    background-size:auto,auto,auto,auto,4.6cqh 4.6cqh,auto;
+    border:0.9cqh solid #fff;
+    box-shadow:0 0 0 0.45cqh #ec5866, 0 1.4cqh 3cqh rgba(0,0,0,.14);}
+    .g-ky .kyLbl{text-align:center;color:#ec5866;text-shadow:0 1px 0 #fff, 0 2px 3px rgba(0,0,0,.12);}
+    .g-ky .kySlot{border-color:#ec5866;background:rgba(255,255,255,.55);}
+
+  .kyKey{font-family:'Baloo';font-size:3.3cqh;color:#33404a;text-align:center;margin:0.2cqh 0 0.4cqh;}
+  .kyKey b{color:#ec5866;}
+
+  /* 'Is Bigger Than!' shares the g-ky stage family */
+  .g-ky #kb_app{position:relative;overflow:hidden;background:var(--cream);
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
+    container-type:size;container-name:game;padding:2.4%;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+                    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:3.6% 2.6%;}
+  @supports (height:100dvh){
+    .g-ky #kb_app{width:min(100vw, calc(100dvh * 21 / 9));height:min(100dvh, calc(100vw * 9 / 16));}}
+  .kbWord{font-family:'Baloo';font-size:5.4cqh;font-weight:700;color:#33404a;margin:0 2.2cqh;
+    text-shadow:0 1px 0 #fff;}
+  .g-ky #kb_boyIdle,.g-ky #kb_boyVid{left:1cqh;right:auto;height:calc(40cqh / 0.939);}
+  .g-ky #kb_girlIdle,.g-ky #kb_girlVid{right:1cqh;left:auto;height:calc(35cqh / 0.911);}
+  #kb_sentence{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%) scale(0);z-index:24;width:min(96%,120cqh);font-family:'Baloo';color:var(--ink);background:#fff;border:0.9cqh solid var(--orange);border-radius:3.2cqh;padding:2.2cqh 1.2cqh 2.6cqh;text-align:center;line-height:1.08;white-space:nowrap;box-shadow:0 1cqh 0 rgba(212,132,42,.3),0 0 0 .5cqh #fff,0 1.8cqh 3.5cqh rgba(51,64,74,.28),0 0 3cqh rgba(255,193,62,.55);}
+  #kb_sentence .cmp{display:block;color:var(--orange);font-size:4.2cqh;}
+  #kb_sentence .snt{display:inline-block;font-size:4.2cqh;margin-top:0.9cqh;color:var(--ink);line-height:1.12;white-space:nowrap;}
+  #kb_sentence .snt b{color:var(--orange);}
+  #kb_sentence.on{animation:sIn .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+  #kb_homeBtn,#kb_backBtn{position:absolute;top:0.55cqh;z-index:25;width:5cqh;height:5cqh;border:none;border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(212,132,42,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #kb_homeBtn{left:0.55cqh;} #kb_backBtn{left:6.5cqh;}
+  #kb_homeBtn svg,#kb_backBtn svg{width:3cqh;height:3cqh;stroke:var(--orange);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  #kb_end{position:absolute;inset:0;z-index:40;display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqh;background:rgba(255,253,248,.96);}
+  #kb_end.on{display:flex;}
+  #kb_end h1{font-family:'Baloo';font-size:9cqh;color:var(--orange);-webkit-text-stroke:0.3cqh #fff;}
+  #kb_end #kb_fw{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;}
+  #kb_endStars{display:flex;gap:1.6cqh;}
+  #kb_endStars .st{width:9cqh;height:9cqh;}
+  #kb_endStars .st path{fill:#efe6d5;stroke:#d8ccb4;}
+  #kb_endStars .st.on path{fill:#ffc23e;stroke:#eaa41c;}
+  .g-ky #kb_app .kyTable{padding-bottom:2.6cqh;}
+  /* vertical fit: the band-size pool must live INSIDE the panel */
+  .g-ky .kyTable{padding:1.1cqh 2cqh 1.3cqh;}
+  .g-ky .kyLbl{font-size:2.2cqh;margin:0.3cqh 0 0.3cqh;}
+  /* the 7-card ky pool fits one row by construction (max 1324px in a 1620px table) */
+  .g-ky #ky_app .kyPool{flex-wrap:nowrap;max-width:none;width:max-content;}
+  /* the 7-card ky pool fits one row by construction (1324px in a ~1620px table) */
+  .g-ky #ky_app .kyPool{flex-wrap:nowrap;max-width:none;width:max-content;}
+/* ==== end PROPORTION-PASS A7 ==== */
+
+/* ==== PLAY KIT on the GP TEXTBOOK GROUND (William 2026-09-15, verbatim: "keep it gp textbook style but abit more
+   children-oriented"). The chrome is the A-7 page design measured from the PDF: cream (254,250,244) graph paper,
+   lavender (234,233,240) hairlines, the book's orange frame + title, pink panels. Cascade-last by construction. ==== */
+  .g-ky #ky_app,.g-ky #kb_app,.g-ky #pb_app{background-color:#fefaf4;
+    background-image:linear-gradient(#eae9f0 2px,transparent 2px),linear-gradient(90deg,#eae9f0 2px,transparent 2px);
+    background-size:3.6% 2.6%;}
+  .g-ky #pb_app{position:relative;overflow:hidden;
+    width:min(100vw, calc(100vh * 21 / 9));height:min(100vh, calc(100vw * 9 / 16));
+    container-type:size;container-name:game;padding:2.4%;}
+  @supports (height:100dvh){
+    .g-ky #pb_app{width:min(100vw, calc(100dvh * 21 / 9));height:min(100dvh, calc(100vw * 9 / 16));}}
+  /* content sits straight on the page grid, as in the book (William 2026-09-15: "get rid of the pink boxes ... too redundant") */
+  .g-ky .kyTable{background:transparent;border:none;box-shadow:none;border-radius:0;}
+  .g-ky .kyLbl{color:#28211c;text-shadow:none;font-size:2.5cqh;}
+  .g-ky .kyKey{margin:0.2cqh 0 0.3cqh;}
+  .g-ky .kyKeyImg{display:block;height:5.2cqh;width:auto;max-width:96%;margin:0 auto;}
+  /* the child's build boxes ARE the textbook's answer boxes (A-7 p25) */
+  .g-ky .kySlot{border:none;background:url(assets/kyogu/answer_box.png?v=1) center/100% 100% no-repeat;}
+  .g-ky .kySlot.hot{filter:drop-shadow(0 0 0.7cqh #f9a021);}
+  .g-ky .kySlot .kyCard{width:80%;height:78%;border-width:0.35cqh;box-shadow:none;}
+  .g-ky .kySlot .kyCard img{max-width:92%;max-height:88%;}
+  /* the mixed pool: a pink-bordered band, cards tilted every which way, drag-ready */
+  .g-ky .kyPool{background:transparent;border:none;border-radius:0;padding:1cqh 1.4cqh;touch-action:none;}
+  .kyPool .kyCard{touch-action:none;user-select:none;-webkit-user-select:none;}
+  .kyPool .kyCard:nth-child(3n+1){transform:rotate(-7deg);}
+  .kyPool .kyCard:nth-child(3n+2){transform:rotate(5deg);}
+  .kyPool .kyCard:nth-child(3n){transform:rotate(-3deg);}
+  .kyPool .kyCard:nth-child(4n){transform:rotate(8deg);}
+  .kyPool .kyCard:hover{transform:scale(1.06);}
+  .kyPool .kyCard.dragging{opacity:.35;}
+  .kyGhost{position:fixed;z-index:999;pointer-events:none;transform:translate(-50%,-50%) scale(1.06)!important;
+    filter:drop-shadow(0 10px 14px rgba(0,0,0,.28));opacity:1!important;}
+  /* the number cards are the textbook's own (portrait crops) */
+  .g-ky #kb_app .kyCard img{max-width:11cqh;max-height:13cqh;}
+  .g-ky .kbWord{color:#28211c;text-shadow:none;}
+  /* --- Pattern Blocks screen --- */
+  .g-ky .pbTable{display:flex;flex-direction:column;align-items:center;}
+  .pbTop{display:flex;align-items:center;justify-content:center;gap:2.4cqh;width:100%;min-height:0;}
+  /* 10 rounds: the tracker is a ROW above the stage (a column of ten would run off the page) */
+  .pbTracker{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;gap:0.6cqh;margin-bottom:0.6cqh;}
+  .pbTk{width:6.6cqh;height:5.4cqh;background:#fff;border:0.35cqh solid #cfcfd4;border-radius:1.1cqh;
+    display:flex;align-items:center;justify-content:center;padding:0.5cqh;box-sizing:border-box;}
+  .pbTk.cur{border-color:#f9a021;border-width:0.6cqh;}
+  .pbTk.done{opacity:.5;}
+  .pbTk svg{width:100%;height:100%;overflow:visible;}
+  .pbStage{width:52cqh;height:25cqh;overflow:visible;}
+  .pbSlot{fill:rgba(255,255,255,.75);stroke:#28211c;stroke-width:3;stroke-dasharray:9 7;stroke-linejoin:round;}
+  .pbSlot.filled{stroke-dasharray:none;stroke-width:3;}
+  .pbSlot.hot{stroke:#f9a021;stroke-width:5;fill:#fff3dc;}
+  .pbCheck{width:16cqh;height:14cqh;background:#fff;border:0.35cqh solid #e3e1e8;border-radius:1.6cqh;
+    display:flex;align-items:center;justify-content:center;padding:1cqh;box-sizing:border-box;}
+  .pbCheck svg{width:100%;height:100%;overflow:visible;}
+  /* one row always: the 8-piece castle/crown pools shrink to fit instead of wrapping under the frame */
+  .g-ky #pb_app .kyPool{flex-wrap:nowrap;max-width:72%;width:auto;}   /* 72% = clear of both heroes' boxes */
+  .g-ky .pbPiece{flex:0 1 17.5cqh;width:auto;min-width:0;height:16cqh;}
+  .g-ky .pbPiece.wide{flex-basis:26cqh;}
+  .pbPiece svg{width:86%;height:84%;overflow:visible;}
+  #pb_sentence .pbSayShape{display:inline-block;height:7cqh;width:auto;vertical-align:middle;margin-right:1cqh;}
+  .g-ky #pb_boyIdle,.g-ky #pb_boyVid{left:1cqh;right:auto;height:calc(40cqh / 0.939);}
+  .g-ky #pb_girlIdle,.g-ky #pb_girlVid{right:1cqh;left:auto;height:calc(35cqh / 0.911);}
+  #pb_sentence{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%) scale(0);z-index:24;width:min(96%,120cqh);font-family:'Baloo';color:var(--ink);background:#fff;border:0.9cqh solid var(--orange);border-radius:3.2cqh;padding:2.2cqh 1.2cqh 2.6cqh;text-align:center;line-height:1.08;white-space:nowrap;box-shadow:0 1cqh 0 rgba(212,132,42,.3),0 0 0 .5cqh #fff,0 1.8cqh 3.5cqh rgba(51,64,74,.28),0 0 3cqh rgba(255,193,62,.55);}
+  #pb_sentence .cmp{display:block;color:var(--orange);font-size:4.2cqh;}
+  #pb_sentence .snt{display:inline-block;font-size:4.2cqh;margin-top:0.9cqh;color:var(--ink);line-height:1.12;white-space:nowrap;}
+  #pb_sentence .snt b{color:var(--orange);}
+  #pb_sentence.on{animation:sIn .45s cubic-bezier(.2,1.6,.4,1) forwards;}
+  #pb_homeBtn,#pb_backBtn{position:absolute;top:0.55cqh;z-index:25;width:5cqh;height:5cqh;border:none;border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(212,132,42,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #pb_homeBtn{left:0.55cqh;} #pb_backBtn{left:6.5cqh;}
+  #pb_homeBtn svg,#pb_backBtn svg{width:3cqh;height:3cqh;stroke:var(--orange);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  #pb_end{position:absolute;inset:0;z-index:40;display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqh;background:rgba(255,253,248,.96);}
+  #pb_end.on{display:flex;}
+  #ky_end .endBtns,#kb_end .endBtns,#pb_end .endBtns{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.4cqh;}
+  #ky_end .endBtns .btn,#kb_end .endBtns .btn,#pb_end .endBtns .btn{width:min(46vw,32cqh);justify-content:center;box-sizing:border-box;}
+  #ky_endStars svg,#kb_endStars svg,#pb_endStars svg{width:9cqh;height:9cqh;}
+  #pb_end h1{font-family:'Baloo';font-size:9cqh;color:var(--orange);-webkit-text-stroke:0.3cqh #fff;}
+  #pb_end #pb_fw{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;}
+  #pb_endStars{display:flex;gap:1.6cqh;}
+  #pb_endStars .st{width:9cqh;height:9cqh;}
+  #pb_endStars .st path{fill:#efe6d5;stroke:#d8ccb4;}
+  #pb_endStars .st.on path{fill:#ffc23e;stroke:#eaa41c;}
+  /* --- the Play Kit hub card (idx 5, last): textbook orange, activity-card anatomy like idx 1-3 --- */
+  .hubCard[data-idx="5"]{--card:#f9a021;--card-light:#ffc766;--card-dark:#c47a12;}
+  .hubCard[hidden],#hubDots button[hidden]{display:none!important;}   /* week-only cards (Play Kit = W4 only) */
+  .hubCard[data-idx="5"] .hubActions{display:none;}
+  .hubCard[data-idx="5"] .hubCardArt{flex:1 1 auto;width:100%;max-width:100%;max-height:none;aspect-ratio:auto;
+    appearance:none;-webkit-appearance:none;font:inherit;color:inherit;text-align:center;cursor:pointer;
+    padding:6px 8px;background:transparent!important;border:none!important;box-shadow:none!important;border-radius:0;
+    display:flex;align-items:center;justify-content:center;line-height:0;transition:transform .15s ease;}
+  .hubCard[data-idx="5"] .hubCardArt::before{display:none;}
+  .hubCard[data-idx="5"] .hubCardArt:hover{transform:scale(1.03);}
+  .hubCard[data-idx="5"] .hubCardArt:active,.hubCard[data-idx="5"] .hubCardArt.is-pressing{transform:scale(.98);}
+  .hubCard[data-idx="5"] .hubCardArt img{width:auto;height:auto;max-width:100%;max-height:min(100%,42vh);
+    object-fit:contain;object-position:center;display:block;pointer-events:none;border-radius:18px;
+    filter:drop-shadow(0 3px 8px rgba(90,70,56,.12));}
+  /* three-option picker (Play Kit): the third button joins the row */
+  .actPickBtn[hidden]{display:none!important;}
+  .actPickStage:has(#ap_btn3:not([hidden])) .actPickBtn{width:min(30%,320px);min-height:min(38vh,300px);font-size:clamp(20px,3.2vh,30px);}
+/* ==== end PLAY KIT ==== */
 </style>
 </head>
 <body>
@@ -1660,6 +2008,15 @@
         </div>
         <div class="hubActions"></div>
       </article>
+
+      <!-- PLAY KIT (W4 교구): William's order 2026-09-15 - the LAST hub card, behind Math Literature -->
+      <article class="hubCard" data-idx="5" data-week="4">
+        <div class="hubCardTitle">Play Kit</div>
+        <button type="button" class="hubCardArt" data-launch="actPick" data-act="kit" aria-label="Open Play Kit">
+          <img src="assets/hub_play_kit.png?v=1" alt="Play Kit">
+        </button>
+        <div class="hubActions"></div>
+      </article>
     </div>
     <button class="hubArrow" id="hubNext" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
@@ -1704,6 +2061,10 @@
       <button type="button" class="actPickBtn" id="ap_btn2" data-slot="2" aria-label="Activity 2">
         <span class="playIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.8v10.4L18 12 9 6.8z"/></svg></span>
         <span class="actPickLabel">Activity 2</span>
+      </button>
+      <button type="button" class="actPickBtn" id="ap_btn3" data-slot="3" aria-label="Activity 3" hidden>
+        <span class="playIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.8v10.4L18 12 9 6.8z"/></svg></span>
+        <span class="actPickLabel">Activity 3</span>
       </button>
     </div>
   </div>
@@ -2129,6 +2490,129 @@
     </div>
   </div></div>
 </div></div>
+
+
+<div class="game g-ky" id="screen-kb"><div id="kb_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Is Bigger Than!</div>
+    <div class="head">
+      <div class="ribbon">Number Cards</div>
+      <div class="tmQ"><div class="pre">Click two <b>number</b> cards.</div><div class="ask">Put the <b>bigger</b> one first, then read the sentence!</div></div>
+      <div class="kyKey"><img class="kyKeyImg" src="assets/kyogu/sentence_ibt.png?v=1" alt="____ is bigger than ____."></div>
+    </div>
+    <div class="tmStars" id="kb_stars"></div>
+    <div class="kyBoard">
+      <div class="kyTable">
+        <div class="kyLbl">Make the sentence:</div>
+        <div class="kyRow" id="kb_mat">
+          <div class="kySlot" id="kb_s0"></div>
+          <div class="kbWord">is bigger than</div>
+          <div class="kySlot" id="kb_s1"></div>
+        </div>
+        <div class="kyLbl">Click two number cards!</div>
+        <div class="kyRow kyPool" id="kb_pool"></div>
+      </div>
+    </div>
+    <div class="shadow boy"></div><div class="shadow girl"></div>
+    <img id="kb_boyIdle" class="hero" src="assets/w4_boy_idle.png?v=2" alt="">
+    <img id="kb_girlIdle" class="hero" src="assets/w4_girl_idle.png?v=2" alt="">
+    <video id="kb_boyVid" class="hero" src="assets/w4_boy_cheer.webm?v=2" muted playsinline preload="none"></video>
+    <video id="kb_girlVid" class="hero" src="assets/w4_girl_cheer.webm?v=2" muted playsinline preload="none"></video>
+    <div id="kb_sentence"></div>
+    <button id="kb_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="kb_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="kb_end">
+      <video id="kb_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="kb_endStars"></div>
+      <div class="endBtns">
+        <button id="kb_againBtn" class="btn">Play again</button>
+        <button id="kb_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+
+<div class="game g-ky" id="screen-ky"><div id="ky_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Pattern Cards</div>
+    <div class="head">
+      <div class="ribbon">Copy the Pattern</div>
+      <div class="tmQ"><div class="pre">Look at the <b>pattern</b>.</div><div class="ask">Drag the flags to build the <b>same pattern</b>. Some flags do <b>not</b> belong!</div></div>
+      <div class="kyKey" id="ky_key"><img class="kyKeyImg" src="assets/kyogu/sentence_pattern.png?v=1" alt="This is an ( AB / AABB ) pattern."></div>
+    </div>
+    <div class="tmStars" id="ky_stars"></div>
+    <div class="kyBoard">
+      <div class="kyTable">
+        <div class="kyLbl">Look at the pattern:</div>
+        <div class="kyRow" id="ky_model"></div>
+        <div class="kyLbl">Now you build it:</div>
+        <div class="kyRow" id="ky_row"></div>
+        <div class="kyLbl">Drag the right flags &mdash; some do not belong!</div>
+        <div class="kyRow kyPool" id="ky_pool"></div>
+      </div>
+    </div>
+    <div class="shadow boy"></div><div class="shadow girl"></div>
+    <img id="ky_boyIdle" class="hero" src="assets/w4_boy_idle.png?v=2" alt="">
+    <img id="ky_girlIdle" class="hero" src="assets/w4_girl_idle.png?v=2" alt="">
+    <video id="ky_boyVid" class="hero" src="assets/w4_boy_cheer.webm?v=2" muted playsinline preload="none"></video>
+    <video id="ky_girlVid" class="hero" src="assets/w4_girl_cheer.webm?v=2" muted playsinline preload="none"></video>
+    <div id="ky_sentence"></div>
+    <button id="ky_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="ky_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="ky_end">
+      <video id="ky_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="ky_endStars"></div>
+      <div class="endBtns">
+        <button id="ky_againBtn" class="btn">Play again</button>
+        <button id="ky_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+
+<!-- PLAY KIT 3: PATTERN BLOCKS - make recognizable shapes from the three Level-A blocks (William 2026-09-15) -->
+<div class="game g-ky" id="screen-pb"><div id="pb_app">
+  <div class="panel"><div class="pad">
+    <div class="title">Pattern Blocks</div>
+    <div class="head">
+      <div class="ribbon">Make the Shape</div>
+      <div class="tmQ"><div class="pre" id="pb_pre">Make the <b>house</b>!</div><div class="ask">Drag the <b>blocks</b> into the shape.</div></div>
+      <div class="kyKey" id="pb_key">A <b>square</b> and a <b>triangle</b> make a <b>house</b>.</div>
+    </div>
+    <div class="tmStars" id="pb_stars"></div>
+    <div class="kyBoard">
+      <div class="kyTable pbTable">
+        <div class="pbTracker" id="pb_tracker"></div>
+        <div class="pbTop">
+          <svg class="pbStage" id="pb_stage" viewBox="0 0 420 220" aria-label="shape outline"></svg>
+          <div class="pbCheck" id="pb_check"></div>
+        </div>
+        <div class="kyLbl" id="pb_poolLbl">Drag the blocks into the house!</div>
+        <div class="kyRow kyPool pbPool" id="pb_pool"></div>
+      </div>
+    </div>
+    <div class="shadow boy"></div><div class="shadow girl"></div>
+    <img id="pb_boyIdle" class="hero" src="assets/w4_boy_idle.png?v=2" alt="">
+    <img id="pb_girlIdle" class="hero" src="assets/w4_girl_idle.png?v=2" alt="">
+    <video id="pb_boyVid" class="hero" src="assets/w4_boy_cheer.webm?v=2" muted playsinline preload="none"></video>
+    <video id="pb_girlVid" class="hero" src="assets/w4_girl_cheer.webm?v=2" muted playsinline preload="none"></video>
+    <div id="pb_sentence"></div>
+    <button id="pb_homeBtn" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    <button id="pb_backBtn" title="Back" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <div id="pb_end">
+      <video id="pb_fw" src="assets/fireworks_end_alpha.webm?v=15" muted playsinline preload="none"></video>
+      <h1>You did it!</h1>
+      <div id="pb_endStars"></div>
+      <div class="endBtns">
+        <button id="pb_againBtn" class="btn">Play again</button>
+        <button id="pb_endHomeBtn" class="btn home">Home</button>
+      </div>
+    </div>
+  </div></div>
+</div></div>
+
 <div class="game g-smaller" id="screen-smaller"><div id="sl_app">
   <div class="panel"><div class="pad">
     <div class="title">Thinking Math</div>
@@ -2215,35 +2699,29 @@ function hideHeroes(){
   flipS.style.opacity='0'; girlS.style.opacity='0';
 }
 function layoutCelebrateHeroes(){
+  /* PROPORTION-PASS 2026-09-14: the gap-fit sizer rendered ~110px mini-heroes whenever the
+     mid-column gap collapsed (measured 108/123px against the 395/346 standard). Celebrate
+     heroes now stand at the FLANKS at the character standard (L 40% / R 35% of stage
+     height), matching every other game in all three levels. */
   const root=document.querySelector('#p_app .pad')||document.getElementById('p_app');
-  const row=document.querySelector('#p_app .row');
-  if(!root||!row||!el_sentence) return;
-  const rr=root.getBoundingClientRect();
-  const sr=el_sentence.getBoundingClientRect();
-  const pr=row.getBoundingClientRect();
-  // Fit heroes in the gap between celebration comment and pattern example
-  let top=sr.bottom-rr.top+6;
-  let bot=pr.top-rr.top-6;
-  if(!(bot>top+36)){
-    top=Math.max(rr.height*0.30, (sr.top-rr.top)+sr.height*0.55);
-    bot=pr.top-rr.top-6;
-  }
-  const gap=Math.max(44, bot-top);
-  const girlH=gap*0.92;
-  const boyH=gap*1.05;
+  if(!root) return;
+  const rh=root.getBoundingClientRect().height;
+  const girlH=rh*0.40, boyH=rh*0.35;
   [girlIdle,girlS].forEach(el=>{
-    el.style.top=top+'px';
+    el.style.top='auto';
+    el.style.bottom='2.2cqh';
     el.style.height=girlH+'px';
-    el.style.left='50%';
+    el.style.left='1.5cqh';
     el.style.right='auto';
-    el.style.transform='translate(-108%,0)';
+    el.style.transform='none';
   });
   [boyIdle,flipS].forEach(el=>{
-    el.style.top=top+'px';
+    el.style.top='auto';
+    el.style.bottom='2.2cqh';
     el.style.height=boyH+'px';
-    el.style.left='50%';
-    el.style.right='auto';
-    el.style.transform='translate(8%,0)';
+    el.style.left='auto';
+    el.style.right='1.5cqh';
+    el.style.transform='none';
   });
 }
 function showCelebrateHeroes(){
@@ -2789,7 +3267,7 @@ function bigHost(){ return flipS.offsetParent || flipS.parentElement; }
 function sizeBigHeroes(){
   const host=bigHost(); const hw=host?host.getBoundingClientRect().width:0; if(hw<=0) return;
   const H=heroSpec(bigWeek());
-  const hs=heroHeights(H, hw, 0.30, 0.42);
+  const hs=heroHeights(H, hw, 0.30, 0.42, host.getBoundingClientRect().height);
   const boyBodyLeft=H.boyBodyLeft*(hs.boy/H.boyH), girlBodyRight=H.girlBodyRight*(hs.girl/H.girlH);
   const boyLeft=Math.max(0, girlBodyRight-boyBodyLeft);
   const set=(imgEl,vidEl,h,left,right)=>{ [imgEl,vidEl].forEach(el=>{ if(!el) return;
@@ -3567,7 +4045,7 @@ function heroHost(){ return flipS.offsetParent || flipS.parentElement; }
 function sizeCleatHeroes(){
   const host=heroHost(); const hw=host?host.getBoundingClientRect().width:0; if(hw<=0) return;
   const H=heroSpec(curWeek());
-  const hs=heroHeights(H, hw, 0.34, 0.46);   // canvas height per character
+  const hs=heroHeights(H, hw, 0.34, 0.46, host.getBoundingClientRect().height);   // canvas height per character
   // Position by each character's actual BODY edge (each clip has transparent margin from the
   // union-crop) so boy-left-gap == girl-right-gap (margins measured per week in WeekHeroes).
   const boyBodyLeft = H.boyBodyLeft*(hs.boy/H.boyH), girlBodyRight = H.girlBodyRight*(hs.girl/H.girlH);
@@ -4636,7 +5114,10 @@ window.ThinkBigGame={
 window.WeekHeroes={
   2:{ boyIdle:'assets/w2_cleat_boy_idle.png?v=fix7', girlIdle:'assets/w2_cleat_girl_idle.png',
       boyVid:'assets/w2_boy_kick.webm?v=2', girlVid:'assets/w2_girl_cartwheel.webm?v=2',
-      boyRatio:852/600, girlRatio:678/698, boyBodyLeft:129, boyH:600, girlBodyRight:253, girlH:698, boyRate:1.575, girlRate:1.66 },
+      boyRatio:852/600, girlRatio:678/698, boyBodyLeft:129, boyH:600, girlBodyRight:253, girlH:698,
+      /* PROPORTION-PASS 2026-09-14b: measured alpha-bbox body heights so heroHeights sizes
+         the BODY, not the canvas (the pair rendered ~20% under the standard) */
+      boyBodyH:462, girlBodyH:621, boyRate:1.575, girlRate:1.66 },
   3:{ boyIdle:'assets/w3_boy_idle.png?v=3', girlIdle:'assets/w3_girl_idle.png?v=4',
       boyVid:'assets/w3_boy_cheer.webm?v=3', girlVid:'assets/w3_girl_cheer.webm?v=4',
       boyRatio:392/1128, girlRatio:426/528, boyBodyLeft:96, boyH:1128, girlBodyRight:119, girlH:528,
@@ -4652,13 +5133,13 @@ window.heroSpec=function(week){ return window.WeekHeroes[week] || window.WeekHer
 // Canvas height for each hero. Default: one shared height derived from the boy's canvas ratio
 // (widthFrac of the host width). When the spec declares body heights, size by the BODY instead —
 // a clip whose prop flies far above the character has a canvas much taller than the character.
-window.heroHeights=function(H, hostW, bodyFrac, widthFrac){
-  if(H.boyBodyH && H.girlBodyH){
-    const target=hostW*bodyFrac;   // both bodies render at the same height
-    return { boy:target*H.boyH/H.boyBodyH, girl:target*H.girlH/H.girlBodyH };
-  }
-  const h=(hostW*widthFrac)/H.boyRatio;
-  return { boy:h, girl:h };
+window.heroHeights=function(H, hostW, bodyFrac, widthFrac, hostH){
+  /* PROPORTION-PASS: size by host HEIGHT to the character standard - boy (left) body
+     40% of stage height, girl (right) 35%, matching B7's --ls-heroL/R. The old
+     width-fraction sizing was aspect-dependent: 34% of a 21:9 width is ~79% of height. */
+  const hh = hostH || (hostW * 9 / 21);
+  const bBody = H.boyBodyH || H.boyH, gBody = H.girlBodyH || H.girlH;
+  return { boy:(hh*0.40)*H.boyH/bBody, girl:(hh*0.35)*H.girlH/gBody };
 };
 
 /* ---- Week-2 Thinking Math: shared mini-kit (audio, stars, W2 celebration, end screen) ---- */
@@ -5072,6 +5553,265 @@ $('backBtn').addEventListener('click',e=>pressThen(e.currentTarget,()=>{ Smaller
 window.SmallerGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
 })();
 
+/* ---- W4 교구: COPY THE PATTERN (flag cards, MIXED pool - William-approved v2) ---- */
+(function(){
+const K=makeTMKit('ky'), $=K.$;
+// FLAGS ONLY (William 2026-09-15: "numbers are numbers and flags are flags") - distractors are WRONG FLAGS
+const IMG={ usa:'assets/flag_usa.png', kor:'assets/flag_kor.png', uk:'assets/flag_uk.png', ger:'assets/flag_ger.png' };
+const NAME={ usa:'USA', kor:'Korea', uk:'UK', ger:'Germany' };
+const ROUNDS=[
+  {model:['usa','kor','usa','kor','usa'], extra:['uk','ger'],  rule:'AB'},
+  {model:['uk','uk','ger','ger','uk'],    extra:['usa','kor'], rule:'AABB'},
+  {model:['kor','usa','kor','usa','kor'], extra:['ger','uk'],  rule:'AB'}];
+const PR=['Great job!','Excellent!','Amazing!'];
+K.reg('ky_intro','assets/voice/ky_intro.mp3',
+  'Look at the flag pattern. Now you build the same one below! Drag the right flags into the boxes. Some flags do not belong!');
+ROUNDS.forEach(function(r,i){ K.reg('ky_done_'+i,'assets/voice/ky_done_'+i+'.mp3',
+  'You copied the whole pattern. This is an '+(r.rule==='AB'?'A B':'A A B B')+' pattern!'); });
+let roundIdx=0, score=0, locked=true, placed=[];
+const model=$('model'), row=$('row'), pool=$('pool');
+function cardHTML(id){ return '<div class="kyCard" data-id="'+id+'"><img src="'+IMG[id]+'" alt="'+NAME[id]+' flag"></div>'; }
+function sentenceHTML(r){ return r.model.map(function(id){ return '<img src="'+IMG[id]+'" alt="">'; }).join('')
+  +' — an <b>'+r.rule+'</b> pattern!'; }
+function shakeEl(el){ K.play('wrong'); el.classList.remove('shake'); void el.offsetWidth;
+  el.classList.add('shake'); setTimeout(function(){ el.classList.remove('shake'); },450); }
+function renderRound(){
+  const r=ROUNDS[roundIdx]; locked=true; placed=r.model.map(function(){ return false; });
+  model.innerHTML=r.model.map(cardHTML).join('');
+  row.innerHTML=r.model.map(function(_,i){ return '<div class="kySlot" data-i="'+i+'"></div>'; }).join('');
+  const items=r.model.concat(r.extra.slice(0,2));   // 7 cards: the pattern's 5 + 2 wrong flags, shuffled
+  for(let i=items.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; const t=items[i]; items[i]=items[j]; items[j]=t; }
+  pool.innerHTML=items.map(cardHTML).join('');
+  Array.prototype.forEach.call(pool.children,function(el){
+    el.addEventListener('click',function(){ if(el._noClick&&Date.now()<el._noClick) return; tap(el); });
+    if(window.kitDrag) kitDrag(el, function(target,moved){
+      if(!moved) return;                                   // a plain tap is handled by the click handler
+      el._noClick=Date.now()+500;
+      const slot=target&&target.closest?target.closest('#ky_row .kySlot'):null;
+      if(!slot){ return; }                                 // dropped nowhere: the card just goes back
+      place(el, Number(slot.dataset.i));
+    });
+  });
+  K.litStars(score); K.resetHeroes(); locked=false;
+}
+function nextEmpty(){ for(let i=0;i<placed.length;i++){ if(!placed[i]) return i; } return -1; }
+function place(el, i){
+  if(locked||el.classList.contains('used')) return;
+  const r=ROUNDS[roundIdx];
+  if(i<0||placed[i]||r.model[i]!==el.dataset.id){ shakeEl(el); return; }   // wrong flag, or wrong box: shake
+  K.play('pop');
+  row.children[i].innerHTML=cardHTML(el.dataset.id); placed[i]=true; el.classList.add('used');
+  if(placed.every(Boolean)){
+    locked=true; K.play('correct'); score++; K.litStars(score);
+    K.celebrate('ky_done_'+roundIdx, PR[roundIdx%PR.length], sentenceHTML(r), function(){
+      roundIdx++; if(roundIdx<ROUNDS.length) renderRound(); else K.endGame(ROUNDS.length,score); });
+  }
+}
+function tap(el){ place(el, nextEmpty()); }              // tap = into the next empty box
+function start(){
+  K.stopAll(); K.runSeq++; if(K.stopEndFireworks) K.stopEndFireworks(); $('end').classList.remove('on');
+  roundIdx=0; score=0; K.buildStars(ROUNDS.length);
+  renderRound();
+  K.play('ky_intro');
+}
+window.KyGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+$('againBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,start); });
+$('endHomeBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ KyGame.stop(); if(window.Hub) Hub.showMenu(); }); });
+$('homeBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ KyGame.stop(); if(window.Hub) Hub.showMenu(); }); });
+$('backBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ KyGame.stop(); if(window.Hub) Hub.backToActPick(); }); });
+})();
+
+/* ---- W4 card activity: IS BIGGER THAN! (the week's own target expression) ---- */
+(function(){
+const K=makeTMKit('kb'), $=K.$;
+// NUMBERS ONLY (William 2026-09-15). The cards are the TEXTBOOK's own number cards (A-7 pp.27-28, the six
+// unringed ones - the teacher edition rings the other six). Pool = all six every round, shuffled.
+const CARDS=[ {k:'5a',v:5}, {k:'7',v:7}, {k:'1a',v:1}, {k:'4',v:4}, {k:'1b',v:1}, {k:'5b',v:5} ];
+// William 2026-09-15 ("there is no right answer; every answer is wrong"): the old code accepted ONE scripted pair per round
+// while the pool offers 1,1,4,5,5,7 — any bigger-first pair is a true sentence, so every one of them now counts. 3 rounds,
+// fresh pool each round; every possible sentence has its own voice line.
+const ROUNDS=3;
+const PR=['Great job!','Excellent!','Amazing!'];
+K.reg('kb_intro','assets/voice/kb_intro.mp3',
+  'Click two number cards from the pile. Put the bigger number first, then read the sentence!');
+[[7,5],[7,4],[7,1],[5,4],[5,1],[4,1]].forEach(function(p){ K.reg('kb2_'+p[0]+'_'+p[1],'assets/voice/kb2_'+p[0]+'_'+p[1]+'.mp3',
+  p[0]+' is bigger than '+p[1]+'.'); });
+let roundIdx=0, score=0, locked=true, placed=[];
+const pool=$('pool'), s0=$('s0'), s1=$('s1');
+function cardHTML(c){ return '<div class="kyCard" data-v="'+c.v+'" data-k="'+c.k+'"><img src="assets/kyogu/num_'+c.k+'.png?v=1" alt="'+c.v+'"></div>'; }
+function renderRound(){
+  locked=true; placed=[];
+  s0.innerHTML=''; s1.innerHTML='';
+  const items=CARDS.slice();
+  for(let i=items.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; const t=items[i]; items[i]=items[j]; items[j]=t; }
+  pool.innerHTML=items.map(cardHTML).join('');
+  Array.prototype.forEach.call(pool.children,function(el){
+    el.addEventListener('click',function(){ tap(el); }); });
+  K.litStars(score); K.resetHeroes(); locked=false;
+}
+function reset(){ placed=[]; s0.innerHTML=''; s1.innerHTML='';
+  Array.prototype.forEach.call(pool.children,function(c){ c.classList.remove('used'); }); }
+function tap(el){
+  if(locked||el.classList.contains('used')) return;
+  const c={k:el.dataset.k, v:+el.dataset.v};
+  const slot=placed.length===0?s0:s1;
+  slot.innerHTML=cardHTML(c); el.classList.add('used'); placed.push(c.v);
+  if(placed.length===2){
+    locked=true;
+    const a=placed[0], b=placed[1];
+    const right=a>b;                       // any TRUE sentence wins; smaller-first or equal (5,5 / 1,1) is wrong
+    if(right){
+      K.play('correct'); score++; K.litStars(score);
+      K.celebrate('kb2_'+a+'_'+b, PR[roundIdx%PR.length],
+        '<b>'+a+'</b> is bigger than <b>'+b+'</b>.', function(){
+          roundIdx++; if(roundIdx<ROUNDS) renderRound(); else K.endGame(ROUNDS,score); });
+    } else {
+      K.play('wrong');
+      [s0,s1].forEach(function(sl){ const c=sl.firstChild; if(c){ c.classList.add('shake'); } });
+      setTimeout(function(){ reset(); locked=false; },700);
+    }
+  }
+}
+function start(){
+  K.stopAll(); K.runSeq++; if(K.stopEndFireworks) K.stopEndFireworks(); $('end').classList.remove('on');
+  roundIdx=0; score=0; K.buildStars(ROUNDS);
+  renderRound();
+  K.play('kb_intro');
+}
+window.KbGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+$('againBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,start); });
+$('endHomeBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ KbGame.stop(); if(window.Hub) Hub.showMenu(); }); });
+$('homeBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ KbGame.stop(); if(window.Hub) Hub.showMenu(); }); });
+$('backBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ KbGame.stop(); if(window.Hub) Hub.backToActPick(); }); });
+})();
+
+/* ---- Play Kit drag helper: pointer-drag a pool card, drop it on whatever is under the pointer.
+   onDrop(targetElement, moved). A plain tap (no move) leaves the click handler in charge. ---- */
+window.kitDrag=function(el,onDrop){
+  el.addEventListener('pointerdown',function(e){
+    if((e.pointerType==='mouse'&&e.button!==0)||el.classList.contains('used')) return;
+    var id=e.pointerId, moved=false;
+    var g=el.cloneNode(true); g.className+=' kyGhost'; var r=el.getBoundingClientRect();
+    g.style.width=r.width+'px'; g.style.height=r.height+'px'; g.style.left=e.clientX+'px'; g.style.top=e.clientY+'px';
+    document.body.appendChild(g); el.classList.add('dragging');
+    try{ el.setPointerCapture(id); }catch(x){}
+    function mv(ev){ if(ev.pointerId!==id) return; moved=true; g.style.left=ev.clientX+'px'; g.style.top=ev.clientY+'px'; ev.preventDefault(); }
+    function up(ev){ if(ev.pointerId!==id) return;
+      el.removeEventListener('pointermove',mv); el.removeEventListener('pointerup',up); el.removeEventListener('pointercancel',up);
+      try{ el.releasePointerCapture(id); }catch(x){}
+      g.remove(); el.classList.remove('dragging');
+      var target=(ev.type==='pointerup')?document.elementFromPoint(ev.clientX,ev.clientY):null;
+      onDrop(target, moved); }
+    el.addEventListener('pointermove',mv); el.addEventListener('pointerup',up); el.addEventListener('pointercancel',up);
+    e.preventDefault();
+  });
+};
+
+/* ---- PLAY KIT 3: PATTERN BLOCKS - make recognizable shapes from the three Level-A blocks.
+   Geometry is TRUE: 1 block edge = U; the trapezoid is base 2U / top U / height U*sqrt3/2; no piece is ever
+   rotated at Level A, so every shape below tiles exactly from flat-bottom pieces. ---- */
+(function(){
+const K=makeTMKit('pb'), $=K.$;
+const U=60, HT=U*Math.sqrt(3)/2;
+const PIECE={
+  sq:  {pts:[[0,0],[U,0],[U,-U],[0,-U]],                 fill:'#f58220', w:U,   h:U,  name:'square'},
+  tri: {pts:[[0,0],[U,0],[U/2,-HT]],                      fill:'#3caa50', w:U,   h:HT, name:'triangle'},
+  trap:{pts:[[0,0],[2*U,0],[1.5*U,-HT],[0.5*U,-HT]],      fill:'#e03030', w:2*U, h:HT, name:'trapezoid'}};
+// slots = [kind, x, baseY]; y is the piece's BOTTOM edge measured upward from the shape's floor (negative = up)
+// 10 rounds, easy to hard; the red trapezoid (William 2026-09-15: "add more shapes that can be done with the last pattern
+// block") carries six of them: mountain, rocket, tree, barn, lighthouse, pyramid. Every piece keeps its flat bottom.
+const SHAPES=[
+  {id:'house',      name:'house',      slots:[['sq',0,0],['tri',0,-U]],                                             say:'a square and a triangle'},
+  {id:'mountain',   name:'mountain',   slots:[['trap',0,0],['tri',U/2,-HT]],                                         say:'a trapezoid and a triangle'},
+  {id:'tower',      name:'tower',      slots:[['sq',0,0],['sq',0,-U],['tri',0,-2*U]],                               say:'two squares and a triangle'},
+  {id:'rocket',     name:'rocket',     slots:[['trap',0,0],['sq',U/2,-HT],['tri',U/2,-HT-U]],                       say:'a trapezoid, a square and a triangle'},
+  {id:'tree',       name:'tree',       slots:[['sq',U/2,0],['trap',0,-U],['tri',U/2,-U-HT]],                        say:'a square, a trapezoid and a triangle'},
+  {id:'barn',       name:'barn',       slots:[['sq',0,0],['sq',U,0],['trap',0,-U],['tri',U/2,-U-HT]],               say:'two squares, a trapezoid and a triangle'},
+  {id:'lighthouse', name:'lighthouse', slots:[['trap',0,0],['sq',U/2,-HT],['sq',U/2,-HT-U],['tri',U/2,-HT-2*U]],   say:'a trapezoid, two squares and a triangle'},
+  {id:'pyramid',    name:'pyramid',    slots:[['trap',0,0],['trap',2*U,0],['trap',U,-HT],['tri',1.5*U,-2*HT]],      say:'three trapezoids and a triangle'},
+  {id:'castle',     name:'castle',     slots:[['sq',0,0],['sq',U,0],['sq',0,-U],['sq',U,-U],['tri',0,-2*U],['tri',U,-2*U]], say:'four squares and two triangles'},
+  {id:'crown',      name:'crown',      slots:[['sq',0,0],['sq',U,0],['sq',2*U,0],['tri',0,-U],['tri',U,-U],['tri',2*U,-U]],   say:'three squares and three triangles'}];
+const PR=['Great job!','Excellent!','Amazing!','Wonderful!','Super!'];
+K.reg('pb_intro','assets/voice/pb_intro.mp3','Look at the shape. Drag the blocks into the outline to make it!');
+SHAPES.forEach(function(s,i){ K.reg('pb_done_'+i,'assets/voice/pb_done_'+i+'.mp3','You made the '+s.name+'! '+s.say+'.'); });
+let roundIdx=0, score=0, locked=true, filled=[];
+const stage=$('stage'), pool=$('pool'), tracker=$('tracker'), check=$('check');
+function pts(kind,x,y){ return PIECE[kind].pts.map(function(p){ return (p[0]+x)+','+(p[1]+y); }).join(' '); }
+function bbox(s){ let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  s.slots.forEach(function(sl){ PIECE[sl[0]].pts.forEach(function(p){ const X=p[0]+sl[1], Y=p[1]+sl[2];
+    x0=Math.min(x0,X); x1=Math.max(x1,X); y0=Math.min(y0,Y); y1=Math.max(y1,Y); }); });
+  return {x0:x0,y0:y0,x1:x1,y1:y1}; }
+function shapeSVG(s, solid, cls){   // a whole shape as an inline svg (solid = filled pieces; else outline slots)
+  const b=bbox(s), pad=8, w=b.x1-b.x0+2*pad, h=b.y1-b.y0+2*pad;
+  return '<svg viewBox="'+(b.x0-pad)+' '+(b.y0-pad)+' '+w+' '+h+'" class="'+(cls||'')+'">'+
+    s.slots.map(function(sl,i){ const k=sl[0];
+      return '<polygon points="'+pts(k,sl[1],sl[2])+'" '+(solid?'fill="'+PIECE[k].fill+'" stroke="#222" stroke-width="3"':
+        'class="pbSlot" data-kind="'+k+'" data-i="'+i+'"')+'/>'; }).join('')+'</svg>'; }
+function pieceHTML(kind){ const p=PIECE[kind], pad=6;
+  return '<div class="kyCard pbPiece'+(kind==='trap'?' wide':'')+'" data-kind="'+kind+'">'+
+    '<svg viewBox="'+(-pad)+' '+(-p.h-pad)+' '+(p.w+2*pad)+' '+(p.h+2*pad)+'"><polygon points="'+pts(kind,0,0)+'" fill="'+p.fill+'" stroke="#222" stroke-width="3"/></svg></div>'; }
+function shakeEl(el){ K.play('wrong'); el.classList.remove('shake'); void el.offsetWidth;
+  el.classList.add('shake'); setTimeout(function(){ el.classList.remove('shake'); },450); }
+function renderTracker(){
+  tracker.innerHTML=SHAPES.map(function(s,i){ return '<div class="pbTk'+(i===roundIdx?' cur':(i<roundIdx?' done':''))+'" title="'+s.name+'">'+shapeSVG(s,true)+'</div>'; }).join(''); }
+function renderRound(){
+  const s=SHAPES[roundIdx]; locked=true; filled=s.slots.map(function(){ return false; });
+  $('pre').innerHTML='Make the <b>'+s.name+'</b>!'; $('poolLbl').textContent='Drag the blocks into the '+s.name+'!';
+  // key sentence = the round's thesis (no book page pictures blocks in W4, so it is typed, not extracted)
+  $('key').innerHTML=(s.say.charAt(0).toUpperCase()+s.say.slice(1)).replace(/(square|triangle|trapezoid)s?/g,'<b>$&</b>')+' make a <b>'+s.name+'</b>.';
+  renderTracker(); check.innerHTML=shapeSVG(s,true);
+  // the outline: viewBox fitted to the shape so every round fills the stage the same way
+  const b=bbox(s), pad=10; stage.setAttribute('viewBox',(b.x0-pad)+' '+(b.y0-pad)+' '+(b.x1-b.x0+2*pad)+' '+(b.y1-b.y0+2*pad));
+  stage.innerHTML=s.slots.map(function(sl,i){ return '<polygon class="pbSlot" data-kind="'+sl[0]+'" data-i="'+i+'" points="'+pts(sl[0],sl[1],sl[2])+'"/>'; }).join('');
+  // pool = the needed pieces + 2 distractors of OTHER kinds, shuffled
+  const need=s.slots.map(function(sl){ return sl[0]; });
+  const others=['sq','tri','trap'].filter(function(k){ return need.indexOf(k)<0; });
+  const items=need.concat(others.length?[others[0],others.length>1?others[1]:others[0]]:['trap','tri']);
+  for(let i=items.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; const t=items[i]; items[i]=items[j]; items[j]=t; }
+  pool.innerHTML=items.map(pieceHTML).join('');
+  Array.prototype.forEach.call(pool.children,function(el){
+    el.addEventListener('click',function(){ if(el._noClick&&Date.now()<el._noClick) return; tap(el); });
+    if(window.kitDrag) kitDrag(el,function(target,moved){
+      if(!moved) return; el._noClick=Date.now()+500;
+      const slot=target&&target.closest?target.closest('#pb_stage .pbSlot'):null;
+      if(!slot) return;
+      place(el, Number(slot.dataset.i));
+    });
+  });
+  K.litStars(score); K.resetHeroes(); locked=false;
+}
+function place(el,i){
+  if(locked||el.classList.contains('used')) return;
+  const s=SHAPES[roundIdx], kind=el.dataset.kind;
+  if(i<0||filled[i]||s.slots[i][0]!==kind){ shakeEl(el); return; }     // wrong block for that slot
+  const poly=stage.children[i]; poly.classList.add('filled'); poly.style.fill=PIECE[kind].fill;   // inline beats the .pbSlot sheet fill
+  filled[i]=true; el.classList.add('used'); K.play('pop');
+  if(filled.every(Boolean)){
+    locked=true; K.play('correct'); score++; K.litStars(score);
+    K.celebrate('pb_done_'+roundIdx, PR[roundIdx%PR.length],
+      shapeSVG(s,true,'pbSayShape')+' You made the <b>'+s.name+'</b>!', function(){
+        roundIdx++; if(roundIdx<SHAPES.length) renderRound(); else K.endGame(SHAPES.length,score); });
+  }
+}
+function tap(el){   // tap = into the first empty slot that takes this block
+  const s=SHAPES[roundIdx]; for(let i=0;i<s.slots.length;i++){ if(!filled[i]&&s.slots[i][0]===el.dataset.kind){ place(el,i); return; } }
+  shakeEl(el);
+}
+function start(){
+  K.stopAll(); K.runSeq++; if(K.stopEndFireworks) K.stopEndFireworks(); $('end').classList.remove('on');
+  roundIdx=0; score=0; K.buildStars(SHAPES.length);
+  renderRound();
+  K.play('pb_intro');
+}
+window.PbGame={ start(){ start(); }, stop(){ K.stopAll(); locked=true; if(window.Hub) Hub.silence(); } };
+$('againBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,start); });
+$('endHomeBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ PbGame.stop(); if(window.Hub) Hub.showMenu(); }); });
+$('homeBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ PbGame.stop(); if(window.Hub) Hub.showMenu(); }); });
+$('backBtn').addEventListener('click',function(e){ pressThen(e.currentTarget,function(){ PbGame.stop(); if(window.Hub) Hub.backToActPick(); }); });
+})();
+
+
+
 
 window.WeekArt = {
   motion:'jump',
@@ -5273,10 +6013,20 @@ window.Hub = {
     act3:{
       title:'Thinking Math',
       options:[
-        {launch:'order',   label:'Activity 1', orange:true},   // Line up the countries (smallest to biggest)
-        {launch:'smaller', label:'Activity 2', orange:true}    // Which is smaller?
+        {launch:'order',   label:'Line Them Up', orange:true},   // Line up the countries
+        {launch:'smaller', label:'Which Is Smaller?', orange:true}
       ]
     }
+  },
+  // PLAY KIT (W4 교구) - its own hub card, LAST, behind Math Literature (William 2026-09-15).
+  // Three activities; the print kit mirrors them 1:1.
+  kitMenu:{
+    title:'Play Kit',
+    options:[
+      {launch:'ky', label:'Pattern Cards',   orange:true},
+      {launch:'kb', label:'Is Bigger Than!', orange:true},
+      {launch:'pb', label:'Pattern Blocks',  orange:true}
+    ]
   },
   menusFor(week){
     week=Number(week);
@@ -5389,14 +6139,17 @@ window.Hub = {
   showActPick(menuKey){
     const menus=this.menusFor(this.week)||this.actMenus||{};
     this.actMenuKey=menuKey||this.actMenuKey||'act1';
-    const menu=menus[this.actMenuKey]||menus.act1;
+    // 'kit' = the Play Kit card (last hub card); its menu is the same W4 교구 set from every week's hub
+    const menu=menus[this.actMenuKey]||(this.actMenuKey==='kit'?this.kitMenu:null)||menus.act1;
     const title=document.getElementById('ap_title');
     const btn1=document.getElementById('ap_btn1');
     const btn2=document.getElementById('ap_btn2');
+    const btn3=document.getElementById('ap_btn3');
     if(title) title.textContent=menu.title;
-    [btn1,btn2].forEach((btn,i)=>{
+    [btn1,btn2,btn3].forEach((btn,i)=>{
       if(!btn) return;
       const opt=menu.options[i];
+      btn.hidden=!opt;
       if(!opt) return;
       btn.dataset.launch=opt.launch;
       btn.dataset.act=opt.act||'';
@@ -5512,7 +6265,7 @@ window.Hub = {
     this.silence();
     this.stopVideo();
     this.stopConceptVideo();
-    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','video','concept','actPick'].forEach(k=>{
+    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','ky','kb','pb','video','concept','actPick'].forEach(k=>{
       const el=document.getElementById('screen-'+k);
       if(el) el.classList.remove('on');
     });
@@ -5526,6 +6279,9 @@ window.Hub = {
     if(window.PodiumGame) PodiumGame.stop();
     if(window.OrderGame) OrderGame.stop();
     if(window.SmallerGame) SmallerGame.stop();
+    if(window.KyGame) KyGame.stop();
+    if(window.KbGame) KbGame.stop();
+    if(window.PbGame) PbGame.stop();
     this.silence();
     document.getElementById('hub').classList.add('hide');
     document.getElementById('weeks').classList.remove('hide');
@@ -5545,6 +6301,7 @@ window.Hub = {
     this.week=week;
     this.applyWeekArt(week);
     this.setHubReady(week);
+    if(window.hubCarousel) hubCarousel.setWeek(week);      // week-only cards (the Play Kit card is W4-only)
     document.getElementById('weeks').classList.add('hide');
     document.getElementById('hub').classList.remove('hide');
     this.current=null;
@@ -5553,7 +6310,7 @@ window.Hub = {
     this.silence();
     this.stopVideo();
     this.stopConceptVideo();
-    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','video','concept','actPick'].forEach(k=>{
+    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','ky','kb','pb','video','concept','actPick'].forEach(k=>{
       const el=document.getElementById('screen-'+k);
       if(el) el.classList.remove('on');
     });
@@ -5567,6 +6324,9 @@ window.Hub = {
     if(window.PodiumGame) PodiumGame.stop();
     if(window.OrderGame) OrderGame.stop();
     if(window.SmallerGame) SmallerGame.stop();
+    if(window.KyGame) KyGame.stop();
+    if(window.KbGame) KbGame.stop();
+    if(window.PbGame) PbGame.stop();
     this.silence();
     document.getElementById('weeks').classList.add('hide');
     document.getElementById('hub').classList.remove('hide');
@@ -5587,10 +6347,13 @@ window.Hub = {
     if(window.PodiumGame) PodiumGame.stop();
     if(window.OrderGame) OrderGame.stop();
     if(window.SmallerGame) SmallerGame.stop();
+    if(window.KyGame) KyGame.stop();
+    if(window.KbGame) KbGame.stop();
+    if(window.PbGame) PbGame.stop();
     this.silence();
     document.getElementById('weeks').classList.add('hide');
     document.getElementById('hub').classList.add('hide');
-    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','video','concept','actPick'].forEach(k=>{
+    ['pattern','bigger','thinkPat','thinkBig','build','sent','fix','podium','order','smaller','ky','kb','pb','video','concept','actPick'].forEach(k=>{
       const el=document.getElementById('screen-'+k);
       if(el) el.classList.toggle('on', k===kind);
     });
@@ -5607,6 +6370,9 @@ window.Hub = {
       else if(kind==='podium') PodiumGame.start();
       else if(kind==='order') OrderGame.start();
       else if(kind==='smaller') SmallerGame.start();
+      else if(kind==='ky') KyGame.start();
+      else if(kind==='kb') KbGame.start();
+      else if(kind==='pb') PbGame.start();
       else if(kind==='video') this.playVideo(act);
       else if(kind==='concept') this.showConceptPick();
       else if(kind==='actPick') this.showActPick(act||this.actMenuKey||'act1');
@@ -5728,6 +6494,9 @@ document.querySelectorAll('#ap_stage .actPickBtn').forEach(btn=>{
     dotsWrap.appendChild(b);
   });
   const dots=[...dotsWrap.querySelectorAll('button')];
+  // a card may belong to ONE week (data-week) - William 2026-09-15: the Play Kit card "should only appear in the week 4
+  // menu hub". Cards without data-week show every week. The carousel walks the VISIBLE cards only.
+  let limit=cards.length;
   function render(){
     cards.forEach((card,idx)=>{
       card.classList.remove('is-center','is-left','is-right','is-far');
@@ -5739,10 +6508,15 @@ document.querySelectorAll('#ap_stage .actPickBtn').forEach(btn=>{
     });
     dots.forEach((d,idx)=>d.classList.toggle('on', idx===i));
     prevBtn.disabled=i<=0;
-    nextBtn.disabled=i>=cards.length-1;
+    nextBtn.disabled=i>=limit-1;
   }
+  window.hubCarousel={ setWeek(week){
+    let n=0;
+    cards.forEach((card,idx)=>{ const w=card.dataset.week; const show=!w||Number(w)===Number(week); card.hidden=!show; dots[idx].hidden=!show; if(show) n=idx+1; });
+    limit=n; if(i>=limit) i=limit-1; render();
+  } };
   prevBtn.addEventListener('click',()=>{ if(i>0){ i--; render(); } });
-  nextBtn.addEventListener('click',()=>{ if(i<cards.length-1){ i++; render(); } });
+  nextBtn.addEventListener('click',()=>{ if(i<limit-1){ i++; render(); } });
   const stage=document.querySelector('.hubStage');
   let drag=null;
   let suppressClickUntil=0;
@@ -5938,5 +6712,6 @@ document.querySelectorAll('#ap_stage .actPickBtn').forEach(btn=>{
 
 </script>
 <button type="button" id="k_nextBtn" class="kNext" title="Next" aria-label="Next" hidden><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div id="ls_rotate"><div class="ph"></div><div class="msg">Turn your phone sideways<br>to play!</div></div>
 </body>
 </html>
